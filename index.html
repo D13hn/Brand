@@ -1833,12 +1833,23 @@
 
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
-                <label class="admin-label" for="prodTypeAr" data-i18n="labelTypeAr">النوع / التصنيف</label>
+                <label class="admin-label" for="prodTypeAr" data-i18n="labelTypeAr">النوع / التصنيف (عربي)</label>
                 <input type="text" id="prodTypeAr" class="admin-input" placeholder="مثال: كاجوال / شتوي" />
               </div>
               <div class="admin-field">
-                <label class="admin-label" for="prodMaterialAr" data-i18n="labelMaterialAr">الخامة / نوع القماش</label>
+                <label class="admin-label" for="prodTypeEn" data-i18n="labelTypeEn">Type / Style (English)</label>
+                <input type="text" id="prodTypeEn" class="admin-input" placeholder="e.g., Casual / Winter" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="prodMaterialAr" data-i18n="labelMaterialAr">الخامة / نوع القماش (عربي)</label>
                 <input type="text" id="prodMaterialAr" class="admin-input" placeholder="مثال: قطن 100% / جلد فاخر" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="prodMaterialEn" data-i18n="labelMaterialEn">Material / Fabric (English)</label>
+                <input type="text" id="prodMaterialEn" class="admin-input" placeholder="e.g., 100% Cotton / Premium Leather" />
               </div>
             </div>
 
@@ -1857,7 +1868,7 @@
                 <input type="text" id="prodImgUrl" class="admin-input" placeholder="https://images.unsplash.com/..." />
               </div>
               <div class="admin-field">
-                <label class="admin-label" for="prodImgFile" data-i18n="labelImgFile">أو اختر صورة من الجهاز</label>
+                <label class="admin-label" for="prodImgFile" data-i18n="labelImgFile">أو اختر صورة من الجهاز (يتم ضغطها تلقائياً)</label>
                 <input type="file" id="prodImgFile" class="admin-input" accept="image/*" style="padding-top: 8px;" />
               </div>
             </div>
@@ -1866,7 +1877,7 @@
               <img id="prodImgPreview" src="" alt="Preview" class="img-preview-thumb" />
               <div style="min-width: 0;">
                 <div class="admin-item-title" data-i18n="imgPreviewLabel">معاينة صورة المنتج</div>
-                <div class="admin-item-sub" id="prodImgStatusText" data-i18n="imgPreviewHint">يدعم الروابط المباشرة ورفع الصور من الهاتف أو الحاسوب</div>
+                <div class="admin-item-sub" id="prodImgStatusText" data-i18n="imgPreviewHint">يدعم الروابط المباشرة ورفع الصور مع ضغط تلقائي للحجم</div>
               </div>
             </div>
 
@@ -2072,6 +2083,7 @@
       const META_ROW_ID = '__hs_fashion4_meta__';
 
       const STORAGE_KEY = 'hs_fashion4_store_v2';
+      const THEME_STORAGE_KEY = 'hs_fashion4_theme_v1';
       const FALLBACK_IMG = 'https://placehold.co/600x660/10B981/FFFFFF?text=HS+Fashion';
       const SIZE_PRESETS = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'Free Size', '30', '32', '34', '36', '38', '40', '41', '42', '43', '44', '45'];
 
@@ -2280,6 +2292,15 @@
           return normalizeLoadedData(JSON.parse(raw));
         } catch (err) {
           return getDefaultStoreData();
+        }
+      }
+
+      function loadSavedTheme() {
+        try {
+          const saved = localStorage.getItem(THEME_STORAGE_KEY);
+          return saved === 'dark' ? 'dark' : 'light';
+        } catch (err) {
+          return 'light';
         }
       }
 
@@ -2512,6 +2533,43 @@
         return digits;
       }
 
+      function compressImageFileToDataUrl(file, maxWidth, maxHeight, quality) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          const objectUrl = URL.createObjectURL(file);
+
+          img.onload = function () {
+            URL.revokeObjectURL(objectUrl);
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth || height > maxHeight) {
+              const ratio = Math.min(maxWidth / width, maxHeight / height);
+              width = Math.round(width * ratio);
+              height = Math.round(height * ratio);
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+              reject(new Error('Canvas context unavailable'));
+              return;
+            }
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+
+          img.onerror = function () {
+            URL.revokeObjectURL(objectUrl);
+            reject(new Error('Image load failed'));
+          };
+
+          img.src = objectUrl;
+        });
+      }
+
       const I18N = {
         ar: {
           heroBadge: 'Hussain Saeed Fashion • @hs.fashion4',
@@ -2553,14 +2611,16 @@
           labelNameEn: 'اسم المنتج (إنجليزي)',
           labelPriceIqd: 'السعر بالدينار العراقي (IQD)*',
           labelCategorySelect: 'القسم*',
-          labelTypeAr: 'النوع / التصنيف',
-          labelMaterialAr: 'الخامة / نوع القماش',
+          labelTypeAr: 'النوع / التصنيف (عربي)',
+          labelTypeEn: 'النوع / التصنيف (إنجليزي)',
+          labelMaterialAr: 'الخامة / نوع القماش (عربي)',
+          labelMaterialEn: 'الخامة / نوع القماش (إنجليزي)',
           labelSizesSelect: 'المقاسات المتوفرة (اضغط لتحديد أو إلغاء التحديد):',
           addSizeBtn: '+ إضافة مقاس',
           labelImgUrl: 'رابط صورة المنتج (URL)',
-          labelImgFile: 'أو اختر صورة من الجهاز',
+          labelImgFile: 'أو اختر صورة من الجهاز (يتم ضغطها تلقائياً)',
           imgPreviewLabel: 'معاينة صورة المنتج',
-          imgPreviewHint: 'يدعم الروابط المباشرة ورفع الصور من الهاتف أو الحاسوب',
+          imgPreviewHint: 'يدعم الروابط المباشرة ورفع الصور مع ضغط تلقائي للحجم',
           saveProductBtn: 'حفظ المنتج في المتجر',
           updateProductBtn: 'تحديث بيانات المنتج',
           existingProductsHeading: 'المنتجات الحالية',
@@ -2638,14 +2698,16 @@
           labelNameEn: 'Product Name (English)',
           labelPriceIqd: 'Price in IQD*',
           labelCategorySelect: 'Category*',
-          labelTypeAr: 'Type / Style',
-          labelMaterialAr: 'Material / Fabric',
+          labelTypeAr: 'Type / Style (Arabic)',
+          labelTypeEn: 'Type / Style (English)',
+          labelMaterialAr: 'Material / Fabric (Arabic)',
+          labelMaterialEn: 'Material / Fabric (English)',
           labelSizesSelect: 'Available Sizes (click to toggle):',
           addSizeBtn: '+ Add Size',
           labelImgUrl: 'Product Image URL',
-          labelImgFile: 'Or Upload Image from Device',
+          labelImgFile: 'Or Upload Image (Auto-Compressed)',
           imgPreviewLabel: 'Product Image Preview',
-          imgPreviewHint: 'Supports direct image URLs and device photo uploads',
+          imgPreviewHint: 'Supports direct image URLs and device uploads with auto-compression',
           saveProductBtn: 'Save Product to Store',
           updateProductBtn: 'Update Product',
           existingProductsHeading: 'Current Products',
@@ -2708,7 +2770,7 @@
 
       const state = {
         lang: 'ar',
-        theme: 'light',
+        theme: loadSavedTheme(),
         activeProduct: null,
         selectedSize: null,
         activeCategoryPage: null,
@@ -2775,6 +2837,9 @@
       function applyTheme(theme) {
         state.theme = theme;
         htmlEl.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem(THEME_STORAGE_KEY, theme);
+        } catch (err) {}
         if (theme === 'dark') {
           iconMoon.style.display = 'none';
           iconSun.style.display = 'block';
@@ -2938,7 +3003,7 @@
 
         function step() {
           if (destroyed) return;
-          if (!isPaused && !isPointerDown) {
+          if (!document.hidden && !isPaused && !isPointerDown) {
             offset -= autoSpeed;
             wrapOffset();
             track.style.transform = `translate3d(${offset}px, 0, 0)`;
@@ -3214,6 +3279,7 @@
         showToast(I18N[lang].toastPrepared);
         const waUrl = `https://wa.me/${intlPhone}?text=${encodeURIComponent(message)}`;
         window.open(waUrl, '_blank', 'noopener,noreferrer');
+        closeProductModal();
       });
 
       const copyrightTrigger = document.getElementById('copyrightTrigger');
@@ -3313,7 +3379,9 @@
       const prodPriceIqd = document.getElementById('prodPriceIqd');
       const prodCategorySelect = document.getElementById('prodCategorySelect');
       const prodTypeAr = document.getElementById('prodTypeAr');
+      const prodTypeEn = document.getElementById('prodTypeEn');
       const prodMaterialAr = document.getElementById('prodMaterialAr');
+      const prodMaterialEn = document.getElementById('prodMaterialEn');
       const adminSizePresetContainer = document.getElementById('adminSizePresetContainer');
       const customSizeInput = document.getElementById('customSizeInput');
       const addCustomSizeBtn = document.getElementById('addCustomSizeBtn');
@@ -3462,17 +3530,27 @@
         updateImagePreview();
       });
 
-      prodImgFile.addEventListener('change', () => {
+      prodImgFile.addEventListener('change', async () => {
         const file = prodImgFile.files && prodImgFile.files[0];
         if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (ev) {
-          state.uploadedImageDataUrl = String(ev.target.result || '');
+        try {
+          prodImgStatusText.textContent = state.lang === 'ar' ? 'جاري ضغط الصورة...' : 'Compressing image...';
+          const compressedDataUrl = await compressImageFileToDataUrl(file, 800, 880, 0.78);
+          state.uploadedImageDataUrl = compressedDataUrl;
           prodImgUrl.value = '';
-          prodImgStatusText.textContent = file.name;
+          const approxKb = Math.round((compressedDataUrl.length * 3) / 4 / 1024);
+          prodImgStatusText.textContent = `${file.name} (~${approxKb} KB)`;
           updateImagePreview();
-        };
-        reader.readAsDataURL(file);
+        } catch (err) {
+          const reader = new FileReader();
+          reader.onload = function (ev) {
+            state.uploadedImageDataUrl = String(ev.target.result || '');
+            prodImgUrl.value = '';
+            prodImgStatusText.textContent = file.name;
+            updateImagePreview();
+          };
+          reader.readAsDataURL(file);
+        }
       });
 
       function updateProductFormModeUI() {
@@ -3514,7 +3592,9 @@
         const priceVal = Number(prodPriceIqd.value) || 25000;
         const targetCatKey = prodCategorySelect.value || (storeData.categories[0] && storeData.categories[0].key);
         const typeArVal = prodTypeAr.value.trim() || 'كاجوال';
+        const typeEnVal = prodTypeEn.value.trim() || typeArVal;
         const materialArVal = prodMaterialAr.value.trim() || 'خامة ممتازة';
+        const materialEnVal = prodMaterialEn.value.trim() || materialArVal;
         const imgFinal = state.uploadedImageDataUrl || prodImgUrl.value.trim() || FALLBACK_IMG;
 
         if (!nameArVal || !targetCatKey) return;
@@ -3537,8 +3617,8 @@
             id: state.editingProductId,
             name: { ar: nameArVal, en: nameEnVal },
             priceIqd: priceVal,
-            type: { ar: typeArVal, en: typeArVal },
-            material: { ar: materialArVal, en: materialArVal },
+            type: { ar: typeArVal, en: typeEnVal },
+            material: { ar: materialArVal, en: materialEnVal },
             sizes: [...state.adminSelectedSizes],
             img: imgFinal
           };
@@ -3553,8 +3633,8 @@
             id: `prod-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             name: { ar: nameArVal, en: nameEnVal },
             priceIqd: priceVal,
-            type: { ar: typeArVal, en: typeArVal },
-            material: { ar: materialArVal, en: materialArVal },
+            type: { ar: typeArVal, en: typeEnVal },
+            material: { ar: materialArVal, en: materialEnVal },
             sizes: [...state.adminSelectedSizes],
             img: imgFinal
           };
@@ -3581,7 +3661,9 @@
         prodPriceIqd.value = prod.priceIqd || 25000;
         prodCategorySelect.value = catKey;
         prodTypeAr.value = prod.type.ar || '';
+        prodTypeEn.value = prod.type.en || '';
         prodMaterialAr.value = prod.material.ar || '';
+        prodMaterialEn.value = prod.material.en || '';
         prodImgUrl.value = prod.img && !prod.img.startsWith('data:') ? prod.img : '';
         prodImgStatusText.textContent = state.uploadedImageDataUrl ? 'صورة مرفوعة مسبقاً' : I18N[state.lang].imgPreviewHint;
 
@@ -3838,6 +3920,7 @@
         showToast(I18N[state.lang].toastResetDone);
       });
 
+      applyTheme(state.theme);
       applyBrandSettings();
       renderGovernorateOptions();
       renderStorefrontSections();
