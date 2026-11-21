@@ -1,0 +1,4009 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hussain Saeed Fashion (@hs.fashion4) — أناقة عصرية وجودة استثنائية</title>
+
+  <!-- Google Fonts: Cairo & Tajawal (Arabic) + Plus Jakarta Sans & Poppins (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. CSS DESIGN TOKENS & THEME SYSTEM (LIGHT & DARK MODE)
+       ========================================================================== */
+    :root {
+      /* Light Mode (Default) */
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8FAFC;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-card-hover: rgba(255, 255, 255, 0.92);
+      --modal-bg: rgba(255, 255, 255, 0.96);
+      --text-primary: #1A1A1A;
+      --text-secondary: #52525B;
+      --text-muted: #71717A;
+      --border-subtle: 1px solid rgba(0, 0, 0, 0.08);
+      --border-strong: 1px solid rgba(0, 0, 0, 0.14);
+      --pill-bg: rgba(0, 0, 0, 0.04);
+      --pill-hover: rgba(16, 185, 129, 0.12);
+      --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.04);
+      --shadow-nav: 0 8px 32px rgba(0, 0, 0, 0.06);
+
+      /* Brand Emerald Accents */
+      --accent-emerald: #10B981;
+      --accent-emerald-hover: #34D399;
+      --accent-emerald-deep: #059669;
+      --accent-glow: 0 8px 24px rgba(16, 185, 129, 0.25);
+      --accent-glow-hover: 0 12px 30px rgba(16, 185, 129, 0.38);
+
+      /* Layout & Radii */
+      --outer-margin: 7px;
+      --radius-sm: 12px;
+      --radius-md: 14px;
+      --radius-lg: 16px;
+      --blur-amount: blur(12px);
+      --transition-smooth: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+
+      /* Typography */
+      --font-ar: 'Cairo', 'Tajawal', sans-serif;
+      --font-en: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0F1115;
+      --bg-secondary: #151820;
+      --glass-bg: rgba(24, 27, 34, 0.8);
+      --glass-card-hover: rgba(30, 34, 43, 0.92);
+      --modal-bg: rgba(22, 25, 32, 0.97);
+      --text-primary: #F5F5F5;
+      --text-secondary: #A1A1AA;
+      --text-muted: #71717A;
+      --border-subtle: 1px solid rgba(255, 255, 255, 0.1);
+      --border-strong: 1px solid rgba(255, 255, 255, 0.18);
+      --pill-bg: rgba(255, 255, 255, 0.06);
+      --pill-hover: rgba(16, 185, 129, 0.18);
+      --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --shadow-nav: 0 10px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    /* ==========================================================================
+       2. GLOBAL RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-ar);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    html[lang="en"] body {
+      font-family: var(--font-en);
+    }
+
+    /* Ambient Subtle Background Orbs */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+      transition: opacity 0.4s ease;
+    }
+
+    [data-theme="dark"] .ambient-orb {
+      opacity: 0.28;
+    }
+
+    .orb-1 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.28), transparent 70%);
+      top: -60px;
+      left: -60px;
+    }
+
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.22), transparent 70%);
+      top: 38%;
+      right: -90px;
+    }
+
+    /* Main Wrapper enforcing mandatory 7px outer horizontal margin */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: var(--outer-margin);
+      padding-bottom: 28px;
+    }
+
+    /* ==========================================================================
+       3. STICKY GLASSMORPHISM TOP NAVIGATION BAR
+       ========================================================================== */
+    .navbar-outer {
+      position: sticky;
+      top: 8px;
+      z-index: 100;
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    /* Explicitly dir="ltr" on navbar container so Logo is always Top-Left and Controls Top-Right */
+    .navbar {
+      direction: ltr;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      box-shadow: var(--shadow-nav);
+      transition: var(--transition-smooth);
+    }
+
+    .brand-logo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: var(--text-primary);
+      border-radius: 10px;
+      padding: 2px 4px;
+      min-width: 0;
+    }
+
+    .brand-logo-svg {
+      width: 38px;
+      height: 38px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .brand-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.12;
+      min-width: 0;
+    }
+
+    .brand-wordmark-main {
+      font-weight: 800;
+      font-size: 0.92rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (min-width: 420px) {
+      .brand-wordmark-main {
+        font-size: 1.02rem;
+      }
+    }
+
+    .brand-wordmark-sub {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-smooth);
+      flex-shrink: 0;
+    }
+
+    .icon-btn:hover {
+      background: var(--pill-hover);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: var(--accent-emerald);
+      transform: translateY(-1px);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    .icon-btn svg {
+      width: 19px;
+      height: 19px;
+      stroke-width: 2;
+    }
+
+    .lang-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      font-size: 0.55rem;
+      font-weight: 800;
+      font-family: var(--font-en);
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      padding: 1px 4px;
+      border-radius: 5px;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 18px;
+      margin-bottom: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+    }
+
+    .hero-glow-accent {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.26);
+      color: var(--accent-emerald);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .hero-title {
+      font-size: clamp(1.65rem, 5.2vw, 2.85rem);
+      font-weight: 800;
+      line-height: 1.24;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.92rem, 2.5vw, 1.08rem);
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .hero-address-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 13px;
+      border-radius: 10px;
+      margin-bottom: 22px;
+    }
+
+    .hero-address-chip svg {
+      color: var(--accent-emerald);
+      flex-shrink: 0;
+    }
+
+    .btn-primary-emerald {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: var(--accent-glow);
+      transition: var(--transition-smooth);
+      min-height: 48px;
+    }
+
+    .btn-primary-emerald:hover {
+      background: var(--accent-emerald-hover);
+      box-shadow: var(--accent-glow-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary-emerald:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: var(--border-subtle);
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 26px;
+      background: rgba(128, 128, 128, 0.2);
+    }
+
+    /* ==========================================================================
+       5. PRODUCT SHOWCASE SECTIONS & INFINITE TOUCH-DRAGGABLE SLIDERS
+       ========================================================================== */
+    .collections-container {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .category-section {
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px 0 20px;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: 14px;
+      margin-bottom: 14px;
+      gap: 8px;
+    }
+
+    .section-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .section-accent-bar {
+      width: 4px;
+      height: 22px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #10B981, #34D399);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.12rem, 3.5vw, 1.42rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .swipe-hint {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--pill-bg);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: var(--border-subtle);
+    }
+
+    @media (min-width: 640px) {
+      .swipe-hint {
+        display: inline-flex;
+      }
+    }
+
+    .btn-view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      color: var(--accent-emerald);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      min-height: 36px;
+      white-space: nowrap;
+    }
+
+    .btn-view-all:hover {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #FFFFFF;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.26);
+      transform: translateY(-1px);
+    }
+
+    .btn-view-all:active {
+      transform: scale(0.96);
+    }
+
+    .empty-category-note {
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* Slider Viewport & Track (Always LTR internally for predictable infinite scroll math) */
+    .slider-viewport {
+      direction: ltr;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+      padding-block: 4px;
+    }
+
+    .slider-viewport.is-dragging {
+      cursor: grabbing;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      will-change: transform;
+      padding-inline: 12px;
+    }
+
+    /* Individual Product Card */
+    .product-card {
+      width: 192px;
+      flex-shrink: 0;
+      background: var(--glass-bg);
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .product-card {
+        width: 230px;
+        padding: 12px;
+      }
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 12px 26px rgba(16, 185, 129, 0.14);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 4.4;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+      margin-bottom: 10px;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.06);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 17, 21, 0.68);
+      backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+      text-align: start;
+    }
+
+    .product-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-price-mini {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+    }
+
+    .btn-buy-card {
+      width: 100%;
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.22);
+      transition: var(--transition-smooth);
+      min-height: 38px;
+    }
+
+    .btn-buy-card:hover {
+      background: var(--accent-emerald-hover);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.34);
+    }
+
+    /* ==========================================================================
+       6. INTERACTIVE FLOATING PRODUCT & PIN MODALS
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 12, 16, 0.62);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-dialog {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--modal-bg);
+      border: var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      padding: 16px;
+      transform: translateY(18px) scale(0.96);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-backdrop.is-open .modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      inset-inline-end: 14px;
+      z-index: 10;
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: rgba(15, 17, 21, 0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: #EF4444;
+      border-color: #EF4444;
+      transform: scale(1.05);
+    }
+
+    .modal-image-box {
+      width: 100%;
+      aspect-ratio: 16 / 13;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--bg-secondary);
+      margin-bottom: 14px;
+    }
+
+    .modal-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .modal-price-badge {
+      flex-shrink: 0;
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      font-size: 0.96rem;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .modal-specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .spec-box {
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+
+    .spec-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .spec-value {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .size-section {
+      margin-bottom: 14px;
+    }
+
+    .size-section-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .size-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .size-pill {
+      min-width: 44px;
+      height: 38px;
+      padding-inline: 11px;
+      border-radius: 10px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      color: var(--text-primary);
+      font-family: var(--font-en);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .size-pill:hover {
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+
+    .size-pill.active {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Governorate Selector & Address Field in Modal */
+    .delivery-fields-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .field-block {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .iraq-only-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.12);
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .modal-select,
+    .modal-input {
+      width: 100%;
+      height: 42px;
+      padding-inline: 12px;
+      border-radius: 10px;
+      background: var(--bg-primary);
+      border: var(--border-strong);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .modal-select:focus,
+    .modal-input:focus {
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .modal-order-btn {
+      width: 100%;
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 0.94rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--accent-glow);
+      transition: var(--transition-smooth);
+      min-height: 50px;
+    }
+
+    .modal-order-btn:hover {
+      background: var(--accent-emerald-hover);
+      box-shadow: var(--accent-glow-hover);
+      transform: translateY(-1px);
+    }
+
+    .pin-error-text {
+      color: #EF4444;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 6px;
+      min-height: 20px;
+    }
+
+    /* ==========================================================================
+       6B. FULL-PAGE CATEGORY VIEW OVERLAY ("عرض الكل / View All")
+       ========================================================================== */
+    .category-page-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 850;
+      background: var(--bg-primary);
+      overflow-y: auto;
+      overflow-x: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s ease;
+    }
+
+    .category-page-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .category-page-inner {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: var(--outer-margin);
+      padding-bottom: 36px;
+    }
+
+    .category-page-header {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      margin-top: 8px;
+      margin-bottom: 18px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      box-shadow: var(--shadow-nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn-back-cat {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      min-height: 40px;
+    }
+
+    .btn-back-cat:hover {
+      background: var(--pill-hover);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--accent-emerald);
+    }
+
+    html[dir="ltr"] .btn-back-cat svg {
+      transform: rotate(180deg);
+    }
+
+    .cat-page-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .cat-page-title {
+      font-size: clamp(1.02rem, 3.5vw, 1.32rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cat-count-badge {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .category-products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .category-products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .category-products-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .category-products-grid .product-card {
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       6C. FULL ADMIN CONTROL PANEL OVERLAY ("لوحة التحكم / Admin Panel")
+       ========================================================================== */
+    .admin-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 920;
+      background: var(--bg-primary);
+      overflow-y: auto;
+      overflow-x: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(18px);
+      transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.28s ease;
+    }
+
+    .admin-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .admin-inner {
+      max-width: 1120px;
+      margin-inline: auto;
+      padding-inline: var(--outer-margin);
+      padding-bottom: 44px;
+    }
+
+    .admin-topbar {
+      position: sticky;
+      top: 8px;
+      z-index: 30;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      box-shadow: var(--shadow-nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .admin-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .admin-badge {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .admin-tabs-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .admin-tab-btn {
+      background: var(--glass-bg);
+      border: var(--border-subtle);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 800;
+      padding: 11px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+      min-height: 44px;
+    }
+
+    .admin-tab-btn:hover {
+      border-color: rgba(16, 185, 129, 0.38);
+      color: var(--text-primary);
+    }
+
+    .admin-tab-btn.active {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #FFFFFF;
+      box-shadow: var(--accent-glow);
+    }
+
+    .admin-panel-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .admin-card-heading {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .admin-form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 700px) {
+      .admin-form-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .admin-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .admin-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .admin-hint-box {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+
+    .admin-input,
+    .admin-select {
+      width: 100%;
+      height: 42px;
+      padding-inline: 12px;
+      border-radius: 10px;
+      background: var(--bg-primary);
+      border: var(--border-strong);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .admin-input:focus,
+    .admin-select:focus {
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
+    }
+
+    .size-selector-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 2px;
+    }
+
+    .admin-size-toggle {
+      padding: 6px 12px;
+      border-radius: 9px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      color: var(--text-primary);
+      font-family: var(--font-en);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .admin-size-toggle.selected {
+      background: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #FFFFFF;
+    }
+
+    .custom-size-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-sm-emerald {
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      padding: 0 14px;
+      height: 40px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-sm-emerald:hover {
+      background: var(--accent-emerald-hover);
+    }
+
+    .img-preview-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 12px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+    }
+
+    .img-preview-thumb {
+      width: 58px;
+      height: 58px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: var(--bg-secondary);
+      border: var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .admin-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .btn-secondary-soft {
+      background: var(--pill-bg);
+      border: var(--border-strong);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+      min-height: 40px;
+    }
+
+    .btn-secondary-soft:hover {
+      border-color: rgba(16, 185, 129, 0.45);
+      color: var(--accent-emerald);
+    }
+
+    .btn-danger-soft {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #EF4444;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 7px 11px;
+      border-radius: 9px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-danger-soft:hover {
+      background: #EF4444;
+      color: #FFFFFF;
+    }
+
+    .admin-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .admin-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--pill-bg);
+      border: var(--border-subtle);
+      flex-wrap: wrap;
+    }
+
+    .admin-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1 1 200px;
+    }
+
+    .admin-item-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 9px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--bg-secondary);
+    }
+
+    .admin-item-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .admin-item-sub {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .admin-item-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .admin-utility-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+    }
+
+    /* Toast Notification for Order Confirmation & Admin Actions */
+    .order-toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      z-index: 1200;
+      background: var(--modal-bg);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      backdrop-filter: blur(12px);
+      color: var(--text-primary);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      max-width: calc(100vw - 24px);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .order-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       7. FOOTER, LONG-PRESS ADMIN TRIGGER & IRAQ DELIVERY INFO
+       ========================================================================== */
+    .footer-wrapper {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .delivery-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(52, 211, 153, 0.08) 100%);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .delivery-info-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1 1 240px;
+    }
+
+    .delivery-icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--accent-glow);
+    }
+
+    .delivery-text-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: start;
+    }
+
+    .delivery-title {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .delivery-sub {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .footer-wa-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--accent-glow);
+      transition: var(--transition-smooth);
+      white-space: nowrap;
+      min-height: 42px;
+    }
+
+    .footer-wa-link:hover {
+      background: var(--accent-emerald-hover);
+      transform: translateY(-1px);
+    }
+
+    .copyright-bar {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: var(--blur-amount);
+      -webkit-backdrop-filter: var(--blur-amount);
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: hidden;
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .copyright-bar.is-holding {
+      border-color: rgba(16, 185, 129, 0.55);
+      color: var(--text-primary);
+    }
+
+    .copyright-hold-progress {
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #10B981, #34D399);
+      transition: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Soft Green Glows -->
+  <div class="ambient-orb orb-1" aria-hidden="true"></div>
+  <div class="ambient-orb orb-2" aria-hidden="true"></div>
+
+  <!-- Main Wrapper with Mandatory 7px Left & Right Outer Padding -->
+  <div class="page-wrapper">
+
+    <!-- ======================================================================
+         1. STICKY GLASSMORPHISM TOP NAVIGATION BAR
+         ====================================================================== -->
+    <header class="navbar-outer">
+      <nav class="navbar" aria-label="Primary Navigation">
+        <!-- Visually Top-Left: Custom Interlocking Brand SVG Logo -->
+        <a href="#top" class="brand-logo-link" aria-label="Hussain Saeed Fashion Home">
+          <svg class="brand-logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hsGradPrimary" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#10B981" />
+                <stop offset="100%" stop-color="#34D399" />
+              </linearGradient>
+              <linearGradient id="hsGradSecondary" x1="12" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#34D399" />
+                <stop offset="100%" stop-color="#059669" />
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="44" height="44" rx="13" fill="url(#hsGradPrimary)" fill-opacity="0.14" stroke="url(#hsGradPrimary)" stroke-width="1.8" />
+            <!-- Interlocking H & S Monogram -->
+            <path d="M12 13V35M22 13V35M12 24H22" stroke="url(#hsGradPrimary)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M35.5 15.5C34.2 13.8 31.8 13.2 29.5 13.8C27.2 14.4 26.2 16.5 26.6 18.6C27 20.8 29.3 21.8 31.8 22.5C34.4 23.2 36.2 24.6 36.2 27.6C36.2 30.8 33.8 33.4 30.5 33.8C27.8 34.1 25.8 32.8 25 31" stroke="url(#hsGradSecondary)" stroke-width="3.1" stroke-linecap="round" />
+            <circle cx="36.5" cy="14" r="2.1" fill="#10B981" />
+          </svg>
+          <div class="brand-wordmark">
+            <span class="brand-wordmark-main" id="navBrandTitle">Hussain Saeed Fashion</span>
+            <span class="brand-wordmark-sub" id="navHandleSubtitle">@hs.fashion4</span>
+          </div>
+        </a>
+
+        <!-- Visually Top-Right: Theme Toggle & Language Globe Toggle (Clean Storefront for Customers) -->
+        <div class="nav-actions">
+          <!-- Theme Toggle Button (Sun / Moon) -->
+          <button type="button" class="icon-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+            <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+            <svg id="iconSun" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </button>
+
+          <!-- Language Toggle Button (Globe SVG) -->
+          <button type="button" class="icon-btn" id="langToggleBtn" aria-label="Switch Language" title="Switch Language">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+              <path d="M2 12h20" />
+            </svg>
+            <span class="lang-badge" id="langBadgeText">EN</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ======================================================================
+         2. HERO SECTION (HOME)
+         ====================================================================== -->
+    <main id="top">
+      <section class="hero-section" aria-labelledby="heroHeading">
+        <div class="hero-glow-accent" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            <span data-i18n="heroBadge">Hussain Saeed Fashion • @hs.fashion4</span>
+          </div>
+
+          <h1 class="hero-title" id="heroHeading" data-i18n-html="heroTitle">
+            إطلالتك العصرية في <span>Hussain Saeed Fashion</span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
+            أحدث تشكيلة ملابس وبناطيل وأحذية عصرية بجودة مختارة وتصاميم تواكب الموضة، مع توصيل سريع لكافة المحافظات.
+          </p>
+
+          <div class="hero-address-chip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span id="heroAddressText">بغداد حي العامل - شارع التشييش</span>
+          </div>
+
+          <a href="#collections" class="btn-primary-emerald" id="heroCtaBtn">
+            <span data-i18n="heroCta">تصفح التشكيلة الآن</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </a>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-value">48.3K+</span>
+              <span class="stat-label" data-i18n="statFollowers">متابع على انستغرام</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-value" id="heroDeliveryFeeStat">5 الف</span>
+              <span class="stat-label" data-i18n="statDeliveryFee">توصيل للمحافظات</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-value">18</span>
+              <span class="stat-label" data-i18n="statProvinces">محافظة عراقية</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. DYNAMIC PRODUCT SHOWCASE SECTIONS (CLOTHES, PANTS, SHOES + CUSTOM)
+           ==================================================================== -->
+      <div class="collections-container" id="collections"></div>
+    </main>
+
+    <!-- ======================================================================
+         5. FOOTER & IRAQ DELIVERY INFO (WITH LONG-PRESS ADMIN ACCESS ON COPYRIGHT)
+         ====================================================================== -->
+    <footer class="footer-wrapper">
+      <div class="delivery-banner">
+        <div class="delivery-info-left">
+          <div class="delivery-icon-circle" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+              <path d="M15 18H9" />
+              <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+              <circle cx="17" cy="18" r="2" />
+              <circle cx="7" cy="18" r="2" />
+            </svg>
+          </div>
+          <div class="delivery-text-block">
+            <p class="delivery-title" id="footerDeliveryTitle">توصيل لجميع المحافظات (5 الف) 🇮🇶</p>
+            <p class="delivery-sub" id="footerAddressSub">بغداد حي العامل - شارع التشييش • @hs.fashion4</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/9647725615564" target="_blank" rel="noopener noreferrer" class="footer-wa-link" id="footerWhatsappLink">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+          </svg>
+          <span dir="ltr" id="footerWhatsappDisplay">07725615564</span>
+        </a>
+      </div>
+
+      <!-- Long-press (1.2s) triggers PIN Modal for Admin Access -->
+      <div class="copyright-bar" id="copyrightTrigger" role="button" tabindex="0" aria-label="Copyright">
+        <span id="footerCopyrightText">© 2026 Hussain Saeed Fashion (@hs.fashion4). جميع الحقوق محفوظة.</span>
+        <span class="copyright-hold-progress" id="copyrightHoldProgress" aria-hidden="true"></span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================================================================
+       ADMIN PIN LOCK MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="pinModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="pinModalTitle">
+    <div class="modal-dialog" style="max-width: 360px;">
+      <button type="button" class="modal-close-btn" id="pinModalCloseBtn" aria-label="Close PIN Modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <h3 class="modal-title" id="pinModalTitle" style="margin-bottom: 6px;" data-i18n="pinModalTitle">دخول لوحة الإدارة</h3>
+      <p class="admin-item-sub" style="margin-bottom: 14px;" data-i18n="pinModalDesc">أدخل الرمز السري الخاص بصاحب المتجر لفتح لوحة التحكم.</p>
+
+      <form id="pinLoginForm">
+        <div class="field-block">
+          <label class="field-label" for="adminPinInput" data-i18n="pinInputLabel">الرمز السري (PIN)</label>
+          <input
+            type="password"
+            id="adminPinInput"
+            class="modal-input"
+            dir="ltr"
+            autocomplete="off"
+            required
+            placeholder="••••"
+          />
+        </div>
+        <div class="pin-error-text" id="pinErrorMsg"></div>
+        <button type="submit" class="modal-order-btn" style="margin-top: 8px;">
+          <span data-i18n="pinUnlockBtn">فتح لوحة التحكم</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FULL-PAGE CATEGORY VIEW OVERLAY ("عرض الكل / View All")
+       ======================================================================== -->
+  <div class="category-page-overlay" id="categoryPageOverlay" role="dialog" aria-modal="true" aria-labelledby="catOverlayTitle">
+    <div class="category-page-inner">
+      <div class="category-page-header">
+        <button type="button" class="btn-back-cat" id="catOverlayBackBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+          <span data-i18n="backBtn">رجوع</span>
+        </button>
+
+        <div class="cat-page-title-wrap">
+          <h2 class="cat-page-title" id="catOverlayTitle"></h2>
+        </div>
+
+        <span class="cat-count-badge" id="catOverlayCount"></span>
+      </div>
+
+      <div class="category-products-grid" id="catOverlayGrid"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FULL ADMIN CONTROL PANEL OVERLAY ("لوحة التحكم / Admin Panel")
+       ======================================================================== -->
+  <div class="admin-overlay" id="adminOverlay" role="dialog" aria-modal="true" aria-labelledby="adminPanelHeading">
+    <div class="admin-inner">
+      <div class="admin-topbar">
+        <div class="admin-title-group">
+          <h2 class="cat-page-title" id="adminPanelHeading" data-i18n="adminPanelTitle">لوحة تحكم المتجر</h2>
+          <span class="admin-badge" id="adminSyncStatusBadge" data-i18n="adminCloudBadge">متصل بـ Supabase</span>
+        </div>
+
+        <button type="button" class="btn-back-cat" id="adminCloseBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+          <span data-i18n="backToStoreBtn">العودة للمتجر</span>
+        </button>
+      </div>
+
+      <!-- Admin Section Tabs -->
+      <div class="admin-tabs-bar" role="tablist">
+        <button type="button" class="admin-tab-btn active" data-admin-tab="products" role="tab">
+          <span data-i18n="tabProducts">إدارة المنتجات</span>
+        </button>
+        <button type="button" class="admin-tab-btn" data-admin-tab="categories" role="tab">
+          <span data-i18n="tabCategories">إدارة الأقسام</span>
+        </button>
+        <button type="button" class="admin-tab-btn" data-admin-tab="settings" role="tab">
+          <span data-i18n="tabSettings">الإعدادات والمزامنة</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: PRODUCTS MANAGER -->
+      <div id="adminTab-products">
+        <div class="admin-panel-card">
+          <div class="admin-card-heading">
+            <span id="productFormHeading" data-i18n="addNewProductHeading">إضافة منتج جديد</span>
+            <button type="button" class="btn-secondary-soft" id="cancelEditProductBtn" style="display: none;">
+              <span data-i18n="cancelEditBtn">إلغاء التعديل</span>
+            </button>
+          </div>
+
+          <form id="productForm" class="admin-form-grid">
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="prodNameAr" data-i18n="labelNameAr">اسم المنتج (عربي)*</label>
+                <input type="text" id="prodNameAr" class="admin-input" required placeholder="مثال: جاكيت جلد أسود فخم" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="prodNameEn" data-i18n="labelNameEn">Product Name (English)</label>
+                <input type="text" id="prodNameEn" class="admin-input" placeholder="e.g., Black Leather Jacket" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="prodPriceIqd" data-i18n="labelPriceIqd">السعر بالدينار العراقي (IQD)*</label>
+                <input type="number" id="prodPriceIqd" class="admin-input" min="1000" step="500" required placeholder="مثال: 45000" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="prodCategorySelect" data-i18n="labelCategorySelect">القسم*</label>
+                <select id="prodCategorySelect" class="admin-select" required></select>
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="prodTypeAr" data-i18n="labelTypeAr">النوع / التصنيف</label>
+                <input type="text" id="prodTypeAr" class="admin-input" placeholder="مثال: كاجوال / شتوي" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="prodMaterialAr" data-i18n="labelMaterialAr">الخامة / نوع القماش</label>
+                <input type="text" id="prodMaterialAr" class="admin-input" placeholder="مثال: قطن 100% / جلد فاخر" />
+              </div>
+            </div>
+
+            <!-- Selectable Sizes + Custom Size Adder -->
+            <div class="admin-field">
+              <span class="admin-label" data-i18n="labelSizesSelect">المقاسات المتوفرة (اضغط لتحديد أو إلغاء التحديد):</span>
+              <div class="size-selector-grid" id="adminSizePresetContainer"></div>
+              <div class="custom-size-row">
+                <input type="text" id="customSizeInput" class="admin-input" placeholder="مقاس إضافي مثل: 39 أو 45 أو XL" />
+                <button type="button" class="btn-sm-emerald" id="addCustomSizeBtn" data-i18n="addSizeBtn">+ إضافة مقاس</button>
+              </div>
+            </div>
+
+            <!-- Image URL OR Upload from Device -->
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="prodImgUrl" data-i18n="labelImgUrl">رابط صورة المنتج (URL)</label>
+                <input type="text" id="prodImgUrl" class="admin-input" placeholder="https://images.unsplash.com/..." />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="prodImgFile" data-i18n="labelImgFile">أو اختر صورة من الجهاز</label>
+                <input type="file" id="prodImgFile" class="admin-input" accept="image/*" style="padding-top: 8px;" />
+              </div>
+            </div>
+
+            <div class="img-preview-box">
+              <img id="prodImgPreview" src="" alt="Preview" class="img-preview-thumb" />
+              <div style="min-width: 0;">
+                <div class="admin-item-title" data-i18n="imgPreviewLabel">معاينة صورة المنتج</div>
+                <div class="admin-item-sub" id="prodImgStatusText" data-i18n="imgPreviewHint">يدعم الروابط المباشرة ورفع الصور من الهاتف أو الحاسوب</div>
+              </div>
+            </div>
+
+            <div class="admin-actions-row">
+              <button type="submit" class="btn-primary-emerald" id="saveProductSubmitBtn">
+                <span data-i18n="saveProductBtn">حفظ المنتج في المتجر</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Existing Products List -->
+        <div class="admin-panel-card">
+          <div class="admin-card-heading">
+            <span data-i18n="existingProductsHeading">المنتجات الحالية</span>
+            <span class="cat-count-badge" id="adminProductsCountBadge">0</span>
+          </div>
+          <div class="admin-field" style="margin-bottom: 12px;">
+            <select id="adminFilterCategorySelect" class="admin-select"></select>
+          </div>
+          <div class="admin-list" id="adminProductsList"></div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CATEGORIES MANAGER -->
+      <div id="adminTab-categories" style="display: none;">
+        <div class="admin-panel-card">
+          <div class="admin-card-heading">
+            <span data-i18n="addCategoryHeading">إضافة قسم جديد</span>
+          </div>
+          <form id="addCategoryForm" class="admin-form-grid admin-form-grid-2">
+            <div class="admin-field">
+              <label class="admin-label" for="newCatNameAr" data-i18n="labelCatAr">اسم القسم بالعربية*</label>
+              <input type="text" id="newCatNameAr" class="admin-input" required placeholder="مثال: إكسسوارات أو هوديات" />
+            </div>
+            <div class="admin-field">
+              <label class="admin-label" for="newCatNameEn" data-i18n="labelCatEn">Category Name in English</label>
+              <input type="text" id="newCatNameEn" class="admin-input" placeholder="e.g., Accessories or Hoodies" />
+            </div>
+            <div class="admin-actions-row" style="grid-column: 1 / -1; margin-top: 4px;">
+              <button type="submit" class="btn-primary-emerald">
+                <span data-i18n="createCategoryBtn">إضافة القسم</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-panel-card">
+          <div class="admin-card-heading">
+            <span data-i18n="manageCategoriesHeading">الأقسام الحالية (تعديل الاسم أو الحذف)</span>
+          </div>
+          <div class="admin-list" id="adminCategoriesList"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: STORE SETTINGS & LIVE CLOUD SYNC -->
+      <div id="adminTab-settings" style="display: none;">
+        <div class="admin-panel-card">
+          <div class="admin-card-heading">
+            <span data-i18n="storeSettingsHeading">إعدادات المتجر الرئيسية</span>
+          </div>
+          <form id="storeSettingsForm" class="admin-form-grid">
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setStoreName" data-i18n="labelStoreName">اسم المتجر</label>
+                <input type="text" id="setStoreName" class="admin-input" required />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setHandle" data-i18n="labelHandle">حساب انستغرام / المعرف</label>
+                <input type="text" id="setHandle" class="admin-input" required />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setWhatsapp" data-i18n="labelWhatsapp">رقم الواتساب (عراق)</label>
+                <input type="text" id="setWhatsapp" class="admin-input" dir="ltr" required />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setDeliveryNote" data-i18n="labelDeliveryNote">نص التوصيل للمحافظات</label>
+                <input type="text" id="setDeliveryNote" class="admin-input" required />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setAddress" data-i18n="labelAddress">العنوان</label>
+                <input type="text" id="setAddress" class="admin-input" required />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setAdminPin" data-i18n="labelAdminPin">الرمز السري للإدارة (PIN)</label>
+                <input type="text" id="setAdminPin" class="admin-input" dir="ltr" required />
+              </div>
+            </div>
+
+            <div class="admin-actions-row">
+              <button type="submit" class="btn-primary-emerald">
+                <span data-i18n="saveSettingsBtn">حفظ الإعدادات وتطبيقها فوراً</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Shared Live Cloud Endpoint (GET/POST JSON) -->
+        <div class="admin-panel-card">
+          <div class="admin-card-heading">
+            <span data-i18n="cloudSyncHeading">المزامنة السحابية المشتركة لجميع الزوار (Cloud JSON)</span>
+          </div>
+          <div class="admin-hint-box" data-i18n="cloudSyncHint">
+            افتراضياً يتم الحفظ فوراً في متصفحك (localStorage) ويعمل بدون أي تعليق. إذا ربطت رابط نقطة نهاية JSON يدعم GET و POST، سيقوم الموقع بجلب التعديلات عند الدخول ونشرها لكل الزوار تلقائياً مع إبقاء النسخة المحلية كاحتياط فوري.
+          </div>
+
+          <div class="admin-actions-row" style="margin-top: 4px;">
+            <button type="button" class="btn-secondary-soft" id="pullCloudNowBtn" data-i18n="pullCloudBtn">سحب من Supabase الآن</button>
+            <button type="button" class="btn-sm-emerald" id="pushCloudNowBtn" style="height: 40px;" data-i18n="pushCloudBtn">مزامنة ورفع للكل الآن</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backup / Export / Reset Bar -->
+      <div class="admin-panel-card">
+        <div class="admin-utility-footer">
+          <div class="admin-actions-row" style="margin-top: 0;">
+            <button type="button" class="btn-secondary-soft" id="exportJsonBtn" data-i18n="exportJsonBtn">تصدير نسخة JSON</button>
+            <button type="button" class="btn-secondary-soft" id="importJsonTriggerBtn" data-i18n="importJsonBtn">استيراد JSON</button>
+            <input type="file" id="importJsonFile" accept="application/json" style="display: none;" />
+          </div>
+          <button type="button" class="btn-danger-soft" id="resetDefaultDataBtn" data-i18n="resetDefaultBtn">استعادة البيانات الافتراضية</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. INTERACTIVE FLOATING PRODUCT MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close Modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="modal-image-box">
+        <img id="modalProductImg" src="" alt="" />
+      </div>
+
+      <div class="modal-header-row">
+        <h3 class="modal-title" id="modalProductTitle"></h3>
+        <span class="modal-price-badge" id="modalProductPrice"></span>
+      </div>
+
+      <div class="modal-specs-grid">
+        <div class="spec-box">
+          <div class="spec-label" data-i18n="modalTypeLabel">النوع / التصنيف</div>
+          <div class="spec-value" id="modalProductType"></div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-label" data-i18n="modalMaterialLabel">نوع القماش / الخامة</div>
+          <div class="spec-value" id="modalProductMaterial"></div>
+        </div>
+      </div>
+
+      <div class="size-section">
+        <span class="size-section-label" data-i18n="modalSizeLabel">اختر القياس المتوفر:</span>
+        <div class="size-pills-row" id="modalSizesContainer"></div>
+      </div>
+
+      <!-- Iraqi Governorate Selector & Optional Address Field in Modal -->
+      <div class="delivery-fields-group">
+        <div class="field-block">
+          <label class="field-label" for="modalGovernorateSelect">
+            <span data-i18n="modalGovLabel">المحافظة (العراق):</span>
+            <span class="iraq-only-tag" id="modalDeliveryBadge">توصيل لجميع المحافظات (5 الف) 🇮🇶</span>
+          </label>
+          <select id="modalGovernorateSelect" class="modal-select"></select>
+        </div>
+
+        <div class="field-block">
+          <label class="field-label" for="modalAddressInput" data-i18n="modalAddressLabel">
+            العنوان التفصيلي / أقرب نقطة دالة (اختياري):
+          </label>
+          <input type="text" id="modalAddressInput" class="modal-input" placeholder="مثال: حي العامل - شارع التشييش" />
+        </div>
+      </div>
+
+      <button type="button" class="modal-order-btn" id="modalWhatsappBtn">
+        <!-- WhatsApp SVG Icon -->
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+          <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+        </svg>
+        <span id="modalOrderBtnText">تأكيد الطلب عبر واتساب (07725615564)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Order & Admin Toast Notification -->
+  <div class="order-toast" id="orderToast" role="status" aria-live="polite">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+    <span id="orderToastText"></span>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT: PERSISTENT STORE STATE, BILINGUAL ENGINE, SLIDERS & ADMIN
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ----------------------------------------------------------------------
+         0. SUPABASE CONFIGURATION (hs-fashion-store)
+         ---------------------------------------------------------------------- */
+      const SUPABASE_URL = 'https://iwjnhmfqbxuqzyspobwr.supabase.co';
+      const SUPABASE_KEY = 'Sb_publishable_otE8B5bztXF4bHQze4HaMQ_tBQajlps';
+      const SUPABASE_TABLE = 'products';
+      const META_ROW_ID = '__hs_fashion4_meta__';
+
+      const STORAGE_KEY = 'hs_fashion4_store_v2';
+      const FALLBACK_IMG = 'https://placehold.co/600x660/10B981/FFFFFF?text=HS+Fashion';
+      const SIZE_PRESETS = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'Free Size', '30', '32', '34', '36', '38', '40', '41', '42', '43', '44', '45'];
+
+      /* ----------------------------------------------------------------------
+         1. DEFAULT BRAND SETTINGS, CATEGORIES & PRODUCTS (@hs.fashion4)
+         ---------------------------------------------------------------------- */
+      function getDefaultStoreData() {
+        return {
+          settings: {
+            storeName: 'Hussain Saeed Fashion',
+            handle: '@hs.fashion4',
+            whatsapp: '07725615564',
+            address: 'بغداد حي العامل - شارع التشييش',
+            deliveryNote: 'توصيل لجميع المحافظات (5 الف)',
+            adminPin: '1234'
+          },
+          categories: [
+            { key: 'clothes', name: { ar: 'قسم الملابس', en: 'Clothes Section' } },
+            { key: 'pants', name: { ar: 'قسم البناطيل', en: 'Pants Section' } },
+            { key: 'shoes', name: { ar: 'قسم الأحذية', en: 'Shoes Section' } }
+          ],
+          products: {
+            clothes: [
+              {
+                id: 'cl-1',
+                name: { ar: 'جاكيت كاجوال كحلي عصري', en: 'Navy Modern Casual Jacket' },
+                priceIqd: 45000,
+                type: { ar: 'كاجوال عصري', en: 'Modern Casual' },
+                material: { ar: 'قطن تويل متين', en: 'Durable Cotton Twill' },
+                sizes: ['S', 'M', 'L', 'XL'],
+                img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'cl-2',
+                name: { ar: 'جاكيت جلد أسود فخم', en: 'Black Premium Leather Jacket' },
+                priceIqd: 58000,
+                type: { ar: 'ستريت وير', en: 'Streetwear' },
+                material: { ar: 'جلد فاخر ناعم', en: 'Soft Premium Leather' },
+                sizes: ['M', 'L', 'XL', 'XXL'],
+                img: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'cl-3',
+                name: { ar: 'هودي أسود عملي مريح', en: 'Black Essential Zip Hoodie' },
+                priceIqd: 38000,
+                type: { ar: 'كاجوال يومي', en: 'Everyday Casual' },
+                material: { ar: 'قطن طبيعي 100%', en: '100% Natural Cotton' },
+                sizes: ['S', 'M', 'L', 'XL'],
+                img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'cl-4',
+                name: { ar: 'جاكيت زيتي بياقة أنيقة', en: 'Olive Collar Utility Jacket' },
+                priceIqd: 49000,
+                type: { ar: 'سمارت كاجوال', en: 'Smart Casual' },
+                material: { ar: 'قطن جابردين فاخر', en: 'Fine Gabardine Cotton' },
+                sizes: ['S', 'M', 'L', 'XL'],
+                img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'cl-5',
+                name: { ar: 'تيشيرت قطني أوفرسايز أبيض', en: 'White Oversized Cotton Tee' },
+                priceIqd: 24000,
+                type: { ar: 'صيفي عصري', en: 'Modern Summer' },
+                material: { ar: 'قطن طبيعي 100%', en: '100% Natural Cotton' },
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'cl-6',
+                name: { ar: 'قميص كتان بيج أنيق', en: 'Beige Relaxed Linen Shirt' },
+                priceIqd: 34000,
+                type: { ar: 'سمارت كاجوال', en: 'Smart Casual' },
+                material: { ar: 'كتان طبيعي بارد', en: 'Breathable Natural Linen' },
+                sizes: ['M', 'L', 'XL'],
+                img: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80'
+              }
+            ],
+            pants: [
+              {
+                id: 'pa-1',
+                name: { ar: 'بنطال جينز أزرق كلاسيك', en: 'Classic Blue Denim Jeans' },
+                priceIqd: 35000,
+                type: { ar: 'كاجوال', en: 'Casual' },
+                material: { ar: 'دينم مطاطي مريح', en: 'Stretch Comfort Denim' },
+                sizes: ['30', '32', '34', '36'],
+                img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'pa-2',
+                name: { ar: 'بنطال قماش بيج واسع عصري', en: 'Beige Wide-Leg Tailored Pants' },
+                priceIqd: 37000,
+                type: { ar: 'سمارت كاجوال', en: 'Smart Casual' },
+                material: { ar: 'قماش تويل ناعم', en: 'Soft Woven Twill' },
+                sizes: ['30', '32', '34', '36'],
+                img: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'pa-3',
+                name: { ar: 'بنطال جينز أسود سليم فيت', en: 'Black Slim Fit Denim Jeans' },
+                priceIqd: 36000,
+                type: { ar: 'كاجوال عصري', en: 'Modern Casual' },
+                material: { ar: 'دينم قطني عالي الجودة', en: 'High-Grade Cotton Denim' },
+                sizes: ['30', '32', '34', '36', '38'],
+                img: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'pa-4',
+                name: { ar: 'بنطال كارجو بجيوب عملية', en: 'Utility Pocket Cargo Pants' },
+                priceIqd: 39000,
+                type: { ar: 'ستريت وير', en: 'Streetwear' },
+                material: { ar: 'قطن جابردين متين', en: 'Durable Cotton Gabardine' },
+                sizes: ['30', '32', '34', '36'],
+                img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'pa-5',
+                name: { ar: 'بنطال رسمي فحمي أنيق', en: 'Charcoal Tailored Dress Pants' },
+                priceIqd: 42000,
+                type: { ar: 'رسمي', en: 'Formal' },
+                material: { ar: 'مزيج فيسكوز وصوف ناعم', en: 'Soft Viscose Blend' },
+                sizes: ['30', '32', '34', '36'],
+                img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'pa-6',
+                name: { ar: 'بنطال جوجر رياضي أسود', en: 'Black Sport Jogger Pants' },
+                priceIqd: 28000,
+                type: { ar: 'رياضي ومريح', en: 'Athleisure' },
+                material: { ar: 'قطن تيري فرنسي', en: 'French Terry Cotton' },
+                sizes: ['S', 'M', 'L', 'XL'],
+                img: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=600&q=80'
+              }
+            ],
+            shoes: [
+              {
+                id: 'sh-1',
+                name: { ar: 'حذاء سنيكرز أبيض كلاسيك', en: 'Classic White Court Sneakers' },
+                priceIqd: 44000,
+                type: { ar: 'كاجوال يومي', en: 'Everyday Casual' },
+                material: { ar: 'جلد ناعم + نعل مريح', en: 'Soft Leather + Cushion Sole' },
+                sizes: ['40', '41', '42', '43', '44'],
+                img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'sh-2',
+                name: { ar: 'حذاء رياضي خفيف للركض', en: 'Lightweight Athletic Sneakers' },
+                priceIqd: 48000,
+                type: { ar: 'رياضي', en: 'Sport & Running' },
+                material: { ar: 'نسيج شبكي مسامي', en: 'Breathable Knit Mesh' },
+                sizes: ['40', '41', '42', '43', '44'],
+                img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'sh-3',
+                name: { ar: 'حذاء لوفر شمواه بني أنيق', en: 'Brown Suede Penny Loafers' },
+                priceIqd: 55000,
+                type: { ar: 'سمارت / رسمي', en: 'Smart / Formal' },
+                material: { ar: 'شمواه فاخر مبطن', en: 'Lined Premium Suede' },
+                sizes: ['40', '41', '42', '43'],
+                img: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'sh-4',
+                name: { ar: 'بوت تشيلسي جلد أسود', en: 'Black Leather Chelsea Boots' },
+                priceIqd: 60000,
+                type: { ar: 'كلاسيكي', en: 'Classic Boots' },
+                material: { ar: 'جلد مصقول متين', en: 'Durable Polished Leather' },
+                sizes: ['41', '42', '43', '44'],
+                img: 'https://images.unsplash.com/photo-1638247025967-b4e38f787b76?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'sh-5',
+                name: { ar: 'سنيكرز شبابي متعدد الألوان', en: 'Urban Street Sneakers' },
+                priceIqd: 42000,
+                type: { ar: 'ستريت وير', en: 'Streetwear' },
+                material: { ar: 'شمواه ونسيج رياضي', en: 'Suede & Sport Textile' },
+                sizes: ['40', '41', '42', '43', '44'],
+                img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'sh-6',
+                name: { ar: 'حذاء أوكسفورد رسمي أسود', en: 'Black Formal Oxford Shoes' },
+                priceIqd: 62000,
+                type: { ar: 'رسمي', en: 'Formal' },
+                material: { ar: 'جلد طبيعي فاخر', en: 'Genuine Fine Leather' },
+                sizes: ['40', '41', '42', '43', '44'],
+                img: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80'
+              }
+            ]
+          }
+        };
+      }
+
+      function normalizeLoadedData(parsed) {
+        const defaults = getDefaultStoreData();
+        if (!parsed || typeof parsed !== 'object') return defaults;
+        return {
+          settings: { ...defaults.settings, ...(parsed.settings || {}) },
+          categories: Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : defaults.categories,
+          products: parsed.products && typeof parsed.products === 'object' ? parsed.products : defaults.products
+        };
+      }
+
+      function loadStoreData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return getDefaultStoreData();
+          return normalizeLoadedData(JSON.parse(raw));
+        } catch (err) {
+          return getDefaultStoreData();
+        }
+      }
+
+      let storeData = loadStoreData();
+      let isSupabaseOnline = false;
+
+      function saveLocalOnly() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(storeData));
+        } catch (err) {
+          // Ignore storage quota issues if large base64 images are uploaded
+        }
+      }
+
+      /* ----------------------------------------------------------------------
+         SUPABASE REST HELPERS
+         ---------------------------------------------------------------------- */
+      function getSupabaseHeaders() {
+        return {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'resolution=merge-duplicates,return=representation'
+        };
+      }
+
+      function buildSupabaseRowsFromStore(dataObj) {
+        const rows = [];
+        rows.push({
+          id: META_ROW_ID,
+          category: '__meta__',
+          name_ar: JSON.stringify({
+            settings: dataObj.settings,
+            categories: dataObj.categories
+          }),
+          name_en: 'store_metadata',
+          price_iqd: 0,
+          type_ar: 'meta',
+          material_ar: 'meta',
+          sizes: [],
+          image_url: ''
+        });
+
+        (dataObj.categories || []).forEach((catObj) => {
+          const list = (dataObj.products && dataObj.products[catObj.key]) || [];
+          list.forEach((prod) => {
+            rows.push({
+              id: String(prod.id),
+              category: String(catObj.key),
+              name_ar: JSON.stringify(prod.name || { ar: '', en: '' }),
+              name_en: (prod.name && prod.name.en) || '',
+              price_iqd: Number(prod.priceIqd) || 0,
+              type_ar: JSON.stringify(prod.type || { ar: '', en: '' }),
+              material_ar: JSON.stringify(prod.material || { ar: '', en: '' }),
+              sizes: Array.isArray(prod.sizes) ? prod.sizes : ['M', 'L'],
+              image_url: prod.img || ''
+            });
+          });
+        });
+
+        return rows;
+      }
+
+      function safeParseBilingualField(rawVal, fallbackAr, fallbackEn) {
+        if (!rawVal) return { ar: fallbackAr, en: fallbackEn };
+        try {
+          const parsed = JSON.parse(rawVal);
+          if (parsed && typeof parsed === 'object' && ('ar' in parsed || 'en' in parsed)) {
+            return {
+              ar: parsed.ar || fallbackAr,
+              en: parsed.en || parsed.ar || fallbackEn
+            };
+          }
+        } catch (_) {}
+        return { ar: String(rawVal), en: String(rawVal) };
+      }
+
+      async function pushToSupabase(silent) {
+        try {
+          const rows = buildSupabaseRowsFromStore(storeData);
+          const validIds = new Set(rows.map((r) => r.id));
+
+          const listRes = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?select=id`, {
+            method: 'GET',
+            headers: getSupabaseHeaders()
+          });
+          if (listRes.ok) {
+            const existingRows = await listRes.json();
+            if (Array.isArray(existingRows)) {
+              for (const ex of existingRows) {
+                if (ex && ex.id && !validIds.has(ex.id)) {
+                  await fetch(
+                    `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?id=eq.${encodeURIComponent(ex.id)}`,
+                    {
+                      method: 'DELETE',
+                      headers: getSupabaseHeaders()
+                    }
+                  );
+                }
+              }
+            }
+          }
+
+          const upsertRes = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?on_conflict=id`, {
+            method: 'POST',
+            headers: getSupabaseHeaders(),
+            body: JSON.stringify(rows)
+          });
+
+          if (!upsertRes.ok) throw new Error('Supabase write failed');
+          isSupabaseOnline = true;
+          updateSyncBadgeUI(true);
+          if (!silent) showToast(I18N[state.lang].toastCloudPushed);
+          return true;
+        } catch (err) {
+          isSupabaseOnline = false;
+          updateSyncBadgeUI(false);
+          if (!silent) showToast(I18N[state.lang].toastCloudError);
+          return false;
+        }
+      }
+
+      async function pullFromSupabase(silent) {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?select=*`, {
+            method: 'GET',
+            headers: getSupabaseHeaders()
+          });
+          if (!res.ok) throw new Error('Supabase read failed');
+          const rows = await res.json();
+          if (!Array.isArray(rows) || rows.length === 0) {
+            isSupabaseOnline = true;
+            updateSyncBadgeUI(true);
+            return false;
+          }
+
+          const defaults = getDefaultStoreData();
+          let nextSettings = { ...defaults.settings };
+          let nextCategories = [...defaults.categories];
+          const nextProducts = {};
+
+          const metaRow = rows.find((r) => r && r.id === META_ROW_ID);
+          if (metaRow && metaRow.name_ar) {
+            try {
+              const metaObj = JSON.parse(metaRow.name_ar);
+              if (metaObj.settings) nextSettings = { ...nextSettings, ...metaObj.settings };
+              if (Array.isArray(metaObj.categories) && metaObj.categories.length) {
+                nextCategories = metaObj.categories;
+              }
+            } catch (_) {}
+          }
+
+          nextCategories.forEach((c) => {
+            nextProducts[c.key] = [];
+          });
+
+          rows.forEach((row) => {
+            if (!row || row.id === META_ROW_ID || row.category === '__meta__') return;
+            const catKey = row.category || 'clothes';
+            if (!nextProducts[catKey]) {
+              nextProducts[catKey] = [];
+              if (!nextCategories.some((c) => c.key === catKey)) {
+                nextCategories.push({ key: catKey, name: { ar: catKey, en: catKey } });
+              }
+            }
+
+            let parsedSizes = ['S', 'M', 'L', 'XL'];
+            if (Array.isArray(row.sizes) && row.sizes.length) {
+              parsedSizes = row.sizes;
+            } else if (typeof row.sizes === 'string') {
+              try {
+                const sArr = JSON.parse(row.sizes);
+                if (Array.isArray(sArr) && sArr.length) parsedSizes = sArr;
+              } catch (_) {}
+            }
+
+            nextProducts[catKey].push({
+              id: String(row.id),
+              name: safeParseBilingualField(row.name_ar, row.name_en || 'منتج', row.name_en || 'Product'),
+              priceIqd: Number(row.price_iqd) || 0,
+              type: safeParseBilingualField(row.type_ar, 'كاجوال', 'Casual'),
+              material: safeParseBilingualField(row.material_ar, 'خامة ممتازة', 'Quality Fabric'),
+              sizes: parsedSizes,
+              img: row.image_url || FALLBACK_IMG
+            });
+          });
+
+          storeData = normalizeLoadedData({
+            settings: nextSettings,
+            categories: nextCategories,
+            products: nextProducts
+          });
+
+          saveLocalOnly();
+          isSupabaseOnline = true;
+          applyBrandSettings();
+          renderStorefrontSections();
+          if (state.activeCategoryPage) openCategoryPage(state.activeCategoryPage);
+          if (adminOverlay.classList.contains('is-open')) {
+            populateAdminCategorySelects();
+            renderAdminProductsList();
+            renderAdminCategoriesList();
+            fillSettingsForm();
+          }
+          updateSyncBadgeUI(true);
+          if (!silent) showToast(I18N[state.lang].toastCloudPulled);
+          return true;
+        } catch (err) {
+          isSupabaseOnline = false;
+          updateSyncBadgeUI(false);
+          if (!silent) showToast(I18N[state.lang].toastCloudError);
+          return false;
+        }
+      }
+
+      function persistStoreData(syncCloud) {
+        saveLocalOnly();
+        if (syncCloud && (storeData.settings.cloudEndpoint || '').trim()) {
+          pushToSupabase(true);
+        }
+      }
+
+      function formatPrice(priceIqd, lang) {
+        const num = Number(priceIqd) || 0;
+        const formatted = num.toLocaleString('en-US');
+        return lang === 'ar' ? `${formatted} د.ع` : `${formatted} IQD`;
+      }
+
+      function normalizeWhatsappIntl(rawPhone) {
+        const digits = String(rawPhone || '').replace(/\D+/g, '');
+        if (!digits) return '9647725615564';
+        if (digits.startsWith('964')) return digits;
+        if (digits.startsWith('07')) return '964' + digits.slice(1);
+        if (digits.startsWith('7') && digits.length === 10) return '964' + digits;
+        return digits;
+      }
+
+      /* ----------------------------------------------------------------------
+         2. UI TRANSLATIONS (ARABIC DEFAULT & ENGLISH)
+         ---------------------------------------------------------------------- */
+      const I18N = {
+        ar: {
+          heroBadge: 'Hussain Saeed Fashion • @hs.fashion4',
+          heroTitle: 'إطلالتك العصرية في <span>Hussain Saeed Fashion</span>',
+          heroSubtitle: 'أحدث تشكيلة ملابس وبناطيل وأحذية عصرية بجودة مختارة وتصاميم تواكب الموضة، مع توصيل سريع لكافة المحافظات.',
+          heroCta: 'تصفح التشكيلة الآن',
+          statFollowers: 'متابع على انستغرام',
+          statDeliveryFee: 'توصيل للمحافظات',
+          statProvinces: 'محافظة عراقية',
+          swipeHint: 'اسحب للتصفح ↔',
+          viewAllBtn: 'عرض الكل',
+          emptyCategoryNote: 'لا توجد منتجات في هذا القسم حالياً.',
+          backBtn: 'رجوع',
+          itemsCountSuffix: 'منتجات',
+          buyBtn: 'شراء',
+          modalTypeLabel: 'النوع / التصنيف',
+          modalMaterialLabel: 'نوع القماش / الخامة',
+          modalSizeLabel: 'اختر القياس المتوفر:',
+          modalGovLabel: 'المحافظة (العراق):',
+          modalAddressLabel: 'العنوان التفصيلي / أقرب نقطة دالة (اختياري):',
+          modalAddressPlaceholder: 'مثال: حي العامل - شارع التشييش',
+          toastPrepared: 'تم تجهيز طلبك! جاري تحويلك إلى واتساب...',
+          pinModalTitle: 'دخول لوحة الإدارة',
+          pinModalDesc: 'أدخل الرمز السري الخاص بصاحب المتجر لفتح لوحة التحكم.',
+          pinInputLabel: 'الرمز السري (PIN)',
+          pinUnlockBtn: 'فتح لوحة التحكم',
+          pinWrongError: 'الرمز السري غير صحيح، حاول مرة أخرى.',
+          adminPanelTitle: 'لوحة تحكم المتجر',
+          adminLocalBadge: 'نسخة محلية (localStorage)',
+          adminCloudBadge: 'متصل بـ Supabase',
+          backToStoreBtn: 'العودة للمتجر',
+          tabProducts: 'إدارة المنتجات',
+          tabCategories: 'إدارة الأقسام',
+          tabSettings: 'الإعدادات والمزامنة',
+          addNewProductHeading: 'إضافة منتج جديد',
+          editProductHeading: 'تعديل المنتج الحالي',
+          cancelEditBtn: 'إلغاء التعديل',
+          labelNameAr: 'اسم المنتج (عربي)*',
+          labelNameEn: 'اسم المنتج (إنجليزي)',
+          labelPriceIqd: 'السعر بالدينار العراقي (IQD)*',
+          labelCategorySelect: 'القسم*',
+          labelTypeAr: 'النوع / التصنيف',
+          labelMaterialAr: 'الخامة / نوع القماش',
+          labelSizesSelect: 'المقاسات المتوفرة (اضغط لتحديد أو إلغاء التحديد):',
+          addSizeBtn: '+ إضافة مقاس',
+          labelImgUrl: 'رابط صورة المنتج (URL)',
+          labelImgFile: 'أو اختر صورة من الجهاز',
+          imgPreviewLabel: 'معاينة صورة المنتج',
+          imgPreviewHint: 'يدعم الروابط المباشرة ورفع الصور من الهاتف أو الحاسوب',
+          saveProductBtn: 'حفظ المنتج في المتجر',
+          updateProductBtn: 'تحديث بيانات المنتج',
+          existingProductsHeading: 'المنتجات الحالية',
+          allCategoriesOption: 'جميع الأقسام',
+          addCategoryHeading: 'إضافة قسم جديد',
+          labelCatAr: 'اسم القسم بالعربية*',
+          labelCatEn: 'اسم القسم بالإنجليزية',
+          createCategoryBtn: 'إضافة القسم',
+          manageCategoriesHeading: 'الأقسام الحالية (تعديل الاسم أو الحذف)',
+          storeSettingsHeading: 'إعدادات المتجر الرئيسية',
+          labelStoreName: 'اسم المتجر',
+          labelHandle: 'حساب انستغرام / المعرف',
+          labelWhatsapp: 'رقم الواتساب',
+          labelDeliveryNote: 'نص التوصيل للمحافظات',
+          labelAddress: 'العنوان',
+          labelAdminPin: 'الرمز السري للإدارة (PIN)',
+          saveSettingsBtn: 'حفظ الإعدادات وتطبيقها فوراً',
+          cloudSyncHeading: 'مزامنة قاعدة بيانات Supabase (hs-fashion-store)',
+          cloudSyncHint: 'افتراضياً يتم الحفظ فوراً في متصفحك (localStorage) ويعمل بدون أي تعليق. إذا ربطت رابط نقطة نهاية JSON يدعم GET و POST، سيقوم الموقع بجلب التعديلات عند الدخول ونشرها لكل الزوار تلقائياً مع إبقاء النسخة المحلية كاحتياط فوري.',
+          labelCloudEndpoint: 'رابط نقطة نهاية JSON المشتركة (GET / POST)',
+          saveEndpointBtn: 'حفظ الرابط',
+          pullCloudBtn: 'سحب من Supabase الآن',
+          pushCloudBtn: 'مزامنة ورفع للكل الآن',
+          exportJsonBtn: 'تصدير نسخة JSON',
+          importJsonBtn: 'استيراد JSON',
+          resetDefaultBtn: 'استعادة البيانات الافتراضية',
+          toastSavedProduct: 'تم حفظ المنتج ومزامنته مع Supabase!',
+          toastUpdatedProduct: 'تم تحديث المنتج ومزامنته مع Supabase!',
+          toastDeletedProduct: 'تم حذف المنتج.',
+          toastAddedCategory: 'تم إضافة القسم الجديد!',
+          toastRenamedCategory: 'تم تحديث اسم القسم!',
+          toastDeletedCategory: 'تم حذف القسم.',
+          toastMinSize: 'يرجى تحديد مقاس واحد على الأقل.',
+          toastSettingsSaved: 'تم حفظ إعدادات المتجر وتحديث الواجهة!',
+          toastEndpointSaved: 'تم حفظ رابط المزامنة السحابية!',
+          toastCloudPulled: 'تم جلب أحدث بيانات المتجر من Supabase!',
+          toastCloudPushed: 'تم نشر التعديلات لجميع الزوار على Supabase!',
+          toastCloudError: 'تعذر الاتصال بـ Supabase؛ تم الإبقاء على النسخة المحلية.',
+          toastResetDone: 'تمت استعادة البيانات الافتراضية للمتجر.'
+        },
+        en: {
+          heroBadge: 'Hussain Saeed Fashion • @hs.fashion4',
+          heroTitle: 'Modern Style at <span>Hussain Saeed Fashion</span>',
+          heroSubtitle: 'Fresh clothes, pants, and shoes curated with modern cuts and reliable fabrics, with delivery across all governorates.',
+          heroCta: 'Explore Collections',
+          statFollowers: 'Instagram Followers',
+          statDeliveryFee: 'Governorates Delivery',
+          statProvinces: 'Iraqi Governorates',
+          swipeHint: 'Swipe to browse ↔',
+          viewAllBtn: 'View All',
+          emptyCategoryNote: 'No products in this section yet.',
+          backBtn: 'Back',
+          itemsCountSuffix: 'Items',
+          buyBtn: 'Buy',
+          modalTypeLabel: 'Type / Category',
+          modalMaterialLabel: 'Material / Fabric',
+          modalSizeLabel: 'Select Available Size:',
+          modalGovLabel: 'Governorate (Iraq):',
+          modalAddressLabel: 'Detailed Address / Landmark (Optional):',
+          modalAddressPlaceholder: 'e.g., Hayy Al-Amil - Al-Tashyeesh St.',
+          toastPrepared: 'Order prepared! Redirecting to WhatsApp...',
+          pinModalTitle: 'Admin Panel Login',
+          pinModalDesc: 'Enter the store owner PIN to unlock the control panel.',
+          pinInputLabel: 'Admin PIN',
+          pinUnlockBtn: 'Unlock Admin Panel',
+          pinWrongError: 'Incorrect PIN. Please try again.',
+          adminPanelTitle: 'Store Admin Control Panel',
+          adminLocalBadge: 'Local Cache (localStorage)',
+          adminCloudBadge: 'Connected to Supabase',
+          backToStoreBtn: 'Back to Store',
+          tabProducts: 'Products',
+          tabCategories: 'Categories',
+          tabSettings: 'Settings & Sync',
+          addNewProductHeading: 'Add New Product',
+          editProductHeading: 'Edit Product',
+          cancelEditBtn: 'Cancel Edit',
+          labelNameAr: 'Product Name (Arabic)*',
+          labelNameEn: 'Product Name (English)',
+          labelPriceIqd: 'Price in IQD*',
+          labelCategorySelect: 'Category*',
+          labelTypeAr: 'Type / Style',
+          labelMaterialAr: 'Material / Fabric',
+          labelSizesSelect: 'Available Sizes (click to toggle):',
+          addSizeBtn: '+ Add Size',
+          labelImgUrl: 'Product Image URL',
+          labelImgFile: 'Or Upload Image from Device',
+          imgPreviewLabel: 'Product Image Preview',
+          imgPreviewHint: 'Supports direct image URLs and device photo uploads',
+          saveProductBtn: 'Save Product to Store',
+          updateProductBtn: 'Update Product',
+          existingProductsHeading: 'Current Products',
+          allCategoriesOption: 'All Categories',
+          addCategoryHeading: 'Add New Category',
+          labelCatAr: 'Category Name (Arabic)*',
+          labelCatEn: 'Category Name in English',
+          createCategoryBtn: 'Add Category',
+          manageCategoriesHeading: 'Existing Categories (Rename or Delete)',
+          storeSettingsHeading: 'Store Settings',
+          labelStoreName: 'Store Name',
+          labelHandle: 'Instagram Handle',
+          labelWhatsapp: 'WhatsApp Number',
+          labelDeliveryNote: 'Delivery Note',
+          labelAddress: 'Address',
+          labelAdminPin: 'Admin PIN Code',
+          saveSettingsBtn: 'Save & Apply Settings',
+          cloudSyncHeading: 'Supabase Database Sync (hs-fashion-store)',
+          cloudSyncHint: 'By default, edits save instantaneously in localStorage with zero lag. If you connect a JSON endpoint supporting GET and POST, the storefront loads shared updates on visit and publishes changes across visitors while keeping localStorage as instant fallback.',
+          labelCloudEndpoint: 'Shared JSON Endpoint URL (GET / POST)',
+          saveEndpointBtn: 'Save Endpoint',
+          pullCloudBtn: 'Pull from Supabase',
+          pushCloudBtn: 'Sync & Publish to All',
+          exportJsonBtn: 'Export JSON',
+          importJsonBtn: 'Import JSON',
+          resetDefaultBtn: 'Reset Defaults',
+          toastSavedProduct: 'Product saved and synced with Supabase!',
+          toastUpdatedProduct: 'Product updated and synced with Supabase!',
+          toastDeletedProduct: 'Product deleted.',
+          toastAddedCategory: 'New category added!',
+          toastRenamedCategory: 'Category renamed!',
+          toastDeletedCategory: 'Category deleted.',
+          toastMinSize: 'Please select at least one size.',
+          toastSettingsSaved: 'Store settings saved and applied!',
+          toastEndpointSaved: 'Cloud sync endpoint saved!',
+          toastCloudPulled: 'Latest store data pulled from Supabase!',
+          toastCloudPushed: 'Changes published to all visitors on Supabase!',
+          toastCloudError: 'Could not reach Supabase; kept local data.',
+          toastResetDone: 'Default store data restored.'
+        }
+      };
+
+      const IRAQ_GOVERNORATES = [
+        { ar: 'بغداد', en: 'Baghdad' },
+        { ar: 'البصرة', en: 'Basra' },
+        { ar: 'ذي قار', en: 'Dhi Qar' },
+        { ar: 'أربيل', en: 'Erbil' },
+        { ar: 'النجف', en: 'Najaf' },
+        { ar: 'كربلاء', en: 'Karbala' },
+        { ar: 'نينوى', en: 'Nineveh' },
+        { ar: 'الأنبار', en: 'Anbar' },
+        { ar: 'بابل', en: 'Babil' },
+        { ar: 'ديالى', en: 'Diyala' },
+        { ar: 'كركوك', en: 'Kirkuk' },
+        { ar: 'السليمانية', en: 'Sulaymaniyah' },
+        { ar: 'واسط', en: 'Wasit' },
+        { ar: 'ميسان', en: 'Maysan' },
+        { ar: 'الديوانية', en: 'Al-Qadisiyyah (Diwaniyah)' },
+        { ar: 'المثنى', en: 'Muthanna' },
+        { ar: 'صلاح الدين', en: 'Saladin' },
+        { ar: 'دهوك', en: 'Duhok' }
+      ];
+
+      /* ----------------------------------------------------------------------
+         3. APPLICATION STATE & DOM REFERENCES
+         ---------------------------------------------------------------------- */
+      const state = {
+        lang: 'ar',
+        theme: 'light',
+        activeProduct: null,
+        selectedSize: null,
+        activeCategoryPage: null,
+        editingProductId: null,
+        editingProductCategory: null,
+        adminSelectedSizes: ['S', 'M', 'L', 'XL'],
+        uploadedImageDataUrl: ''
+      };
+
+      const htmlEl = document.documentElement;
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const iconMoon = document.getElementById('iconMoon');
+      const iconSun = document.getElementById('iconSun');
+      const langToggleBtn = document.getElementById('langToggleBtn');
+      const langBadgeText = document.getElementById('langBadgeText');
+      const collectionsContainer = document.getElementById('collections');
+      const orderToast = document.getElementById('orderToast');
+      const orderToastText = document.getElementById('orderToastText');
+
+      let toastTimer = null;
+      const sliderControllers = new Map();
+
+      function showToast(message) {
+        orderToastText.textContent = message;
+        orderToast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          orderToast.classList.remove('show');
+        }, 3200);
+      }
+
+      /* ----------------------------------------------------------------------
+         4. BRAND SETTINGS BINDING & THEME / LANGUAGE ENGINE
+         ---------------------------------------------------------------------- */
+      function updateSyncBadgeUI(cloudActive) {
+        const badge = document.getElementById('adminSyncStatusBadge');
+        if (!badge) return;
+        const active = cloudActive !== undefined ? cloudActive : isSupabaseOnline;
+        badge.textContent = active ? I18N[state.lang].adminCloudBadge : I18N[state.lang].adminLocalBadge;
+      }
+
+      function applyBrandSettings() {
+        const s = storeData.settings;
+        document.getElementById('navBrandTitle').textContent = s.storeName;
+        document.getElementById('navHandleSubtitle').textContent = s.handle;
+        document.getElementById('heroAddressText').textContent = s.address;
+        document.getElementById('heroDeliveryFeeStat').textContent = s.deliveryNote.includes('5') ? '5 الف' : s.deliveryNote;
+        document.getElementById('footerDeliveryTitle').textContent = `${s.deliveryNote} 🇮🇶`;
+        document.getElementById('footerAddressSub').textContent = `${s.address} • ${s.handle}`;
+        document.getElementById('footerWhatsappDisplay').textContent = s.whatsapp;
+
+        const intlWa = normalizeWhatsappIntl(s.whatsapp);
+        document.getElementById('footerWhatsappLink').href = `https://wa.me/${intlWa}`;
+        document.getElementById('modalDeliveryBadge').textContent = `${s.deliveryNote} 🇮🇶`;
+        document.getElementById('modalOrderBtnText').textContent =
+          state.lang === 'ar'
+            ? `تأكيد الطلب عبر واتساب (${s.whatsapp})`
+            : `Confirm via WhatsApp (${s.whatsapp})`;
+        document.getElementById('footerCopyrightText').textContent =
+          state.lang === 'ar'
+            ? `© 2026 ${s.storeName} (${s.handle}). جميع الحقوق محفوظة.`
+            : `© 2026 ${s.storeName} (${s.handle}). All rights reserved.`;
+        document.title = `${s.storeName} (${s.handle})`;
+        updateSyncBadgeUI();
+      }
+
+      function applyTheme(theme) {
+        state.theme = theme;
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          iconMoon.style.display = 'none';
+          iconSun.style.display = 'block';
+        } else {
+          iconMoon.style.display = 'block';
+          iconSun.style.display = 'none';
+        }
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        applyTheme(state.theme === 'light' ? 'dark' : 'light');
+      });
+
+      function applyLanguage(lang) {
+        state.lang = lang;
+        const isAr = lang === 'ar';
+        htmlEl.setAttribute('lang', lang);
+        htmlEl.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+        langBadgeText.textContent = isAr ? 'EN' : 'AR';
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (I18N[lang][key]) {
+            el.textContent = I18N[lang][key];
+          }
+        });
+
+        document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-html');
+          if (I18N[lang][key]) {
+            el.innerHTML = I18N[lang][key];
+          }
+        });
+
+        const addressInput = document.getElementById('modalAddressInput');
+        if (addressInput) {
+          addressInput.placeholder = I18N[lang].modalAddressPlaceholder;
+        }
+
+        applyBrandSettings();
+        renderGovernorateOptions();
+        renderStorefrontSections();
+
+        if (state.activeCategoryPage) {
+          openCategoryPage(state.activeCategoryPage);
+        }
+
+        if (state.activeProduct) {
+          populateModal(state.activeProduct, state.selectedSize);
+        }
+
+        if (adminOverlay.classList.contains('is-open')) {
+          populateAdminCategorySelects();
+          renderAdminProductsList();
+          renderAdminCategoriesList();
+          updateProductFormModeUI();
+        }
+      }
+
+      langToggleBtn.addEventListener('click', () => {
+        applyLanguage(state.lang === 'ar' ? 'en' : 'ar');
+      });
+
+      /* ----------------------------------------------------------------------
+         5. RENDER PRODUCT CARDS & INFINITE AUTO-SCROLL + DRAG SLIDERS
+         ---------------------------------------------------------------------- */
+      function getCategoryDisplayName(catObj, lang) {
+        return catObj.name[lang] || catObj.name.ar || catObj.name.en || catObj.key;
+      }
+
+      function getProductLocalizedName(product, lang) {
+        return product.name[lang] || product.name.ar || product.name.en || '';
+      }
+
+      function getProductLocalizedType(product, lang) {
+        return product.type[lang] || product.type.ar || product.type.en || (lang === 'ar' ? 'جديد' : 'New');
+      }
+
+      function getProductLocalizedMaterial(product, lang) {
+        return product.material[lang] || product.material.ar || product.material.en || (lang === 'ar' ? 'خامة مختارة' : 'Selected Fabric');
+      }
+
+      function createProductCardHTML(product, categoryKey) {
+        const lang = state.lang;
+        const dir = lang === 'ar' ? 'rtl' : 'ltr';
+        const title = getProductLocalizedName(product, lang);
+        const typeLabel = getProductLocalizedType(product, lang);
+        const priceLabel = formatPrice(product.priceIqd, lang);
+        const imgSrc = product.img || FALLBACK_IMG;
+
+        return `
+          <article class="product-card" dir="${dir}" data-category="${categoryKey}" data-id="${product.id}" tabindex="0" role="button" aria-label="${title}">
+            <div>
+              <div class="product-img-wrap">
+                <img
+                  class="product-img"
+                  src="${imgSrc}"
+                  alt="${title}"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
+                />
+                <span class="product-tag">${typeLabel}</span>
+              </div>
+              <div class="product-info">
+                <h3 class="product-name">${title}</h3>
+                <span class="product-price-mini">${priceLabel}</span>
+              </div>
+            </div>
+            <button type="button" class="btn-buy-card">
+              <span class="btn-buy-label">${I18N[lang].buyBtn}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                <path d="M3 6h18" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+            </button>
+          </article>
+        `;
+      }
+
+      function clearSliderControllers() {
+        sliderControllers.forEach((ctrl) => ctrl.destroy());
+        sliderControllers.clear();
+      }
+
+      function attachInfiniteSlider(catKey, idx) {
+        const track = document.getElementById(`track-${catKey}`);
+        if (!track) return;
+        const viewport = track.parentElement;
+        const items = storeData.products[catKey] || [];
+        if (!items.length) return;
+
+        const repeatCount = items.length >= 4 ? 3 : 5;
+        const repeatedItems = [];
+        for (let r = 0; r < repeatCount; r++) {
+          repeatedItems.push(...items);
+        }
+
+        track.innerHTML = repeatedItems.map((p) => createProductCardHTML(p, catKey)).join('');
+
+        let offset = 0;
+        let isPaused = false;
+        let isPointerDown = false;
+        let hasDragged = false;
+        let startX = 0;
+        let startOffset = 0;
+        let rafId = null;
+        let destroyed = false;
+        const autoSpeed = 0.55 + (idx % 4) * 0.08;
+
+        function getSingleSetWidth() {
+          return track.scrollWidth / repeatCount;
+        }
+
+        function wrapOffset() {
+          const setWidth = getSingleSetWidth();
+          if (setWidth <= 0) return;
+          if (offset <= -setWidth) {
+            offset += setWidth;
+          } else if (offset > 0) {
+            offset -= setWidth;
+          }
+        }
+
+        function step() {
+          if (destroyed) return;
+          if (!isPaused && !isPointerDown) {
+            offset -= autoSpeed;
+            wrapOffset();
+            track.style.transform = `translate3d(${offset}px, 0, 0)`;
+          }
+          rafId = requestAnimationFrame(step);
+        }
+
+        const onMouseEnter = () => {
+          isPaused = true;
+        };
+
+        const onMouseLeave = () => {
+          if (!isPointerDown) {
+            isPaused = false;
+          }
+        };
+
+        const onPointerDown = (e) => {
+          isPointerDown = true;
+          isPaused = true;
+          hasDragged = false;
+          startX = e.clientX;
+          startOffset = offset;
+          viewport.classList.add('is-dragging');
+        };
+
+        const onPointerMove = (e) => {
+          if (!isPointerDown) return;
+          const dx = e.clientX - startX;
+          if (Math.abs(dx) > 6) {
+            hasDragged = true;
+          }
+          offset = startOffset + dx;
+          wrapOffset();
+          track.style.transform = `translate3d(${offset}px, 0, 0)`;
+        };
+
+        const endPointerDrag = () => {
+          if (!isPointerDown) return;
+          isPointerDown = false;
+          viewport.classList.remove('is-dragging');
+          setTimeout(() => {
+            if (!destroyed && !viewport.matches(':hover')) {
+              isPaused = false;
+            }
+          }, 900);
+        };
+
+        const onClick = (e) => {
+          if (hasDragged) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          const card = e.target.closest('.product-card');
+          if (!card) return;
+          const product = (storeData.products[catKey] || []).find((p) => p.id === card.dataset.id);
+          if (product) {
+            openProductModal(product);
+          }
+        };
+
+        const onKeyDown = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            const card = e.target.closest('.product-card');
+            if (!card) return;
+            e.preventDefault();
+            const product = (storeData.products[catKey] || []).find((p) => p.id === card.dataset.id);
+            if (product) openProductModal(product);
+          }
+        };
+
+        viewport.addEventListener('mouseenter', onMouseEnter);
+        viewport.addEventListener('mouseleave', onMouseLeave);
+        viewport.addEventListener('pointerdown', onPointerDown);
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', endPointerDrag);
+        window.addEventListener('pointercancel', endPointerDrag);
+        viewport.addEventListener('click', onClick);
+        viewport.addEventListener('keydown', onKeyDown);
+
+        rafId = requestAnimationFrame(step);
+
+        sliderControllers.set(catKey, {
+          destroy() {
+            destroyed = true;
+            if (rafId) cancelAnimationFrame(rafId);
+            viewport.removeEventListener('mouseenter', onMouseEnter);
+            viewport.removeEventListener('mouseleave', onMouseLeave);
+            viewport.removeEventListener('pointerdown', onPointerDown);
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerup', endPointerDrag);
+            window.removeEventListener('pointercancel', endPointerDrag);
+            viewport.removeEventListener('click', onClick);
+            viewport.removeEventListener('keydown', onKeyDown);
+          }
+        });
+      }
+
+      function renderStorefrontSections() {
+        clearSliderControllers();
+        const lang = state.lang;
+
+        collectionsContainer.innerHTML = storeData.categories
+          .map((catObj) => {
+            const catTitle = getCategoryDisplayName(catObj, lang);
+            const items = storeData.products[catObj.key] || [];
+            const bodyHTML = items.length
+              ? `<div class="slider-viewport" data-category="${catObj.key}"><div class="slider-track" id="track-${catObj.key}"></div></div>`
+              : `<div class="empty-category-note">${I18N[lang].emptyCategoryNote}</div>`;
+
+            return `
+              <section class="category-section" aria-label="${catTitle}">
+                <div class="section-header">
+                  <div class="section-title-group">
+                    <span class="section-accent-bar"></span>
+                    <h2 class="section-title">${catTitle}</h2>
+                  </div>
+                  <div class="section-header-actions">
+                    <span class="swipe-hint">${I18N[lang].swipeHint}</span>
+                    <button type="button" class="btn-view-all" data-open-category="${catObj.key}">
+                      <span>${I18N[lang].viewAllBtn}</span>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                ${bodyHTML}
+              </section>
+            `;
+          })
+          .join('');
+
+        collectionsContainer.querySelectorAll('[data-open-category]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            openCategoryPage(btn.getAttribute('data-open-category'));
+          });
+        });
+
+        storeData.categories.forEach((catObj, idx) => {
+          attachInfiniteSlider(catObj.key, idx);
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         5B. FULL-PAGE CATEGORY VIEW OVERLAY ("عرض الكل / View All")
+         ---------------------------------------------------------------------- */
+      const categoryPageOverlay = document.getElementById('categoryPageOverlay');
+      const catOverlayBackBtn = document.getElementById('catOverlayBackBtn');
+      const catOverlayTitle = document.getElementById('catOverlayTitle');
+      const catOverlayCount = document.getElementById('catOverlayCount');
+      const catOverlayGrid = document.getElementById('catOverlayGrid');
+
+      function openCategoryPage(categoryKey) {
+        const catObj = storeData.categories.find((c) => c.key === categoryKey);
+        if (!catObj) return;
+        const items = storeData.products[categoryKey] || [];
+
+        state.activeCategoryPage = categoryKey;
+        const lang = state.lang;
+
+        catOverlayTitle.textContent = getCategoryDisplayName(catObj, lang);
+        catOverlayCount.textContent = `${items.length} ${I18N[lang].itemsCountSuffix}`;
+
+        catOverlayGrid.innerHTML = items.length
+          ? items.map((p) => createProductCardHTML(p, categoryKey)).join('')
+          : `<div class="empty-category-note" style="grid-column: 1 / -1;">${I18N[lang].emptyCategoryNote}</div>`;
+
+        categoryPageOverlay.classList.add('is-open');
+        categoryPageOverlay.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCategoryPage() {
+        categoryPageOverlay.classList.remove('is-open');
+        state.activeCategoryPage = null;
+        if (!state.activeProduct && !adminOverlay.classList.contains('is-open') && !pinModalBackdrop.classList.contains('is-open')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      catOverlayBackBtn.addEventListener('click', closeCategoryPage);
+
+      catOverlayGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.product-card');
+        if (!card) return;
+        const catKey = card.dataset.category;
+        const product = (storeData.products[catKey] || []).find((p) => p.id === card.dataset.id);
+        if (product) {
+          openProductModal(product);
+        }
+      });
+
+      /* ----------------------------------------------------------------------
+         6. INTERACTIVE FLOATING PRODUCT MODAL & WHATSAPP ORDERING
+         ---------------------------------------------------------------------- */
+      const modalBackdrop = document.getElementById('productModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const modalProductImg = document.getElementById('modalProductImg');
+      const modalProductTitle = document.getElementById('modalProductTitle');
+      const modalProductPrice = document.getElementById('modalProductPrice');
+      const modalProductType = document.getElementById('modalProductType');
+      const modalProductMaterial = document.getElementById('modalProductMaterial');
+      const modalSizesContainer = document.getElementById('modalSizesContainer');
+      const modalGovernorateSelect = document.getElementById('modalGovernorateSelect');
+      const modalAddressInput = document.getElementById('modalAddressInput');
+      const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
+
+      function renderGovernorateOptions() {
+        const prevIndex = modalGovernorateSelect.selectedIndex >= 0 ? modalGovernorateSelect.selectedIndex : 0;
+        const lang = state.lang;
+        modalGovernorateSelect.innerHTML = IRAQ_GOVERNORATES.map(
+          (gov, idx) => `<option value="${idx}">${gov[lang]}</option>`
+        ).join('');
+        modalGovernorateSelect.selectedIndex = prevIndex;
+      }
+
+      function populateModal(product, preselectedSize) {
+        const lang = state.lang;
+        const sizes = Array.isArray(product.sizes) && product.sizes.length ? product.sizes : ['Free Size'];
+        state.activeProduct = product;
+        state.selectedSize = preselectedSize && sizes.includes(preselectedSize) ? preselectedSize : sizes[0];
+
+        modalProductImg.src = product.img || FALLBACK_IMG;
+        modalProductImg.alt = getProductLocalizedName(product, lang);
+        modalProductImg.onerror = function () {
+          this.onerror = null;
+          this.src = FALLBACK_IMG;
+        };
+
+        modalProductTitle.textContent = getProductLocalizedName(product, lang);
+        modalProductPrice.textContent = formatPrice(product.priceIqd, lang);
+        modalProductType.textContent = getProductLocalizedType(product, lang);
+        modalProductMaterial.textContent = getProductLocalizedMaterial(product, lang);
+
+        modalSizesContainer.innerHTML = '';
+        sizes.forEach((size) => {
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'size-pill' + (size === state.selectedSize ? ' active' : '');
+          pill.textContent = size;
+          pill.addEventListener('click', () => {
+            state.selectedSize = size;
+            modalSizesContainer.querySelectorAll('.size-pill').forEach((p) => p.classList.remove('active'));
+            pill.classList.add('active');
+          });
+          modalSizesContainer.appendChild(pill);
+        });
+      }
+
+      function openProductModal(product) {
+        populateModal(product, product.sizes?.[0]);
+        modalBackdrop.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeProductModal() {
+        modalBackdrop.classList.remove('is-open');
+        state.activeProduct = null;
+        if (!state.activeCategoryPage && !adminOverlay.classList.contains('is-open') && !pinModalBackdrop.classList.contains('is-open')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      modalCloseBtn.addEventListener('click', closeProductModal);
+
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) {
+          closeProductModal();
+        }
+      });
+
+      modalWhatsappBtn.addEventListener('click', () => {
+        if (!state.activeProduct) return;
+        const lang = state.lang;
+        const product = state.activeProduct;
+        const size = state.selectedSize;
+        const govIndex = modalGovernorateSelect.selectedIndex >= 0 ? modalGovernorateSelect.selectedIndex : 0;
+        const governorate = IRAQ_GOVERNORATES[govIndex][lang];
+        const addressNote = modalAddressInput.value.trim();
+        const s = storeData.settings;
+        const intlPhone = normalizeWhatsappIntl(s.whatsapp);
+        const prodNameText = getProductLocalizedName(product, lang);
+        const prodPriceText = formatPrice(product.priceIqd, lang);
+
+        const message =
+          lang === 'ar'
+            ? `مرحباً ${s.storeName} (${s.handle}) 👋\nأرغب بتثبيت طلب جديد:\n• المنتج: ${prodNameText}\n• السعر: ${prodPriceText}\n• القياس المختار: ${size}\n• المحافظة: ${governorate}\n• التوصيل: ${s.deliveryNote}${addressNote ? `\n• العنوان / أقرب نقطة دالة: ${addressNote}` : ''}`
+            : `Hello ${s.storeName} (${s.handle}) 👋\nI would like to place a new order:\n• Product: ${prodNameText}\n• Price: ${prodPriceText}\n• Selected Size: ${size}\n• Governorate: ${governorate}\n• Delivery: ${s.deliveryNote}${addressNote ? `\n• Address / Landmark: ${addressNote}` : ''}`;
+
+        showToast(I18N[lang].toastPrepared);
+        const waUrl = `https://wa.me/${intlPhone}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+
+      /* ----------------------------------------------------------------------
+         6D. LONG-PRESS COPYRIGHT TRIGGER (1.2s) + ADMIN PIN MODAL
+         ---------------------------------------------------------------------- */
+      const copyrightTrigger = document.getElementById('copyrightTrigger');
+      const copyrightHoldProgress = document.getElementById('copyrightHoldProgress');
+      const pinModalBackdrop = document.getElementById('pinModalBackdrop');
+      const pinModalCloseBtn = document.getElementById('pinModalCloseBtn');
+      const pinLoginForm = document.getElementById('pinLoginForm');
+      const adminPinInput = document.getElementById('adminPinInput');
+      const pinErrorMsg = document.getElementById('pinErrorMsg');
+
+      const LONG_PRESS_MS = 1200;
+      let holdTimer = null;
+      let holdStartTime = 0;
+      let holdRafId = null;
+
+      function openPinModal() {
+        pinErrorMsg.textContent = '';
+        adminPinInput.value = '';
+        pinModalBackdrop.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => adminPinInput.focus(), 60);
+      }
+
+      function closePinModal() {
+        pinModalBackdrop.classList.remove('is-open');
+        pinErrorMsg.textContent = '';
+        if (!state.activeProduct && !state.activeCategoryPage && !adminOverlay.classList.contains('is-open')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      function resetLongPressVisual() {
+        if (holdTimer) {
+          clearTimeout(holdTimer);
+          holdTimer = null;
+        }
+        if (holdRafId) {
+          cancelAnimationFrame(holdRafId);
+          holdRafId = null;
+        }
+        copyrightTrigger.classList.remove('is-holding');
+        copyrightHoldProgress.style.width = '0%';
+      }
+
+      function tickLongPressProgress() {
+        const elapsed = performance.now() - holdStartTime;
+        const pct = Math.min(100, (elapsed / LONG_PRESS_MS) * 100);
+        copyrightHoldProgress.style.width = `${pct}%`;
+        if (pct < 100 && holdTimer) {
+          holdRafId = requestAnimationFrame(tickLongPressProgress);
+        }
+      }
+
+      copyrightTrigger.addEventListener('pointerdown', (e) => {
+        if (e.button !== undefined && e.button !== 0) return;
+        resetLongPressVisual();
+        holdStartTime = performance.now();
+        copyrightTrigger.classList.add('is-holding');
+        holdRafId = requestAnimationFrame(tickLongPressProgress);
+        holdTimer = setTimeout(() => {
+          resetLongPressVisual();
+          openPinModal();
+        }, LONG_PRESS_MS);
+      });
+
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach((evtName) => {
+        copyrightTrigger.addEventListener(evtName, resetLongPressVisual);
+      });
+
+      pinModalCloseBtn.addEventListener('click', closePinModal);
+      pinModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === pinModalBackdrop) closePinModal();
+      });
+
+      pinLoginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = adminPinInput.value.trim();
+        const expected = String(storeData.settings.adminPin || '1234').trim();
+        if (entered === expected) {
+          closePinModal();
+          openAdminPanel();
+        } else {
+          pinErrorMsg.textContent = I18N[state.lang].pinWrongError;
+          adminPinInput.select();
+        }
+      });
+
+      /* ----------------------------------------------------------------------
+         7. ADMIN CONTROL PANEL (PRODUCTS, CATEGORIES, SETTINGS & CLOUD SYNC)
+         ---------------------------------------------------------------------- */
+      const adminOverlay = document.getElementById('adminOverlay');
+      const adminCloseBtn = document.getElementById('adminCloseBtn');
+
+      const productForm = document.getElementById('productForm');
+      const productFormHeading = document.getElementById('productFormHeading');
+      const cancelEditProductBtn = document.getElementById('cancelEditProductBtn');
+      const saveProductSubmitBtn = document.getElementById('saveProductSubmitBtn');
+      const prodNameAr = document.getElementById('prodNameAr');
+      const prodNameEn = document.getElementById('prodNameEn');
+      const prodPriceIqd = document.getElementById('prodPriceIqd');
+      const prodCategorySelect = document.getElementById('prodCategorySelect');
+      const prodTypeAr = document.getElementById('prodTypeAr');
+      const prodMaterialAr = document.getElementById('prodMaterialAr');
+      const adminSizePresetContainer = document.getElementById('adminSizePresetContainer');
+      const customSizeInput = document.getElementById('customSizeInput');
+      const addCustomSizeBtn = document.getElementById('addCustomSizeBtn');
+      const prodImgUrl = document.getElementById('prodImgUrl');
+      const prodImgFile = document.getElementById('prodImgFile');
+      const prodImgPreview = document.getElementById('prodImgPreview');
+      const prodImgStatusText = document.getElementById('prodImgStatusText');
+      const adminProductsList = document.getElementById('adminProductsList');
+      const adminProductsCountBadge = document.getElementById('adminProductsCountBadge');
+      const adminFilterCategorySelect = document.getElementById('adminFilterCategorySelect');
+
+      const addCategoryForm = document.getElementById('addCategoryForm');
+      const newCatNameAr = document.getElementById('newCatNameAr');
+      const newCatNameEn = document.getElementById('newCatNameEn');
+      const adminCategoriesList = document.getElementById('adminCategoriesList');
+
+      const storeSettingsForm = document.getElementById('storeSettingsForm');
+      const setStoreName = document.getElementById('setStoreName');
+      const setHandle = document.getElementById('setHandle');
+      const setWhatsapp = document.getElementById('setWhatsapp');
+      const setDeliveryNote = document.getElementById('setDeliveryNote');
+      const setAddress = document.getElementById('setAddress');
+      const setAdminPin = document.getElementById('setAdminPin');
+
+      const pullCloudNowBtn = document.getElementById('pullCloudNowBtn');
+      const pushCloudNowBtn = document.getElementById('pushCloudNowBtn');
+
+      const exportJsonBtn = document.getElementById('exportJsonBtn');
+      const importJsonTriggerBtn = document.getElementById('importJsonTriggerBtn');
+      const importJsonFile = document.getElementById('importJsonFile');
+      const resetDefaultDataBtn = document.getElementById('resetDefaultDataBtn');
+
+      function openAdminPanel() {
+        populateAdminCategorySelects();
+        renderAdminSizeSelector();
+        renderAdminProductsList();
+        renderAdminCategoriesList();
+        fillSettingsForm();
+        updateProductFormModeUI();
+        adminOverlay.classList.add('is-open');
+        adminOverlay.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeAdminPanel() {
+        adminOverlay.classList.remove('is-open');
+        resetProductForm();
+        if (!state.activeProduct && !state.activeCategoryPage && !pinModalBackdrop.classList.contains('is-open')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      adminCloseBtn.addEventListener('click', closeAdminPanel);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (pinModalBackdrop.classList.contains('is-open')) {
+            closePinModal();
+          } else if (modalBackdrop.classList.contains('is-open')) {
+            closeProductModal();
+          } else if (adminOverlay.classList.contains('is-open')) {
+            closeAdminPanel();
+          } else if (categoryPageOverlay.classList.contains('is-open')) {
+            closeCategoryPage();
+          }
+        }
+      });
+
+      // Tab Switching
+      document.querySelectorAll('.admin-tab-btn').forEach((tabBtn) => {
+        tabBtn.addEventListener('click', () => {
+          const targetTab = tabBtn.getAttribute('data-admin-tab');
+          document.querySelectorAll('.admin-tab-btn').forEach((b) => b.classList.remove('active'));
+          tabBtn.classList.add('active');
+          document.getElementById('adminTab-products').style.display = targetTab === 'products' ? 'block' : 'none';
+          document.getElementById('adminTab-categories').style.display = targetTab === 'categories' ? 'block' : 'none';
+          document.getElementById('adminTab-settings').style.display = targetTab === 'settings' ? 'block' : 'none';
+        });
+      });
+
+      function populateAdminCategorySelects() {
+        const lang = state.lang;
+        const prevCat = prodCategorySelect.value;
+        const prevFilter = adminFilterCategorySelect.value;
+
+        prodCategorySelect.innerHTML = storeData.categories
+          .map((c) => `<option value="${c.key}">${getCategoryDisplayName(c, lang)}</option>`)
+          .join('');
+
+        if (prevCat && storeData.categories.some((c) => c.key === prevCat)) {
+          prodCategorySelect.value = prevCat;
+        }
+
+        adminFilterCategorySelect.innerHTML =
+          `<option value="__all__">${I18N[lang].allCategoriesOption}</option>` +
+          storeData.categories
+            .map((c) => `<option value="${c.key}">${getCategoryDisplayName(c, lang)}</option>`)
+            .join('');
+
+        if (prevFilter && (prevFilter === '__all__' || storeData.categories.some((c) => c.key === prevFilter))) {
+          adminFilterCategorySelect.value = prevFilter;
+        }
+      }
+
+      function renderAdminSizeSelector() {
+        const allSizesSet = new Set([...SIZE_PRESETS, ...state.adminSelectedSizes]);
+        const allSizes = Array.from(allSizesSet);
+        adminSizePresetContainer.innerHTML = allSizes
+          .map((sz) => {
+            const isSelected = state.adminSelectedSizes.includes(sz);
+            return `<button type="button" class="admin-size-toggle ${isSelected ? 'selected' : ''}" data-size-val="${sz}">${sz}</button>`;
+          })
+          .join('');
+
+        adminSizePresetContainer.querySelectorAll('.admin-size-toggle').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const val = btn.getAttribute('data-size-val');
+            if (state.adminSelectedSizes.includes(val)) {
+              state.adminSelectedSizes = state.adminSelectedSizes.filter((s) => s !== val);
+            } else {
+              state.adminSelectedSizes.push(val);
+            }
+            renderAdminSizeSelector();
+          });
+        });
+      }
+
+      addCustomSizeBtn.addEventListener('click', () => {
+        const raw = customSizeInput.value.trim();
+        if (!raw) return;
+        const parts = raw.split(',').map((x) => x.trim()).filter(Boolean);
+        parts.forEach((p) => {
+          if (!state.adminSelectedSizes.includes(p)) {
+            state.adminSelectedSizes.push(p);
+          }
+        });
+        customSizeInput.value = '';
+        renderAdminSizeSelector();
+      });
+
+      function updateImagePreview() {
+        const activeSrc = state.uploadedImageDataUrl || prodImgUrl.value.trim() || FALLBACK_IMG;
+        prodImgPreview.src = activeSrc;
+        prodImgPreview.onerror = function () {
+          this.onerror = null;
+          this.src = FALLBACK_IMG;
+        };
+      }
+
+      prodImgUrl.addEventListener('input', () => {
+        if (prodImgUrl.value.trim()) {
+          state.uploadedImageDataUrl = '';
+        }
+        updateImagePreview();
+      });
+
+      prodImgFile.addEventListener('change', () => {
+        const file = prodImgFile.files && prodImgFile.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          state.uploadedImageDataUrl = String(ev.target.result || '');
+          prodImgUrl.value = '';
+          prodImgStatusText.textContent = file.name;
+          updateImagePreview();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      function updateProductFormModeUI() {
+        const lang = state.lang;
+        if (state.editingProductId) {
+          productFormHeading.textContent = I18N[lang].editProductHeading;
+          saveProductSubmitBtn.querySelector('span').textContent = I18N[lang].updateProductBtn;
+          cancelEditProductBtn.style.display = 'inline-flex';
+        } else {
+          productFormHeading.textContent = I18N[lang].addNewProductHeading;
+          saveProductSubmitBtn.querySelector('span').textContent = I18N[lang].saveProductBtn;
+          cancelEditProductBtn.style.display = 'none';
+        }
+      }
+
+      function resetProductForm() {
+        state.editingProductId = null;
+        state.editingProductCategory = null;
+        state.adminSelectedSizes = ['S', 'M', 'L', 'XL'];
+        state.uploadedImageDataUrl = '';
+        productForm.reset();
+        prodImgFile.value = '';
+        prodImgStatusText.textContent = I18N[state.lang].imgPreviewHint;
+        if (storeData.categories.length) {
+          prodCategorySelect.value = storeData.categories[0].key;
+        }
+        renderAdminSizeSelector();
+        updateImagePreview();
+        updateProductFormModeUI();
+      }
+
+      cancelEditProductBtn.addEventListener('click', resetProductForm);
+
+      productForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const lang = state.lang;
+        const nameArVal = prodNameAr.value.trim();
+        const nameEnVal = prodNameEn.value.trim() || nameArVal;
+        const priceVal = Number(prodPriceIqd.value) || 25000;
+        const targetCatKey = prodCategorySelect.value || (storeData.categories[0] && storeData.categories[0].key);
+        const typeArVal = prodTypeAr.value.trim() || 'كاجوال';
+        const materialArVal = prodMaterialAr.value.trim() || 'خامة ممتازة';
+        const imgFinal = state.uploadedImageDataUrl || prodImgUrl.value.trim() || FALLBACK_IMG;
+
+        if (!nameArVal || !targetCatKey) return;
+        if (!state.adminSelectedSizes.length) {
+          showToast(I18N[lang].toastMinSize);
+          return;
+        }
+
+        if (!Array.isArray(storeData.products[targetCatKey])) {
+          storeData.products[targetCatKey] = [];
+        }
+
+        if (state.editingProductId) {
+          if (state.editingProductCategory && Array.isArray(storeData.products[state.editingProductCategory])) {
+            storeData.products[state.editingProductCategory] = storeData.products[state.editingProductCategory].filter(
+              (p) => p.id !== state.editingProductId
+            );
+          }
+          const updatedObj = {
+            id: state.editingProductId,
+            name: { ar: nameArVal, en: nameEnVal },
+            priceIqd: priceVal,
+            type: { ar: typeArVal, en: typeArVal },
+            material: { ar: materialArVal, en: materialArVal },
+            sizes: [...state.adminSelectedSizes],
+            img: imgFinal
+          };
+          storeData.products[targetCatKey].unshift(updatedObj);
+          persistStoreData(true);
+          renderStorefrontSections();
+          renderAdminProductsList();
+          resetProductForm();
+          showToast(I18N[lang].toastUpdatedProduct);
+        } else {
+          const newProduct = {
+            id: `prod-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            name: { ar: nameArVal, en: nameEnVal },
+            priceIqd: priceVal,
+            type: { ar: typeArVal, en: typeArVal },
+            material: { ar: materialArVal, en: materialArVal },
+            sizes: [...state.adminSelectedSizes],
+            img: imgFinal
+          };
+          storeData.products[targetCatKey].unshift(newProduct);
+          persistStoreData(true);
+          renderStorefrontSections();
+          renderAdminProductsList();
+          resetProductForm();
+          showToast(I18N[lang].toastSavedProduct);
+        }
+      });
+
+      function startEditingProduct(catKey, productId) {
+        const prod = (storeData.products[catKey] || []).find((p) => p.id === productId);
+        if (!prod) return;
+
+        state.editingProductId = prod.id;
+        state.editingProductCategory = catKey;
+        state.adminSelectedSizes = Array.isArray(prod.sizes) && prod.sizes.length ? [...prod.sizes] : ['M', 'L'];
+        state.uploadedImageDataUrl = prod.img && prod.img.startsWith('data:') ? prod.img : '';
+
+        prodNameAr.value = prod.name.ar || '';
+        prodNameEn.value = prod.name.en || '';
+        prodPriceIqd.value = prod.priceIqd || 25000;
+        prodCategorySelect.value = catKey;
+        prodTypeAr.value = prod.type.ar || '';
+        prodMaterialAr.value = prod.material.ar || '';
+        prodImgUrl.value = prod.img && !prod.img.startsWith('data:') ? prod.img : '';
+        prodImgStatusText.textContent = state.uploadedImageDataUrl ? 'صورة مرفوعة مسبقاً' : I18N[state.lang].imgPreviewHint;
+
+        renderAdminSizeSelector();
+        updateImagePreview();
+        updateProductFormModeUI();
+        adminOverlay.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function deleteProduct(catKey, productId) {
+        if (!Array.isArray(storeData.products[catKey])) return;
+        storeData.products[catKey] = storeData.products[catKey].filter((p) => p.id !== productId);
+        if (state.editingProductId === productId) {
+          resetProductForm();
+        }
+        persistStoreData(true);
+        renderStorefrontSections();
+        renderAdminProductsList();
+        showToast(I18N[state.lang].toastDeletedProduct);
+      }
+
+      function renderAdminProductsList() {
+        const lang = state.lang;
+        const filterVal = adminFilterCategorySelect.value || '__all__';
+        const rows = [];
+
+        storeData.categories.forEach((catObj) => {
+          if (filterVal !== '__all__' && filterVal !== catObj.key) return;
+          const list = storeData.products[catObj.key] || [];
+          list.forEach((p) => {
+            rows.push({ catObj, product: p });
+          });
+        });
+
+        adminProductsCountBadge.textContent = String(rows.length);
+
+        if (!rows.length) {
+          adminProductsList.innerHTML = `<div class="empty-category-note">${I18N[lang].emptyCategoryNote}</div>`;
+          return;
+        }
+
+        adminProductsList.innerHTML = rows
+          .map(({ catObj, product }) => {
+            const title = getProductLocalizedName(product, lang);
+            const catName = getCategoryDisplayName(catObj, lang);
+            const priceText = formatPrice(product.priceIqd, lang);
+            const sizesText = (product.sizes || []).join(', ');
+            return `
+              <div class="admin-list-item">
+                <div class="admin-item-meta">
+                  <img src="${product.img || FALLBACK_IMG}" alt="${title}" class="admin-item-thumb" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" />
+                  <div style="min-width: 0;">
+                    <div class="admin-item-title">${title}</div>
+                    <div class="admin-item-sub">${catName} • ${priceText} • [${sizesText}]</div>
+                  </div>
+                </div>
+                <div class="admin-item-btns">
+                  <button type="button" class="btn-secondary-soft" data-edit-cat="${catObj.key}" data-edit-id="${product.id}">${lang === 'ar' ? 'تعديل' : 'Edit'}</button>
+                  <button type="button" class="btn-danger-soft" data-del-cat="${catObj.key}" data-del-id="${product.id}">${lang === 'ar' ? 'حذف' : 'Delete'}</button>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+
+        adminProductsList.querySelectorAll('[data-edit-id]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            startEditingProduct(btn.getAttribute('data-edit-cat'), btn.getAttribute('data-edit-id'));
+          });
+        });
+
+        adminProductsList.querySelectorAll('[data-del-id]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            deleteProduct(btn.getAttribute('data-del-cat'), btn.getAttribute('data-del-id'));
+          });
+        });
+      }
+
+      adminFilterCategorySelect.addEventListener('change', renderAdminProductsList);
+
+      // Categories Manager
+      addCategoryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const arVal = newCatNameAr.value.trim();
+        if (!arVal) return;
+        const enVal = newCatNameEn.value.trim() || arVal;
+        const slugBase = enVal
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '') || 'cat';
+        const uniqueKey = `${slugBase}-${Date.now().toString().slice(-4)}`;
+
+        storeData.categories.push({
+          key: uniqueKey,
+          name: { ar: arVal, en: enVal }
+        });
+        if (!storeData.products[uniqueKey]) {
+          storeData.products[uniqueKey] = [];
+        }
+
+        persistStoreData(true);
+        newCatNameAr.value = '';
+        newCatNameEn.value = '';
+        populateAdminCategorySelects();
+        renderAdminCategoriesList();
+        renderStorefrontSections();
+        showToast(I18N[state.lang].toastAddedCategory);
+      });
+
+      function renderAdminCategoriesList() {
+        const lang = state.lang;
+        adminCategoriesList.innerHTML = storeData.categories
+          .map((catObj) => {
+            const count = (storeData.products[catObj.key] || []).length;
+            return `
+              <div class="admin-list-item">
+                <div class="admin-item-meta">
+                  <div>
+                    <div class="admin-item-title">${catObj.name.ar} <span class="admin-item-sub">(${catObj.name.en})</span></div>
+                    <div class="admin-item-sub">${count} ${I18N[lang].itemsCountSuffix}</div>
+                  </div>
+                </div>
+                <div class="admin-item-btns">
+                  <button type="button" class="btn-secondary-soft" data-rename-cat="${catObj.key}">${lang === 'ar' ? 'تغيير الاسم' : 'Rename'}</button>
+                  <button type="button" class="btn-danger-soft" data-remove-cat="${catObj.key}">${lang === 'ar' ? 'حذف' : 'Delete'}</button>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+
+        adminCategoriesList.querySelectorAll('[data-rename-cat]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const catKey = btn.getAttribute('data-rename-cat');
+            const target = storeData.categories.find((c) => c.key === catKey);
+            if (!target) return;
+            const updatedAr = prompt(lang === 'ar' ? 'أدخل الاسم الجديد للقسم (عربي):' : 'New Arabic category name:', target.name.ar);
+            if (updatedAr && updatedAr.trim()) {
+              target.name.ar = updatedAr.trim();
+              const updatedEn = prompt(lang === 'ar' ? 'أدخل الاسم الجديد للقسم (إنجليزي):' : 'New English category name:', target.name.en);
+              if (updatedEn && updatedEn.trim()) {
+                target.name.en = updatedEn.trim();
+              }
+              persistStoreData(true);
+              populateAdminCategorySelects();
+              renderAdminCategoriesList();
+              renderAdminProductsList();
+              renderStorefrontSections();
+              showToast(I18N[lang].toastRenamedCategory);
+            }
+          });
+        });
+
+        adminCategoriesList.querySelectorAll('[data-remove-cat]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const catKey = btn.getAttribute('data-remove-cat');
+            if (storeData.categories.length <= 1) {
+              showToast(lang === 'ar' ? 'يجب الإبقاء على قسم واحد على الأقل.' : 'At least one category must remain.');
+              return;
+            }
+            storeData.categories = storeData.categories.filter((c) => c.key !== catKey);
+            delete storeData.products[catKey];
+            persistStoreData(true);
+            populateAdminCategorySelects();
+            renderAdminCategoriesList();
+            renderAdminProductsList();
+            renderStorefrontSections();
+            showToast(I18N[lang].toastDeletedCategory);
+          });
+        });
+      }
+
+      // Store Settings & Cloud Sync Controls
+      function fillSettingsForm() {
+        setStoreName.value = storeData.settings.storeName;
+        setHandle.value = storeData.settings.handle;
+        setWhatsapp.value = storeData.settings.whatsapp;
+        setDeliveryNote.value = storeData.settings.deliveryNote;
+        setAddress.value = storeData.settings.address;
+        setAdminPin.value = storeData.settings.adminPin || '1234';
+      }
+
+      storeSettingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        storeData.settings = {
+          ...storeData.settings,
+          storeName: setStoreName.value.trim() || 'Hussain Saeed Fashion',
+          handle: setHandle.value.trim() || '@hs.fashion4',
+          whatsapp: setWhatsapp.value.trim() || '07725615564',
+          deliveryNote: setDeliveryNote.value.trim() || 'توصيل لجميع المحافظات (5 الف)',
+          address: setAddress.value.trim() || 'بغداد حي العامل - شارع التشييش',
+          adminPin: setAdminPin.value.trim() || '1234'
+        };
+        persistStoreData(true);
+        applyBrandSettings();
+        showToast(I18N[state.lang].toastSettingsSaved);
+      });
+
+      pullCloudNowBtn.addEventListener('click', () => {
+        pullFromSupabase(false);
+      });
+
+      pushCloudNowBtn.addEventListener('click', () => {
+        saveLocalOnly();
+        pushToSupabase(false);
+      });
+
+      // Export / Import / Reset Data
+      exportJsonBtn.addEventListener('click', () => {
+        const blob = new Blob([JSON.stringify(storeData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'hs-fashion4-store-backup.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      importJsonTriggerBtn.addEventListener('click', () => {
+        importJsonFile.click();
+      });
+
+      importJsonFile.addEventListener('change', () => {
+        const file = importJsonFile.files && importJsonFile.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          try {
+            const imported = JSON.parse(String(ev.target.result || '{}'));
+            if (imported && Array.isArray(imported.categories) && imported.products) {
+              storeData = normalizeLoadedData(imported);
+              persistStoreData(true);
+              applyBrandSettings();
+              renderStorefrontSections();
+              populateAdminCategorySelects();
+              renderAdminProductsList();
+              renderAdminCategoriesList();
+              fillSettingsForm();
+              showToast(I18N[state.lang].toastSettingsSaved);
+            }
+          } catch (err) {
+            showToast('Invalid JSON file');
+          }
+        };
+        reader.readAsText(file);
+        importJsonFile.value = '';
+      });
+
+      resetDefaultDataBtn.addEventListener('click', () => {
+        storeData = getDefaultStoreData();
+        persistStoreData(true);
+        applyBrandSettings();
+        renderStorefrontSections();
+        populateAdminCategorySelects();
+        renderAdminProductsList();
+        renderAdminCategoriesList();
+        fillSettingsForm();
+        resetProductForm();
+        showToast(I18N[state.lang].toastResetDone);
+      });
+
+      /* ----------------------------------------------------------------------
+         8. INITIALIZE APPLICATION
+         ---------------------------------------------------------------------- */
+      applyBrandSettings();
+      renderGovernorateOptions();
+      renderStorefrontSections();
+      updateImagePreview();
+
+      pullFromSupabase(true);
+    })();
+  </script>
+</body>
+</html>
