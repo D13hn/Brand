@@ -5,17 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hussain Saeed Fashion (@hs.fashion4) — أناقة عصرية وجودة استثنائية</title>
 
-  <!-- Google Fonts: Cairo & Tajawal (Arabic) + Plus Jakarta Sans & Poppins (English) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* ==========================================================================
-       1. CSS DESIGN TOKENS & THEME SYSTEM (LIGHT & DARK MODE)
-       ========================================================================== */
     :root {
-      /* Light Mode (Default) */
       --bg-primary: #FFFFFF;
       --bg-secondary: #F8FAFC;
       --glass-bg: rgba(255, 255, 255, 0.75);
@@ -31,14 +26,12 @@
       --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.04);
       --shadow-nav: 0 8px 32px rgba(0, 0, 0, 0.06);
 
-      /* Brand Emerald Accents */
       --accent-emerald: #10B981;
       --accent-emerald-hover: #34D399;
       --accent-emerald-deep: #059669;
       --accent-glow: 0 8px 24px rgba(16, 185, 129, 0.25);
       --accent-glow-hover: 0 12px 30px rgba(16, 185, 129, 0.38);
 
-      /* Layout & Radii */
       --outer-margin: 7px;
       --radius-sm: 12px;
       --radius-md: 14px;
@@ -46,7 +39,6 @@
       --blur-amount: blur(12px);
       --transition-smooth: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 
-      /* Typography */
       --font-ar: 'Cairo', 'Tajawal', sans-serif;
       --font-en: 'Plus Jakarta Sans', 'Poppins', sans-serif;
     }
@@ -68,9 +60,6 @@
       --shadow-nav: 0 10px 32px rgba(0, 0, 0, 0.45);
     }
 
-    /* ==========================================================================
-       2. GLOBAL RESET & BASE STYLES
-       ========================================================================== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -98,7 +87,6 @@
       font-family: var(--font-en);
     }
 
-    /* Ambient Subtle Background Orbs */
     .ambient-orb {
       position: fixed;
       border-radius: 50%;
@@ -129,7 +117,6 @@
       right: -90px;
     }
 
-    /* Main Wrapper enforcing mandatory 7px outer horizontal margin */
     .page-wrapper {
       position: relative;
       z-index: 1;
@@ -139,9 +126,6 @@
       padding-bottom: 28px;
     }
 
-    /* ==========================================================================
-       3. STICKY GLASSMORPHISM TOP NAVIGATION BAR
-       ========================================================================== */
     .navbar-outer {
       position: sticky;
       top: 8px;
@@ -150,7 +134,6 @@
       margin-bottom: 14px;
     }
 
-    /* Explicitly dir="ltr" on navbar container so Logo is always Top-Left and Controls Top-Right */
     .navbar {
       direction: ltr;
       display: flex;
@@ -271,9 +254,6 @@
       letter-spacing: 0.02em;
     }
 
-    /* ==========================================================================
-       4. HERO SECTION
-       ========================================================================== */
     .hero-section {
       position: relative;
       background: var(--glass-bg);
@@ -434,9 +414,6 @@
       background: rgba(128, 128, 128, 0.2);
     }
 
-    /* ==========================================================================
-       5. PRODUCT SHOWCASE SECTIONS & INFINITE TOUCH-DRAGGABLE SLIDERS
-       ========================================================================== */
     .collections-container {
       display: flex;
       flex-direction: column;
@@ -551,7 +528,6 @@
       font-weight: 600;
     }
 
-    /* Slider Viewport & Track (Always LTR internally for predictable infinite scroll math) */
     .slider-viewport {
       direction: ltr;
       width: 100%;
@@ -576,7 +552,6 @@
       padding-inline: 12px;
     }
 
-    /* Individual Product Card */
     .product-card {
       width: 192px;
       flex-shrink: 0;
@@ -691,9 +666,6 @@
       box-shadow: 0 6px 18px rgba(16, 185, 129, 0.34);
     }
 
-    /* ==========================================================================
-       6. INTERACTIVE FLOATING PRODUCT & PIN MODALS
-       ========================================================================== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -873,7 +845,6 @@
       box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
     }
 
-    /* Governorate Selector & Address Field in Modal */
     .delivery-fields-group {
       display: flex;
       flex-direction: column;
@@ -967,9 +938,6 @@
       min-height: 20px;
     }
 
-    /* ==========================================================================
-       6B. FULL-PAGE CATEGORY VIEW OVERLAY ("عرض الكل / View All")
-       ========================================================================== */
     .category-page-overlay {
       position: fixed;
       inset: 0;
@@ -1093,9 +1061,6 @@
       width: 100%;
     }
 
-    /* ==========================================================================
-       6C. FULL ADMIN CONTROL PANEL OVERLAY ("لوحة التحكم / Admin Panel")
-       ========================================================================== */
     .admin-overlay {
       position: fixed;
       inset: 0;
@@ -1461,7 +1426,6 @@
       padding-top: 4px;
     }
 
-    /* Toast Notification for Order Confirmation & Admin Actions */
     .order-toast {
       position: fixed;
       bottom: 18px;
@@ -1491,9 +1455,6 @@
       opacity: 1;
     }
 
-    /* ==========================================================================
-       7. FOOTER, LONG-PRESS ADMIN TRIGGER & IRAQ DELIVERY INFO
-       ========================================================================== */
     .footer-wrapper {
       margin-top: 24px;
       display: flex;
@@ -1615,19 +1576,13 @@
 </head>
 <body>
 
-  <!-- Ambient Soft Green Glows -->
   <div class="ambient-orb orb-1" aria-hidden="true"></div>
   <div class="ambient-orb orb-2" aria-hidden="true"></div>
 
-  <!-- Main Wrapper with Mandatory 7px Left & Right Outer Padding -->
   <div class="page-wrapper">
 
-    <!-- ======================================================================
-         1. STICKY GLASSMORPHISM TOP NAVIGATION BAR
-         ====================================================================== -->
     <header class="navbar-outer">
       <nav class="navbar" aria-label="Primary Navigation">
-        <!-- Visually Top-Left: Custom Interlocking Brand SVG Logo -->
         <a href="#top" class="brand-logo-link" aria-label="Hussain Saeed Fashion Home">
           <svg class="brand-logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -1641,7 +1596,6 @@
               </linearGradient>
             </defs>
             <rect x="2" y="2" width="44" height="44" rx="13" fill="url(#hsGradPrimary)" fill-opacity="0.14" stroke="url(#hsGradPrimary)" stroke-width="1.8" />
-            <!-- Interlocking H & S Monogram -->
             <path d="M12 13V35M22 13V35M12 24H22" stroke="url(#hsGradPrimary)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M35.5 15.5C34.2 13.8 31.8 13.2 29.5 13.8C27.2 14.4 26.2 16.5 26.6 18.6C27 20.8 29.3 21.8 31.8 22.5C34.4 23.2 36.2 24.6 36.2 27.6C36.2 30.8 33.8 33.4 30.5 33.8C27.8 34.1 25.8 32.8 25 31" stroke="url(#hsGradSecondary)" stroke-width="3.1" stroke-linecap="round" />
             <circle cx="36.5" cy="14" r="2.1" fill="#10B981" />
@@ -1652,9 +1606,7 @@
           </div>
         </a>
 
-        <!-- Visually Top-Right: Theme Toggle & Language Globe Toggle (Clean Storefront for Customers) -->
         <div class="nav-actions">
-          <!-- Theme Toggle Button (Sun / Moon) -->
           <button type="button" class="icon-btn" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
             <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
@@ -1665,7 +1617,6 @@
             </svg>
           </button>
 
-          <!-- Language Toggle Button (Globe SVG) -->
           <button type="button" class="icon-btn" id="langToggleBtn" aria-label="Switch Language" title="Switch Language">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10" />
@@ -1678,9 +1629,6 @@
       </nav>
     </header>
 
-    <!-- ======================================================================
-         2. HERO SECTION (HOME)
-         ====================================================================== -->
     <main id="top">
       <section class="hero-section" aria-labelledby="heroHeading">
         <div class="hero-glow-accent" aria-hidden="true"></div>
@@ -1732,15 +1680,9 @@
         </div>
       </section>
 
-      <!-- ====================================================================
-           3. DYNAMIC PRODUCT SHOWCASE SECTIONS (CLOTHES, PANTS, SHOES + CUSTOM)
-           ==================================================================== -->
       <div class="collections-container" id="collections"></div>
     </main>
 
-    <!-- ======================================================================
-         5. FOOTER & IRAQ DELIVERY INFO (WITH LONG-PRESS ADMIN ACCESS ON COPYRIGHT)
-         ====================================================================== -->
     <footer class="footer-wrapper">
       <div class="delivery-banner">
         <div class="delivery-info-left">
@@ -1768,7 +1710,6 @@
         </a>
       </div>
 
-      <!-- Long-press (1.2s) triggers PIN Modal for Admin Access -->
       <div class="copyright-bar" id="copyrightTrigger" role="button" tabindex="0" aria-label="Copyright">
         <span id="footerCopyrightText">© 2026 Hussain Saeed Fashion (@hs.fashion4). جميع الحقوق محفوظة.</span>
         <span class="copyright-hold-progress" id="copyrightHoldProgress" aria-hidden="true"></span>
@@ -1777,9 +1718,6 @@
 
   </div>
 
-  <!-- ========================================================================
-       ADMIN PIN LOCK MODAL
-       ======================================================================== -->
   <div class="modal-backdrop" id="pinModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="pinModalTitle">
     <div class="modal-dialog" style="max-width: 360px;">
       <button type="button" class="modal-close-btn" id="pinModalCloseBtn" aria-label="Close PIN Modal">
@@ -1812,9 +1750,6 @@
     </div>
   </div>
 
-  <!-- ========================================================================
-       FULL-PAGE CATEGORY VIEW OVERLAY ("عرض الكل / View All")
-       ======================================================================== -->
   <div class="category-page-overlay" id="categoryPageOverlay" role="dialog" aria-modal="true" aria-labelledby="catOverlayTitle">
     <div class="category-page-inner">
       <div class="category-page-header">
@@ -1836,9 +1771,6 @@
     </div>
   </div>
 
-  <!-- ========================================================================
-       FULL ADMIN CONTROL PANEL OVERLAY ("لوحة التحكم / Admin Panel")
-       ======================================================================== -->
   <div class="admin-overlay" id="adminOverlay" role="dialog" aria-modal="true" aria-labelledby="adminPanelHeading">
     <div class="admin-inner">
       <div class="admin-topbar">
@@ -1855,7 +1787,6 @@
         </button>
       </div>
 
-      <!-- Admin Section Tabs -->
       <div class="admin-tabs-bar" role="tablist">
         <button type="button" class="admin-tab-btn active" data-admin-tab="products" role="tab">
           <span data-i18n="tabProducts">إدارة المنتجات</span>
@@ -1868,7 +1799,6 @@
         </button>
       </div>
 
-      <!-- TAB 1: PRODUCTS MANAGER -->
       <div id="adminTab-products">
         <div class="admin-panel-card">
           <div class="admin-card-heading">
@@ -1912,7 +1842,6 @@
               </div>
             </div>
 
-            <!-- Selectable Sizes + Custom Size Adder -->
             <div class="admin-field">
               <span class="admin-label" data-i18n="labelSizesSelect">المقاسات المتوفرة (اضغط لتحديد أو إلغاء التحديد):</span>
               <div class="size-selector-grid" id="adminSizePresetContainer"></div>
@@ -1922,7 +1851,6 @@
               </div>
             </div>
 
-            <!-- Image URL OR Upload from Device -->
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
                 <label class="admin-label" for="prodImgUrl" data-i18n="labelImgUrl">رابط صورة المنتج (URL)</label>
@@ -1950,7 +1878,6 @@
           </form>
         </div>
 
-        <!-- Existing Products List -->
         <div class="admin-panel-card">
           <div class="admin-card-heading">
             <span data-i18n="existingProductsHeading">المنتجات الحالية</span>
@@ -1963,7 +1890,6 @@
         </div>
       </div>
 
-      <!-- TAB 2: CATEGORIES MANAGER -->
       <div id="adminTab-categories" style="display: none;">
         <div class="admin-panel-card">
           <div class="admin-card-heading">
@@ -1994,7 +1920,6 @@
         </div>
       </div>
 
-      <!-- TAB 3: STORE SETTINGS & LIVE CLOUD SYNC -->
       <div id="adminTab-settings" style="display: none;">
         <div class="admin-panel-card">
           <div class="admin-card-heading">
@@ -2042,13 +1967,12 @@
           </form>
         </div>
 
-        <!-- Shared Live Cloud Endpoint (GET/POST JSON) -->
         <div class="admin-panel-card">
           <div class="admin-card-heading">
-            <span data-i18n="cloudSyncHeading">المزامنة السحابية المشتركة لجميع الزوار (Cloud JSON)</span>
+            <span data-i18n="cloudSyncHeading">المزامنة السحابية المشتركة لجميع الزوار (Supabase)</span>
           </div>
           <div class="admin-hint-box" data-i18n="cloudSyncHint">
-            افتراضياً يتم الحفظ فوراً في متصفحك (localStorage) ويعمل بدون أي تعليق. إذا ربطت رابط نقطة نهاية JSON يدعم GET و POST، سيقوم الموقع بجلب التعديلات عند الدخول ونشرها لكل الزوار تلقائياً مع إبقاء النسخة المحلية كاحتياط فوري.
+            افتراضياً يتم الحفظ فوراً في متصفحك (localStorage) ويعمل بدون أي تعليق. يمكنك سحب التعديلات أو رفعها إلى Supabase بضغطة زر.
           </div>
 
           <div class="admin-actions-row" style="margin-top: 4px;">
@@ -2058,7 +1982,6 @@
         </div>
       </div>
 
-      <!-- Backup / Export / Reset Bar -->
       <div class="admin-panel-card">
         <div class="admin-utility-footer">
           <div class="admin-actions-row" style="margin-top: 0;">
@@ -2072,9 +1995,6 @@
     </div>
   </div>
 
-  <!-- ========================================================================
-       4. INTERACTIVE FLOATING PRODUCT MODAL
-       ======================================================================== -->
   <div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
     <div class="modal-dialog">
       <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close Modal">
@@ -2108,7 +2028,6 @@
         <div class="size-pills-row" id="modalSizesContainer"></div>
       </div>
 
-      <!-- Iraqi Governorate Selector & Optional Address Field in Modal -->
       <div class="delivery-fields-group">
         <div class="field-block">
           <label class="field-label" for="modalGovernorateSelect">
@@ -2127,7 +2046,6 @@
       </div>
 
       <button type="button" class="modal-order-btn" id="modalWhatsappBtn">
-        <!-- WhatsApp SVG Icon -->
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
           <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
@@ -2137,7 +2055,6 @@
     </div>
   </div>
 
-  <!-- Order & Admin Toast Notification -->
   <div class="order-toast" id="orderToast" role="status" aria-live="polite">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M20 6 9 17l-5-5" />
@@ -2145,18 +2062,12 @@
     <span id="orderToastText"></span>
   </div>
 
-  <!-- ========================================================================
-       JAVASCRIPT: PERSISTENT STORE STATE, BILINGUAL ENGINE, SLIDERS & ADMIN
-       ======================================================================== -->
   <script>
     (function () {
       'use strict';
 
-      /* ----------------------------------------------------------------------
-         0. SUPABASE CONFIGURATION (hs-fashion-store)
-         ---------------------------------------------------------------------- */
       const SUPABASE_URL = 'https://iwjnhmfqbxuqzyspobwr.supabase.co';
-      const SUPABASE_KEY = 'Sb_publishable_otE8B5bztXF4bHQze4HaMQ_tBQajlps';
+      const SUPABASE_KEY = 'sb_publishable_otE8B5bztXF4bHQze4HaMQ_tBQajlps';
       const SUPABASE_TABLE = 'products';
       const META_ROW_ID = '__hs_fashion4_meta__';
 
@@ -2164,9 +2075,6 @@
       const FALLBACK_IMG = 'https://placehold.co/600x660/10B981/FFFFFF?text=HS+Fashion';
       const SIZE_PRESETS = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'Free Size', '30', '32', '34', '36', '38', '40', '41', '42', '43', '44', '45'];
 
-      /* ----------------------------------------------------------------------
-         1. DEFAULT BRAND SETTINGS, CATEGORIES & PRODUCTS (@hs.fashion4)
-         ---------------------------------------------------------------------- */
       function getDefaultStoreData() {
         return {
           settings: {
@@ -2381,14 +2289,9 @@
       function saveLocalOnly() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(storeData));
-        } catch (err) {
-          // Ignore storage quota issues if large base64 images are uploaded
-        }
+        } catch (err) {}
       }
 
-      /* ----------------------------------------------------------------------
-         SUPABASE REST HELPERS
-         ---------------------------------------------------------------------- */
       function getSupabaseHeaders() {
         return {
           'apikey': SUPABASE_KEY,
@@ -2589,7 +2492,7 @@
 
       function persistStoreData(syncCloud) {
         saveLocalOnly();
-        if (syncCloud && (storeData.settings.cloudEndpoint || '').trim()) {
+        if (syncCloud) {
           pushToSupabase(true);
         }
       }
@@ -2609,9 +2512,6 @@
         return digits;
       }
 
-      /* ----------------------------------------------------------------------
-         2. UI TRANSLATIONS (ARABIC DEFAULT & ENGLISH)
-         ---------------------------------------------------------------------- */
       const I18N = {
         ar: {
           heroBadge: 'Hussain Saeed Fashion • @hs.fashion4',
@@ -2678,10 +2578,8 @@
           labelAddress: 'العنوان',
           labelAdminPin: 'الرمز السري للإدارة (PIN)',
           saveSettingsBtn: 'حفظ الإعدادات وتطبيقها فوراً',
-          cloudSyncHeading: 'مزامنة قاعدة بيانات Supabase (hs-fashion-store)',
-          cloudSyncHint: 'افتراضياً يتم الحفظ فوراً في متصفحك (localStorage) ويعمل بدون أي تعليق. إذا ربطت رابط نقطة نهاية JSON يدعم GET و POST، سيقوم الموقع بجلب التعديلات عند الدخول ونشرها لكل الزوار تلقائياً مع إبقاء النسخة المحلية كاحتياط فوري.',
-          labelCloudEndpoint: 'رابط نقطة نهاية JSON المشتركة (GET / POST)',
-          saveEndpointBtn: 'حفظ الرابط',
+          cloudSyncHeading: 'المزامنة السحابية المشتركة لجميع الزوار (Supabase)',
+          cloudSyncHint: 'افتراضياً يتم الحفظ فوراً في متصفحك (localStorage) ويعمل بدون أي تعليق. يمكنك سحب التعديلات أو رفعها إلى Supabase بضغطة زر.',
           pullCloudBtn: 'سحب من Supabase الآن',
           pushCloudBtn: 'مزامنة ورفع للكل الآن',
           exportJsonBtn: 'تصدير نسخة JSON',
@@ -2695,7 +2593,6 @@
           toastDeletedCategory: 'تم حذف القسم.',
           toastMinSize: 'يرجى تحديد مقاس واحد على الأقل.',
           toastSettingsSaved: 'تم حفظ إعدادات المتجر وتحديث الواجهة!',
-          toastEndpointSaved: 'تم حفظ رابط المزامنة السحابية!',
           toastCloudPulled: 'تم جلب أحدث بيانات المتجر من Supabase!',
           toastCloudPushed: 'تم نشر التعديلات لجميع الزوار على Supabase!',
           toastCloudError: 'تعذر الاتصال بـ Supabase؛ تم الإبقاء على النسخة المحلية.',
@@ -2766,10 +2663,8 @@
           labelAddress: 'Address',
           labelAdminPin: 'Admin PIN Code',
           saveSettingsBtn: 'Save & Apply Settings',
-          cloudSyncHeading: 'Supabase Database Sync (hs-fashion-store)',
-          cloudSyncHint: 'By default, edits save instantaneously in localStorage with zero lag. If you connect a JSON endpoint supporting GET and POST, the storefront loads shared updates on visit and publishes changes across visitors while keeping localStorage as instant fallback.',
-          labelCloudEndpoint: 'Shared JSON Endpoint URL (GET / POST)',
-          saveEndpointBtn: 'Save Endpoint',
+          cloudSyncHeading: 'Shared Cloud Sync for All Visitors (Supabase)',
+          cloudSyncHint: 'By default, edits save instantaneously in localStorage with zero lag. You can pull or push updates to Supabase with one click.',
           pullCloudBtn: 'Pull from Supabase',
           pushCloudBtn: 'Sync & Publish to All',
           exportJsonBtn: 'Export JSON',
@@ -2783,7 +2678,6 @@
           toastDeletedCategory: 'Category deleted.',
           toastMinSize: 'Please select at least one size.',
           toastSettingsSaved: 'Store settings saved and applied!',
-          toastEndpointSaved: 'Cloud sync endpoint saved!',
           toastCloudPulled: 'Latest store data pulled from Supabase!',
           toastCloudPushed: 'Changes published to all visitors on Supabase!',
           toastCloudError: 'Could not reach Supabase; kept local data.',
@@ -2812,9 +2706,6 @@
         { ar: 'دهوك', en: 'Duhok' }
       ];
 
-      /* ----------------------------------------------------------------------
-         3. APPLICATION STATE & DOM REFERENCES
-         ---------------------------------------------------------------------- */
       const state = {
         lang: 'ar',
         theme: 'light',
@@ -2849,9 +2740,6 @@
         }, 3200);
       }
 
-      /* ----------------------------------------------------------------------
-         4. BRAND SETTINGS BINDING & THEME / LANGUAGE ENGINE
-         ---------------------------------------------------------------------- */
       function updateSyncBadgeUI(cloudActive) {
         const badge = document.getElementById('adminSyncStatusBadge');
         if (!badge) return;
@@ -2950,9 +2838,6 @@
         applyLanguage(state.lang === 'ar' ? 'en' : 'ar');
       });
 
-      /* ----------------------------------------------------------------------
-         5. RENDER PRODUCT CARDS & INFINITE AUTO-SCROLL + DRAG SLIDERS
-         ---------------------------------------------------------------------- */
       function getCategoryDisplayName(catObj, lang) {
         return catObj.name[lang] || catObj.name.ar || catObj.name.en || catObj.key;
       }
@@ -3061,15 +2946,8 @@
           rafId = requestAnimationFrame(step);
         }
 
-        const onMouseEnter = () => {
-          isPaused = true;
-        };
-
-        const onMouseLeave = () => {
-          if (!isPointerDown) {
-            isPaused = false;
-          }
-        };
+        const onMouseEnter = () => { isPaused = true; };
+        const onMouseLeave = () => { if (!isPointerDown) isPaused = false; };
 
         const onPointerDown = (e) => {
           isPointerDown = true;
@@ -3083,9 +2961,7 @@
         const onPointerMove = (e) => {
           if (!isPointerDown) return;
           const dx = e.clientX - startX;
-          if (Math.abs(dx) > 6) {
-            hasDragged = true;
-          }
+          if (Math.abs(dx) > 6) hasDragged = true;
           offset = startOffset + dx;
           wrapOffset();
           track.style.transform = `translate3d(${offset}px, 0, 0)`;
@@ -3111,9 +2987,7 @@
           const card = e.target.closest('.product-card');
           if (!card) return;
           const product = (storeData.products[catKey] || []).find((p) => p.id === card.dataset.id);
-          if (product) {
-            openProductModal(product);
-          }
+          if (product) openProductModal(product);
         };
 
         const onKeyDown = (e) => {
@@ -3202,9 +3076,6 @@
         });
       }
 
-      /* ----------------------------------------------------------------------
-         5B. FULL-PAGE CATEGORY VIEW OVERLAY ("عرض الكل / View All")
-         ---------------------------------------------------------------------- */
       const categoryPageOverlay = document.getElementById('categoryPageOverlay');
       const catOverlayBackBtn = document.getElementById('catOverlayBackBtn');
       const catOverlayTitle = document.getElementById('catOverlayTitle');
@@ -3246,14 +3117,9 @@
         if (!card) return;
         const catKey = card.dataset.category;
         const product = (storeData.products[catKey] || []).find((p) => p.id === card.dataset.id);
-        if (product) {
-          openProductModal(product);
-        }
+        if (product) openProductModal(product);
       });
 
-      /* ----------------------------------------------------------------------
-         6. INTERACTIVE FLOATING PRODUCT MODAL & WHATSAPP ORDERING
-         ---------------------------------------------------------------------- */
       const modalBackdrop = document.getElementById('productModal');
       const modalCloseBtn = document.getElementById('modalCloseBtn');
       const modalProductImg = document.getElementById('modalProductImg');
@@ -3323,11 +3189,8 @@
       }
 
       modalCloseBtn.addEventListener('click', closeProductModal);
-
       modalBackdrop.addEventListener('click', (e) => {
-        if (e.target === modalBackdrop) {
-          closeProductModal();
-        }
+        if (e.target === modalBackdrop) closeProductModal();
       });
 
       modalWhatsappBtn.addEventListener('click', () => {
@@ -3353,9 +3216,6 @@
         window.open(waUrl, '_blank', 'noopener,noreferrer');
       });
 
-      /* ----------------------------------------------------------------------
-         6D. LONG-PRESS COPYRIGHT TRIGGER (1.2s) + ADMIN PIN MODAL
-         ---------------------------------------------------------------------- */
       const copyrightTrigger = document.getElementById('copyrightTrigger');
       const copyrightHoldProgress = document.getElementById('copyrightHoldProgress');
       const pinModalBackdrop = document.getElementById('pinModalBackdrop');
@@ -3441,9 +3301,6 @@
         }
       });
 
-      /* ----------------------------------------------------------------------
-         7. ADMIN CONTROL PANEL (PRODUCTS, CATEGORIES, SETTINGS & CLOUD SYNC)
-         ---------------------------------------------------------------------- */
       const adminOverlay = document.getElementById('adminOverlay');
       const adminCloseBtn = document.getElementById('adminCloseBtn');
 
@@ -3513,19 +3370,13 @@
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          if (pinModalBackdrop.classList.contains('is-open')) {
-            closePinModal();
-          } else if (modalBackdrop.classList.contains('is-open')) {
-            closeProductModal();
-          } else if (adminOverlay.classList.contains('is-open')) {
-            closeAdminPanel();
-          } else if (categoryPageOverlay.classList.contains('is-open')) {
-            closeCategoryPage();
-          }
+          if (pinModalBackdrop.classList.contains('is-open')) closePinModal();
+          else if (modalBackdrop.classList.contains('is-open')) closeProductModal();
+          else if (adminOverlay.classList.contains('is-open')) closeAdminPanel();
+          else if (categoryPageOverlay.classList.contains('is-open')) closeCategoryPage();
         }
       });
 
-      // Tab Switching
       document.querySelectorAll('.admin-tab-btn').forEach((tabBtn) => {
         tabBtn.addEventListener('click', () => {
           const targetTab = tabBtn.getAttribute('data-admin-tab');
@@ -3607,9 +3458,7 @@
       }
 
       prodImgUrl.addEventListener('input', () => {
-        if (prodImgUrl.value.trim()) {
-          state.uploadedImageDataUrl = '';
-        }
+        if (prodImgUrl.value.trim()) state.uploadedImageDataUrl = '';
         updateImagePreview();
       });
 
@@ -3745,9 +3594,7 @@
       function deleteProduct(catKey, productId) {
         if (!Array.isArray(storeData.products[catKey])) return;
         storeData.products[catKey] = storeData.products[catKey].filter((p) => p.id !== productId);
-        if (state.editingProductId === productId) {
-          resetProductForm();
-        }
+        if (state.editingProductId === productId) resetProductForm();
         persistStoreData(true);
         renderStorefrontSections();
         renderAdminProductsList();
@@ -3813,7 +3660,6 @@
 
       adminFilterCategorySelect.addEventListener('change', renderAdminProductsList);
 
-      // Categories Manager
       addCategoryForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const arVal = newCatNameAr.value.trim();
@@ -3905,7 +3751,6 @@
         });
       }
 
-      // Store Settings & Cloud Sync Controls
       function fillSettingsForm() {
         setStoreName.value = storeData.settings.storeName;
         setHandle.value = storeData.settings.handle;
@@ -3940,7 +3785,6 @@
         pushToSupabase(false);
       });
 
-      // Export / Import / Reset Data
       exportJsonBtn.addEventListener('click', () => {
         const blob = new Blob([JSON.stringify(storeData, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -3994,9 +3838,6 @@
         showToast(I18N[state.lang].toastResetDone);
       });
 
-      /* ----------------------------------------------------------------------
-         8. INITIALIZE APPLICATION
-         ---------------------------------------------------------------------- */
       applyBrandSettings();
       renderGovernorateOptions();
       renderStorefrontSections();
