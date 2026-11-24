@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hussain Saeed Fashion (@hs.fashion4) — أناقة عصرية وجودة استثنائية</title>
+  <title>المتجر الإلكتروني — أناقة عصرية وجودة استثنائية</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -161,11 +161,22 @@
       min-width: 0;
     }
 
-    .brand-logo-svg {
+    .brand-monogram-badge {
       width: 38px;
       height: 38px;
-      display: block;
+      border-radius: 11px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(52, 211, 153, 0.12));
+      border: 1.6px solid var(--accent-emerald);
+      color: var(--accent-emerald);
+      font-family: var(--font-en);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      text-transform: uppercase;
     }
 
     .brand-wordmark {
@@ -1184,6 +1195,19 @@
       flex-wrap: wrap;
     }
 
+    .admin-sub-divider {
+      border: none;
+      border-top: var(--border-subtle);
+      margin: 14px 0 10px;
+    }
+
+    .admin-sub-heading {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--accent-emerald);
+      margin-bottom: 8px;
+    }
+
     .admin-form-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -1193,6 +1217,9 @@
     @media (min-width: 700px) {
       .admin-form-grid-2 {
         grid-template-columns: 1fr 1fr;
+      }
+      .admin-form-grid-3 {
+        grid-template-columns: 1fr 1fr 1fr;
       }
     }
 
@@ -1220,7 +1247,8 @@
     }
 
     .admin-input,
-    .admin-select {
+    .admin-select,
+    .admin-textarea {
       width: 100%;
       height: 42px;
       padding-inline: 12px;
@@ -1235,8 +1263,17 @@
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
+    .admin-textarea {
+      height: auto;
+      min-height: 76px;
+      padding-block: 10px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
     .admin-input:focus,
-    .admin-select:focus {
+    .admin-select:focus,
+    .admin-textarea:focus {
       border-color: var(--accent-emerald);
       box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
     }
@@ -1583,26 +1620,11 @@
 
     <header class="navbar-outer">
       <nav class="navbar" aria-label="Primary Navigation">
-        <a href="#top" class="brand-logo-link" aria-label="Hussain Saeed Fashion Home">
-          <svg class="brand-logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="hsGradPrimary" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#10B981" />
-                <stop offset="100%" stop-color="#34D399" />
-              </linearGradient>
-              <linearGradient id="hsGradSecondary" x1="12" y1="8" x2="40" y2="42" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#34D399" />
-                <stop offset="100%" stop-color="#059669" />
-              </linearGradient>
-            </defs>
-            <rect x="2" y="2" width="44" height="44" rx="13" fill="url(#hsGradPrimary)" fill-opacity="0.14" stroke="url(#hsGradPrimary)" stroke-width="1.8" />
-            <path d="M12 13V35M22 13V35M12 24H22" stroke="url(#hsGradPrimary)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M35.5 15.5C34.2 13.8 31.8 13.2 29.5 13.8C27.2 14.4 26.2 16.5 26.6 18.6C27 20.8 29.3 21.8 31.8 22.5C34.4 23.2 36.2 24.6 36.2 27.6C36.2 30.8 33.8 33.4 30.5 33.8C27.8 34.1 25.8 32.8 25 31" stroke="url(#hsGradSecondary)" stroke-width="3.1" stroke-linecap="round" />
-            <circle cx="36.5" cy="14" r="2.1" fill="#10B981" />
-          </svg>
+        <a href="#top" class="brand-logo-link" aria-label="Store Home">
+          <span class="brand-monogram-badge" id="navMonogramBadge">SM</span>
           <div class="brand-wordmark">
-            <span class="brand-wordmark-main" id="navBrandTitle">Hussain Saeed Fashion</span>
-            <span class="brand-wordmark-sub" id="navHandleSubtitle">@hs.fashion4</span>
+            <span class="brand-wordmark-main" id="navBrandTitle">أحذية وحقائب ملاك</span>
+            <span class="brand-wordmark-sub" id="navHandleSubtitle">@shoes_malak</span>
           </div>
         </a>
 
@@ -1635,15 +1657,15 @@
         <div class="hero-content">
           <div class="hero-pill">
             <span class="hero-pill-dot"></span>
-            <span data-i18n="heroBadge">Hussain Saeed Fashion • @hs.fashion4</span>
+            <span id="heroBadgeText">أحذية وحقائب ملاك • @shoes_malak</span>
           </div>
 
-          <h1 class="hero-title" id="heroHeading" data-i18n-html="heroTitle">
-            إطلالتك العصرية في <span>Hussain Saeed Fashion</span>
+          <h1 class="hero-title" id="heroHeading">
+            إطلالتك العصرية في <span>أحذية وحقائب ملاك</span>
           </h1>
 
-          <p class="hero-subtitle" data-i18n="heroSubtitle">
-            أحدث تشكيلة ملابس وبناطيل وأحذية عصرية بجودة مختارة وتصاميم تواكب الموضة، مع توصيل سريع لكافة المحافظات.
+          <p class="hero-subtitle" id="heroSubtitleText">
+            أحدث تشكيلة أحذية وحقائب نسائية عصرية بجودة مختارة وتصاميم تواكب الموضة، مع توصيل سريع لكافة المحافظات.
           </p>
 
           <div class="hero-address-chip">
@@ -1651,11 +1673,11 @@
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span id="heroAddressText">بغداد حي العامل - شارع التشييش</span>
+            <span id="heroAddressText">الناصرية - شارع الحبوبي، مقابل صيدلية ذي قار</span>
           </div>
 
           <a href="#collections" class="btn-primary-emerald" id="heroCtaBtn">
-            <span data-i18n="heroCta">تصفح التشكيلة الآن</span>
+            <span id="heroCtaText">تصفح التشكيلة الآن</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 5v14M19 12l-7 7-7-7" />
             </svg>
@@ -1663,18 +1685,18 @@
 
           <div class="hero-stats">
             <div class="stat-item">
-              <span class="stat-value">48.3K+</span>
-              <span class="stat-label" data-i18n="statFollowers">متابع على انستغرام</span>
+              <span class="stat-value" id="heroStat1Val">24.8K+</span>
+              <span class="stat-label" id="heroStat1Label">متابع على انستغرام</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-              <span class="stat-value" id="heroDeliveryFeeStat">5 الف</span>
-              <span class="stat-label" data-i18n="statDeliveryFee">توصيل للمحافظات</span>
+              <span class="stat-value" id="heroStat2Val">5 الف</span>
+              <span class="stat-label" id="heroStat2Label">توصيل للمحافظات</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-              <span class="stat-value">18</span>
-              <span class="stat-label" data-i18n="statProvinces">محافظة عراقية</span>
+              <span class="stat-value" id="heroStat3Val">18</span>
+              <span class="stat-label" id="heroStat3Label">محافظة عراقية</span>
             </div>
           </div>
         </div>
@@ -1697,21 +1719,21 @@
           </div>
           <div class="delivery-text-block">
             <p class="delivery-title" id="footerDeliveryTitle">توصيل لجميع المحافظات (5 الف) 🇮🇶</p>
-            <p class="delivery-sub" id="footerAddressSub">بغداد حي العامل - شارع التشييش • @hs.fashion4</p>
+            <p class="delivery-sub" id="footerAddressSub">الناصرية - شارع الحبوبي، مقابل صيدلية ذي قار • @shoes_malak</p>
           </div>
         </div>
 
-        <a href="https://wa.me/9647725615564" target="_blank" rel="noopener noreferrer" class="footer-wa-link" id="footerWhatsappLink">
+        <a href="https://wa.me/9647821115480" target="_blank" rel="noopener noreferrer" class="footer-wa-link" id="footerWhatsappLink">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
             <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
           </svg>
-          <span dir="ltr" id="footerWhatsappDisplay">07725615564</span>
+          <span dir="ltr" id="footerWhatsappDisplay">07821115480</span>
         </a>
       </div>
 
       <div class="copyright-bar" id="copyrightTrigger" role="button" tabindex="0" aria-label="Copyright">
-        <span id="footerCopyrightText">© 2026 Hussain Saeed Fashion (@hs.fashion4). جميع الحقوق محفوظة.</span>
+        <span id="footerCopyrightText">© 2026 أحذية وحقائب ملاك (@shoes_malak). جميع الحقوق محفوظة.</span>
         <span class="copyright-hold-progress" id="copyrightHoldProgress" aria-hidden="true"></span>
       </div>
     </footer>
@@ -1795,7 +1817,7 @@
           <span data-i18n="tabCategories">إدارة الأقسام</span>
         </button>
         <button type="button" class="admin-tab-btn" data-admin-tab="settings" role="tab">
-          <span data-i18n="tabSettings">الإعدادات والمزامنة</span>
+          <span data-i18n="tabSettings">الإعدادات والواجهة</span>
         </button>
       </div>
 
@@ -1812,18 +1834,18 @@
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
                 <label class="admin-label" for="prodNameAr" data-i18n="labelNameAr">اسم المنتج (عربي)*</label>
-                <input type="text" id="prodNameAr" class="admin-input" required placeholder="مثال: جاكيت جلد أسود فخم" />
+                <input type="text" id="prodNameAr" class="admin-input" required placeholder="مثال: حذاء سنيكرز رياضي" />
               </div>
               <div class="admin-field">
                 <label class="admin-label" for="prodNameEn" data-i18n="labelNameEn">Product Name (English)</label>
-                <input type="text" id="prodNameEn" class="admin-input" placeholder="e.g., Black Leather Jacket" />
+                <input type="text" id="prodNameEn" class="admin-input" placeholder="e.g., Sport Sneakers" />
               </div>
             </div>
 
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
                 <label class="admin-label" for="prodPriceIqd" data-i18n="labelPriceIqd">السعر بالدينار العراقي (IQD)*</label>
-                <input type="number" id="prodPriceIqd" class="admin-input" min="1000" step="500" required placeholder="مثال: 45000" />
+                <input type="number" id="prodPriceIqd" class="admin-input" min="1000" step="500" required placeholder="مثال: 35000" />
               </div>
               <div class="admin-field">
                 <label class="admin-label" for="prodCategorySelect" data-i18n="labelCategorySelect">القسم*</label>
@@ -1834,22 +1856,22 @@
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
                 <label class="admin-label" for="prodTypeAr" data-i18n="labelTypeAr">النوع / التصنيف (عربي)</label>
-                <input type="text" id="prodTypeAr" class="admin-input" placeholder="مثال: كاجوال / شتوي" />
+                <input type="text" id="prodTypeAr" class="admin-input" placeholder="مثال: كاجوال / يومي" />
               </div>
               <div class="admin-field">
                 <label class="admin-label" for="prodTypeEn" data-i18n="labelTypeEn">Type / Style (English)</label>
-                <input type="text" id="prodTypeEn" class="admin-input" placeholder="e.g., Casual / Winter" />
+                <input type="text" id="prodTypeEn" class="admin-input" placeholder="e.g., Casual / Daily" />
               </div>
             </div>
 
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
-                <label class="admin-label" for="prodMaterialAr" data-i18n="labelMaterialAr">الخامة / نوع القماش (عربي)</label>
-                <input type="text" id="prodMaterialAr" class="admin-input" placeholder="مثال: قطن 100% / جلد فاخر" />
+                <label class="admin-label" for="prodMaterialAr" data-i18n="labelMaterialAr">الخامة / النوع (عربي)</label>
+                <input type="text" id="prodMaterialAr" class="admin-input" placeholder="مثال: جلد فاخر / نعل طبي" />
               </div>
               <div class="admin-field">
                 <label class="admin-label" for="prodMaterialEn" data-i18n="labelMaterialEn">Material / Fabric (English)</label>
-                <input type="text" id="prodMaterialEn" class="admin-input" placeholder="e.g., 100% Cotton / Premium Leather" />
+                <input type="text" id="prodMaterialEn" class="admin-input" placeholder="e.g., Premium Leather" />
               </div>
             </div>
 
@@ -1857,7 +1879,7 @@
               <span class="admin-label" data-i18n="labelSizesSelect">المقاسات المتوفرة (اضغط لتحديد أو إلغاء التحديد):</span>
               <div class="size-selector-grid" id="adminSizePresetContainer"></div>
               <div class="custom-size-row">
-                <input type="text" id="customSizeInput" class="admin-input" placeholder="مقاس إضافي مثل: 39 أو 45 أو XL" />
+                <input type="text" id="customSizeInput" class="admin-input" placeholder="مقاس إضافي مثل: 37 أو 39 أو Free Size" />
                 <button type="button" class="btn-sm-emerald" id="addCustomSizeBtn" data-i18n="addSizeBtn">+ إضافة مقاس</button>
               </div>
             </div>
@@ -1909,11 +1931,11 @@
           <form id="addCategoryForm" class="admin-form-grid admin-form-grid-2">
             <div class="admin-field">
               <label class="admin-label" for="newCatNameAr" data-i18n="labelCatAr">اسم القسم بالعربية*</label>
-              <input type="text" id="newCatNameAr" class="admin-input" required placeholder="مثال: إكسسوارات أو هوديات" />
+              <input type="text" id="newCatNameAr" class="admin-input" required placeholder="مثال: حقائب يد أو أحذية كعب" />
             </div>
             <div class="admin-field">
               <label class="admin-label" for="newCatNameEn" data-i18n="labelCatEn">Category Name in English</label>
-              <input type="text" id="newCatNameEn" class="admin-input" placeholder="e.g., Accessories or Hoodies" />
+              <input type="text" id="newCatNameEn" class="admin-input" placeholder="e.g., Handbags or Heels" />
             </div>
             <div class="admin-actions-row" style="grid-column: 1 / -1; margin-top: 4px;">
               <button type="submit" class="btn-primary-emerald">
@@ -1934,39 +1956,154 @@
       <div id="adminTab-settings" style="display: none;">
         <div class="admin-panel-card">
           <div class="admin-card-heading">
-            <span data-i18n="storeSettingsHeading">إعدادات المتجر الرئيسية</span>
+            <span data-i18n="storeSettingsHeading">تخصيص هوية المتجر ونصوص الواجهة بالكامل</span>
           </div>
           <form id="storeSettingsForm" class="admin-form-grid">
-            <div class="admin-form-grid admin-form-grid-2">
+            <div class="admin-sub-heading">1. الهوية الأساسية والتواصل</div>
+            <div class="admin-form-grid admin-form-grid-3">
               <div class="admin-field">
-                <label class="admin-label" for="setStoreName" data-i18n="labelStoreName">اسم المتجر</label>
+                <label class="admin-label" for="setStoreName" data-i18n="labelStoreName">اسم المتجر (عربي)</label>
                 <input type="text" id="setStoreName" class="admin-input" required />
               </div>
               <div class="admin-field">
-                <label class="admin-label" for="setHandle" data-i18n="labelHandle">حساب انستغرام / المعرف</label>
-                <input type="text" id="setHandle" class="admin-input" required />
+                <label class="admin-label" for="setStoreNameEn" data-i18n="labelStoreNameEn">اسم المتجر (إنجليزي)</label>
+                <input type="text" id="setStoreNameEn" class="admin-input" required />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setMonogram" data-i18n="labelMonogram">حرفا الشعار (مثلاً SM)</label>
+                <input type="text" id="setMonogram" class="admin-input" maxlength="3" dir="ltr" required />
               </div>
             </div>
 
-            <div class="admin-form-grid admin-form-grid-2">
+            <div class="admin-form-grid admin-form-grid-3">
+              <div class="admin-field">
+                <label class="admin-label" for="setHandle" data-i18n="labelHandle">حساب انستغرام / المعرف</label>
+                <input type="text" id="setHandle" class="admin-input" dir="ltr" required />
+              </div>
               <div class="admin-field">
                 <label class="admin-label" for="setWhatsapp" data-i18n="labelWhatsapp">رقم الواتساب (عراق)</label>
                 <input type="text" id="setWhatsapp" class="admin-input" dir="ltr" required />
               </div>
               <div class="admin-field">
-                <label class="admin-label" for="setDeliveryNote" data-i18n="labelDeliveryNote">نص التوصيل للمحافظات</label>
-                <input type="text" id="setDeliveryNote" class="admin-input" required />
+                <label class="admin-label" for="setAdminPin" data-i18n="labelAdminPin">الرمز السري للإدارة (PIN)</label>
+                <input type="text" id="setAdminPin" class="admin-input" dir="ltr" required />
               </div>
             </div>
 
             <div class="admin-form-grid admin-form-grid-2">
               <div class="admin-field">
-                <label class="admin-label" for="setAddress" data-i18n="labelAddress">العنوان</label>
+                <label class="admin-label" for="setAddress" data-i18n="labelAddress">العنوان (عربي)</label>
                 <input type="text" id="setAddress" class="admin-input" required />
               </div>
               <div class="admin-field">
-                <label class="admin-label" for="setAdminPin" data-i18n="labelAdminPin">الرمز السري للإدارة (PIN)</label>
-                <input type="text" id="setAdminPin" class="admin-input" dir="ltr" required />
+                <label class="admin-label" for="setAddressEn" data-i18n="labelAddressEn">العنوان (إنجليزي)</label>
+                <input type="text" id="setAddressEn" class="admin-input" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setDeliveryNote" data-i18n="labelDeliveryNote">نص التوصيل (عربي)</label>
+                <input type="text" id="setDeliveryNote" class="admin-input" required />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setDeliveryNoteEn" data-i18n="labelDeliveryNoteEn">نص التوصيل (إنجليزي)</label>
+                <input type="text" id="setDeliveryNoteEn" class="admin-input" />
+              </div>
+            </div>
+
+            <hr class="admin-sub-divider" />
+            <div class="admin-sub-heading">2. نصوص الواجهة الرئيسية (Hero Section)</div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroBadgeAr">الشارة العلوية في الواجهة (عربي)</label>
+                <input type="text" id="setHeroBadgeAr" class="admin-input" placeholder="مثال: أحذية وحقائب ملاك • @shoes_malak" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroBadgeEn">الشارة العلوية في الواجهة (إنجليزي)</label>
+                <input type="text" id="setHeroBadgeEn" class="admin-input" placeholder="e.g., Malak Shoes & Bags • @shoes_malak" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroTitlePrefixAr">بداية العنوان الرئيسي (عربي)</label>
+                <input type="text" id="setHeroTitlePrefixAr" class="admin-input" placeholder="مثال: إطلالتك العصرية في" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroTitlePrefixEn">بداية العنوان الرئيسي (إنجليزي)</label>
+                <input type="text" id="setHeroTitlePrefixEn" class="admin-input" placeholder="e.g., Modern Style at" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroSubtitleAr">الوصف التعريفي تحت العنوان (عربي)</label>
+                <textarea id="setHeroSubtitleAr" class="admin-textarea" placeholder="اكتب وصفاً يناسب نشاط المتجر..."></textarea>
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroSubtitleEn">الوصف التعريفي تحت العنوان (إنجليزي)</label>
+                <textarea id="setHeroSubtitleEn" class="admin-textarea" placeholder="Store description in English..."></textarea>
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-2">
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroCtaAr">نص زر التصفح الرئيسي (عربي)</label>
+                <input type="text" id="setHeroCtaAr" class="admin-input" placeholder="مثال: تصفح التشكيلة الآن" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setHeroCtaEn">نص زر التصفح الرئيسي (إنجليزي)</label>
+                <input type="text" id="setHeroCtaEn" class="admin-input" placeholder="e.g., Explore Collections" />
+              </div>
+            </div>
+
+            <hr class="admin-sub-divider" />
+            <div class="admin-sub-heading">3. الإحصائيات الثلاث أسفل الواجهة</div>
+
+            <div class="admin-form-grid admin-form-grid-3">
+              <div class="admin-field">
+                <label class="admin-label" for="setStat1Val">الإحصائية 1 — الرقم</label>
+                <input type="text" id="setStat1Val" class="admin-input" placeholder="24.8K+" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setStat1LabelAr">الإحصائية 1 — الوصف (عربي)</label>
+                <input type="text" id="setStat1LabelAr" class="admin-input" placeholder="متابع على انستغرام" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setStat1LabelEn">الإحصائية 1 — الوصف (إنجليزي)</label>
+                <input type="text" id="setStat1LabelEn" class="admin-input" placeholder="Instagram Followers" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-3">
+              <div class="admin-field">
+                <label class="admin-label" for="setStat2Val">الإحصائية 2 — الرقم</label>
+                <input type="text" id="setStat2Val" class="admin-input" placeholder="5 الف" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setStat2LabelAr">الإحصائية 2 — الوصف (عربي)</label>
+                <input type="text" id="setStat2LabelAr" class="admin-input" placeholder="توصيل للمحافظات" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setStat2LabelEn">الإحصائية 2 — الوصف (إنجليزي)</label>
+                <input type="text" id="setStat2LabelEn" class="admin-input" placeholder="Governorates Delivery" />
+              </div>
+            </div>
+
+            <div class="admin-form-grid admin-form-grid-3">
+              <div class="admin-field">
+                <label class="admin-label" for="setStat3Val">الإحصائية 3 — الرقم</label>
+                <input type="text" id="setStat3Val" class="admin-input" placeholder="18" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setStat3LabelAr">الإحصائية 3 — الوصف (عربي)</label>
+                <input type="text" id="setStat3LabelAr" class="admin-input" placeholder="محافظة عراقية" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="setStat3LabelEn">الإحصائية 3 — الوصف (إنجليزي)</label>
+                <input type="text" id="setStat3LabelEn" class="admin-input" placeholder="Iraqi Governorates" />
               </div>
             </div>
 
@@ -2052,7 +2189,7 @@
           <label class="field-label" for="modalAddressInput" data-i18n="modalAddressLabel">
             العنوان التفصيلي / أقرب نقطة دالة (اختياري):
           </label>
-          <input type="text" id="modalAddressInput" class="modal-input" placeholder="مثال: حي العامل - شارع التشييش" />
+          <input type="text" id="modalAddressInput" class="modal-input" placeholder="مثال: شارع الحبوبي - قرب صيدلية ذي قار" />
         </div>
       </div>
 
@@ -2061,7 +2198,7 @@
           <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
           <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
         </svg>
-        <span id="modalOrderBtnText">تأكيد الطلب عبر واتساب (07725615564)</span>
+        <span id="modalOrderBtnText">تأكيد الطلب عبر واتساب (07821115480)</span>
       </button>
     </div>
   </div>
@@ -2082,193 +2219,124 @@
       const SUPABASE_TABLE = 'products';
       const META_ROW_ID = '__hs_fashion4_meta__';
 
-      const STORAGE_KEY = 'hs_fashion4_store_v2';
+      const STORAGE_KEY = 'hs_fashion4_store_v3';
       const THEME_STORAGE_KEY = 'hs_fashion4_theme_v1';
-      const FALLBACK_IMG = 'https://placehold.co/600x660/10B981/FFFFFF?text=HS+Fashion';
-      const SIZE_PRESETS = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'Free Size', '30', '32', '34', '36', '38', '40', '41', '42', '43', '44', '45'];
+      const FALLBACK_IMG = 'https://placehold.co/600x660/10B981/FFFFFF?text=Store+Item';
+      const SIZE_PRESETS = ['36', '37', '38', '39', '40', '41', '42', '43', '44', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'Free Size'];
 
       function getDefaultStoreData() {
         return {
           settings: {
-            storeName: 'Hussain Saeed Fashion',
-            handle: '@hs.fashion4',
-            whatsapp: '07725615564',
-            address: 'بغداد حي العامل - شارع التشييش',
+            storeName: 'أحذية وحقائب ملاك',
+            storeNameEn: 'Malak Shoes & Bags',
+            monogram: 'SM',
+            handle: '@shoes_malak',
+            whatsapp: '07821115480',
+            address: 'الناصرية - شارع الحبوبي، مقابل صيدلية ذي قار',
+            addressEn: 'Nasiriyah - Al-Haboubi St., Opposite Dhi Qar Pharmacy',
             deliveryNote: 'توصيل لجميع المحافظات (5 الف)',
+            deliveryNoteEn: 'Delivery to all governorates (5,000 IQD)',
+            heroBadgeAr: 'أحذية وحقائب ملاك • @shoes_malak',
+            heroBadgeEn: 'Malak Shoes & Bags • @shoes_malak',
+            heroTitlePrefixAr: 'إطلالتك العصرية في',
+            heroTitlePrefixEn: 'Modern Style at',
+            heroSubtitleAr: 'أحدث تشكيلة أحذية وحقائب نسائية عصرية بجودة مختارة وتصاميم تواكب الموضة، مع توصيل سريع لكافة المحافظات.',
+            heroSubtitleEn: 'Latest collection of modern shoes and handbags with selected quality and trendy designs, with fast delivery across all governorates.',
+            heroCtaAr: 'تصفح التشكيلة الآن',
+            heroCtaEn: 'Explore Collections',
+            stat1Val: '24.8K+',
+            stat1LabelAr: 'متابع على انستغرام',
+            stat1LabelEn: 'Instagram Followers',
+            stat2Val: '5 الف',
+            stat2LabelAr: 'توصيل للمحافظات',
+            stat2LabelEn: 'Governorates Delivery',
+            stat3Val: '18',
+            stat3LabelAr: 'محافظة عراقية',
+            stat3LabelEn: 'Iraqi Governorates',
             adminPin: '1234'
           },
           categories: [
-            { key: 'clothes', name: { ar: 'قسم الملابس', en: 'Clothes Section' } },
-            { key: 'pants', name: { ar: 'قسم البناطيل', en: 'Pants Section' } },
-            { key: 'shoes', name: { ar: 'قسم الأحذية', en: 'Shoes Section' } }
+            { key: 'shoes', name: { ar: 'قسم الأحذية النسائية', en: 'Women Shoes Section' } },
+            { key: 'sneakers', name: { ar: 'قسم السنيكرز والرياضي', en: 'Sneakers & Sport Section' } },
+            { key: 'bags', name: { ar: 'قسم الحقائب', en: 'Handbags Section' } }
           ],
           products: {
-            clothes: [
-              {
-                id: 'cl-1',
-                name: { ar: 'جاكيت كاجوال كحلي عصري', en: 'Navy Modern Casual Jacket' },
-                priceIqd: 45000,
-                type: { ar: 'كاجوال عصري', en: 'Modern Casual' },
-                material: { ar: 'قطن تويل متين', en: 'Durable Cotton Twill' },
-                sizes: ['S', 'M', 'L', 'XL'],
-                img: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'cl-2',
-                name: { ar: 'جاكيت جلد أسود فخم', en: 'Black Premium Leather Jacket' },
-                priceIqd: 58000,
-                type: { ar: 'ستريت وير', en: 'Streetwear' },
-                material: { ar: 'جلد فاخر ناعم', en: 'Soft Premium Leather' },
-                sizes: ['M', 'L', 'XL', 'XXL'],
-                img: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'cl-3',
-                name: { ar: 'هودي أسود عملي مريح', en: 'Black Essential Zip Hoodie' },
-                priceIqd: 38000,
-                type: { ar: 'كاجوال يومي', en: 'Everyday Casual' },
-                material: { ar: 'قطن طبيعي 100%', en: '100% Natural Cotton' },
-                sizes: ['S', 'M', 'L', 'XL'],
-                img: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'cl-4',
-                name: { ar: 'جاكيت زيتي بياقة أنيقة', en: 'Olive Collar Utility Jacket' },
-                priceIqd: 49000,
-                type: { ar: 'سمارت كاجوال', en: 'Smart Casual' },
-                material: { ar: 'قطن جابردين فاخر', en: 'Fine Gabardine Cotton' },
-                sizes: ['S', 'M', 'L', 'XL'],
-                img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'cl-5',
-                name: { ar: 'تيشيرت قطني أوفرسايز أبيض', en: 'White Oversized Cotton Tee' },
-                priceIqd: 24000,
-                type: { ar: 'صيفي عصري', en: 'Modern Summer' },
-                material: { ar: 'قطن طبيعي 100%', en: '100% Natural Cotton' },
-                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'cl-6',
-                name: { ar: 'قميص كتان بيج أنيق', en: 'Beige Relaxed Linen Shirt' },
-                priceIqd: 34000,
-                type: { ar: 'سمارت كاجوال', en: 'Smart Casual' },
-                material: { ar: 'كتان طبيعي بارد', en: 'Breathable Natural Linen' },
-                sizes: ['M', 'L', 'XL'],
-                img: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80'
-              }
-            ],
-            pants: [
-              {
-                id: 'pa-1',
-                name: { ar: 'بنطال جينز أزرق كلاسيك', en: 'Classic Blue Denim Jeans' },
-                priceIqd: 35000,
-                type: { ar: 'كاجوال', en: 'Casual' },
-                material: { ar: 'دينم مطاطي مريح', en: 'Stretch Comfort Denim' },
-                sizes: ['30', '32', '34', '36'],
-                img: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'pa-2',
-                name: { ar: 'بنطال قماش بيج واسع عصري', en: 'Beige Wide-Leg Tailored Pants' },
-                priceIqd: 37000,
-                type: { ar: 'سمارت كاجوال', en: 'Smart Casual' },
-                material: { ar: 'قماش تويل ناعم', en: 'Soft Woven Twill' },
-                sizes: ['30', '32', '34', '36'],
-                img: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'pa-3',
-                name: { ar: 'بنطال جينز أسود سليم فيت', en: 'Black Slim Fit Denim Jeans' },
-                priceIqd: 36000,
-                type: { ar: 'كاجوال عصري', en: 'Modern Casual' },
-                material: { ar: 'دينم قطني عالي الجودة', en: 'High-Grade Cotton Denim' },
-                sizes: ['30', '32', '34', '36', '38'],
-                img: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'pa-4',
-                name: { ar: 'بنطال كارجو بجيوب عملية', en: 'Utility Pocket Cargo Pants' },
-                priceIqd: 39000,
-                type: { ar: 'ستريت وير', en: 'Streetwear' },
-                material: { ar: 'قطن جابردين متين', en: 'Durable Cotton Gabardine' },
-                sizes: ['30', '32', '34', '36'],
-                img: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'pa-5',
-                name: { ar: 'بنطال رسمي فحمي أنيق', en: 'Charcoal Tailored Dress Pants' },
-                priceIqd: 42000,
-                type: { ar: 'رسمي', en: 'Formal' },
-                material: { ar: 'مزيج فيسكوز وصوف ناعم', en: 'Soft Viscose Blend' },
-                sizes: ['30', '32', '34', '36'],
-                img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80'
-              },
-              {
-                id: 'pa-6',
-                name: { ar: 'بنطال جوجر رياضي أسود', en: 'Black Sport Jogger Pants' },
-                priceIqd: 28000,
-                type: { ar: 'رياضي ومريح', en: 'Athleisure' },
-                material: { ar: 'قطن تيري فرنسي', en: 'French Terry Cotton' },
-                sizes: ['S', 'M', 'L', 'XL'],
-                img: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=600&q=80'
-              }
-            ],
             shoes: [
               {
                 id: 'sh-1',
                 name: { ar: 'حذاء سنيكرز أبيض كلاسيك', en: 'Classic White Court Sneakers' },
-                priceIqd: 44000,
+                priceIqd: 35000,
                 type: { ar: 'كاجوال يومي', en: 'Everyday Casual' },
                 material: { ar: 'جلد ناعم + نعل مريح', en: 'Soft Leather + Cushion Sole' },
-                sizes: ['40', '41', '42', '43', '44'],
+                sizes: ['37', '38', '39', '40', '41'],
                 img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80'
               },
               {
                 id: 'sh-2',
-                name: { ar: 'حذاء رياضي خفيف للركض', en: 'Lightweight Athletic Sneakers' },
-                priceIqd: 48000,
-                type: { ar: 'رياضي', en: 'Sport & Running' },
-                material: { ar: 'نسيج شبكي مسامي', en: 'Breathable Knit Mesh' },
-                sizes: ['40', '41', '42', '43', '44'],
-                img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80'
+                name: { ar: 'حذاء كعب أنيق للمناسبات', en: 'Elegant Occasion Heels' },
+                priceIqd: 42000,
+                type: { ar: 'سهرة ومناسبات', en: 'Evening & Formal' },
+                material: { ar: 'شمواه فاخر مبطن', en: 'Lined Premium Suede' },
+                sizes: ['37', '38', '39', '40'],
+                img: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80'
               },
               {
                 id: 'sh-3',
-                name: { ar: 'حذاء لوفر شمواه بني أنيق', en: 'Brown Suede Penny Loafers' },
-                priceIqd: 55000,
-                type: { ar: 'سمارت / رسمي', en: 'Smart / Formal' },
-                material: { ar: 'شمواه فاخر مبطن', en: 'Lined Premium Suede' },
-                sizes: ['40', '41', '42', '43'],
-                img: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=600&q=80'
+                name: { ar: 'صندل صيفي مريح أنيق', en: 'Chic Summer Flat Sandals' },
+                priceIqd: 28000,
+                type: { ar: 'صيفي مريح', en: 'Summer Comfort' },
+                material: { ar: 'جلد مرن خفيف', en: 'Lightweight Flexible Leather' },
+                sizes: ['37', '38', '39', '40', '41'],
+                img: 'https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=600&q=80'
               },
               {
                 id: 'sh-4',
-                name: { ar: 'بوت تشيلسي جلد أسود', en: 'Black Leather Chelsea Boots' },
-                priceIqd: 60000,
-                type: { ar: 'كلاسيكي', en: 'Classic Boots' },
+                name: { ar: 'بوت شتوي جلد أسود', en: 'Black Leather Ankle Boots' },
+                priceIqd: 48000,
+                type: { ar: 'شتوي عصري', en: 'Modern Winter' },
                 material: { ar: 'جلد مصقول متين', en: 'Durable Polished Leather' },
-                sizes: ['41', '42', '43', '44'],
-                img: 'https://images.unsplash.com/photo-1638247025967-b4e38f787b76?auto=format&fit=crop&w=600&q=80'
-              },
+                sizes: ['37', '38', '39', '40'],
+                img: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80'
+              }
+            ],
+            sneakers: [
               {
-                id: 'sh-5',
+                id: 'sn-1',
                 name: { ar: 'سنيكرز شبابي متعدد الألوان', en: 'Urban Street Sneakers' },
-                priceIqd: 42000,
+                priceIqd: 38000,
                 type: { ar: 'ستريت وير', en: 'Streetwear' },
                 material: { ar: 'شمواه ونسيج رياضي', en: 'Suede & Sport Textile' },
-                sizes: ['40', '41', '42', '43', '44'],
+                sizes: ['37', '38', '39', '40', '41'],
                 img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80'
               },
               {
-                id: 'sh-6',
-                name: { ar: 'حذاء أوكسفورد رسمي أسود', en: 'Black Formal Oxford Shoes' },
-                priceIqd: 62000,
-                type: { ar: 'رسمي', en: 'Formal' },
-                material: { ar: 'جلد طبيعي فاخر', en: 'Genuine Fine Leather' },
-                sizes: ['40', '41', '42', '43', '44'],
-                img: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80'
+                id: 'sn-2',
+                name: { ar: 'حذاء رياضي خفيف للدوام والمشي', en: 'Lightweight Walking Sneakers' },
+                priceIqd: 34000,
+                type: { ar: 'رياضي مريح', en: 'Sport & Comfort' },
+                material: { ar: 'نسيج شبكي مسامي', en: 'Breathable Knit Mesh' },
+                sizes: ['37', '38', '39', '40', '41'],
+                img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80'
+              }
+            ],
+            bags: [
+              {
+                id: 'bg-1',
+                name: { ar: 'حقيبة يد جلدية كلاسيكية', en: 'Classic Leather Handbag' },
+                priceIqd: 36000,
+                type: { ar: 'حقيبة يد وكتف', en: 'Hand & Shoulder Bag' },
+                material: { ar: 'جلد فاخر مقاوم للخدش', en: 'Scratch-Resistant Fine Leather' },
+                sizes: ['Free Size'],
+                img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80'
+              },
+              {
+                id: 'bg-2',
+                name: { ar: 'حقيبة كروس عصرية أنيقة', en: 'Modern Crossbody Bag' },
+                priceIqd: 30000,
+                type: { ar: 'كاجوال يومي', en: 'Everyday Casual' },
+                material: { ar: 'جلد ناعم مع سلسلة معدنية', en: 'Soft Leather with Chain' },
+                sizes: ['Free Size'],
+                img: 'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=600&q=80'
               }
             ]
           }
@@ -2454,7 +2522,7 @@
 
           rows.forEach((row) => {
             if (!row || row.id === META_ROW_ID || row.category === '__meta__') return;
-            const catKey = row.category || 'clothes';
+            const catKey = row.category || 'shoes';
             if (!nextProducts[catKey]) {
               nextProducts[catKey] = [];
               if (!nextCategories.some((c) => c.key === catKey)) {
@@ -2462,7 +2530,7 @@
               }
             }
 
-            let parsedSizes = ['S', 'M', 'L', 'XL'];
+            let parsedSizes = ['37', '38', '39', '40'];
             if (Array.isArray(row.sizes) && row.sizes.length) {
               parsedSizes = row.sizes;
             } else if (typeof row.sizes === 'string') {
@@ -2526,11 +2594,20 @@
 
       function normalizeWhatsappIntl(rawPhone) {
         const digits = String(rawPhone || '').replace(/\D+/g, '');
-        if (!digits) return '9647725615564';
+        if (!digits) return '9647821115480';
         if (digits.startsWith('964')) return digits;
         if (digits.startsWith('07')) return '964' + digits.slice(1);
         if (digits.startsWith('7') && digits.length === 10) return '964' + digits;
         return digits;
+      }
+
+      function escapeHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
       }
 
       function compressImageFileToDataUrl(file, maxWidth, maxHeight, quality) {
@@ -2572,13 +2649,6 @@
 
       const I18N = {
         ar: {
-          heroBadge: 'Hussain Saeed Fashion • @hs.fashion4',
-          heroTitle: 'إطلالتك العصرية في <span>Hussain Saeed Fashion</span>',
-          heroSubtitle: 'أحدث تشكيلة ملابس وبناطيل وأحذية عصرية بجودة مختارة وتصاميم تواكب الموضة، مع توصيل سريع لكافة المحافظات.',
-          heroCta: 'تصفح التشكيلة الآن',
-          statFollowers: 'متابع على انستغرام',
-          statDeliveryFee: 'توصيل للمحافظات',
-          statProvinces: 'محافظة عراقية',
           swipeHint: 'اسحب للتصفح ↔',
           viewAllBtn: 'عرض الكل',
           emptyCategoryNote: 'لا توجد منتجات في هذا القسم حالياً.',
@@ -2586,11 +2656,11 @@
           itemsCountSuffix: 'منتجات',
           buyBtn: 'شراء',
           modalTypeLabel: 'النوع / التصنيف',
-          modalMaterialLabel: 'نوع القماش / الخامة',
+          modalMaterialLabel: 'الخامة / النوع',
           modalSizeLabel: 'اختر القياس المتوفر:',
           modalGovLabel: 'المحافظة (العراق):',
           modalAddressLabel: 'العنوان التفصيلي / أقرب نقطة دالة (اختياري):',
-          modalAddressPlaceholder: 'مثال: حي العامل - شارع التشييش',
+          modalAddressPlaceholder: 'مثال: شارع الحبوبي - قرب صيدلية ذي قار',
           toastPrepared: 'تم تجهيز طلبك! جاري تحويلك إلى واتساب...',
           pinModalTitle: 'دخول لوحة الإدارة',
           pinModalDesc: 'أدخل الرمز السري الخاص بصاحب المتجر لفتح لوحة التحكم.',
@@ -2603,7 +2673,7 @@
           backToStoreBtn: 'العودة للمتجر',
           tabProducts: 'إدارة المنتجات',
           tabCategories: 'إدارة الأقسام',
-          tabSettings: 'الإعدادات والمزامنة',
+          tabSettings: 'الإعدادات والواجهة',
           addNewProductHeading: 'إضافة منتج جديد',
           editProductHeading: 'تعديل المنتج الحالي',
           cancelEditBtn: 'إلغاء التعديل',
@@ -2613,8 +2683,8 @@
           labelCategorySelect: 'القسم*',
           labelTypeAr: 'النوع / التصنيف (عربي)',
           labelTypeEn: 'النوع / التصنيف (إنجليزي)',
-          labelMaterialAr: 'الخامة / نوع القماش (عربي)',
-          labelMaterialEn: 'الخامة / نوع القماش (إنجليزي)',
+          labelMaterialAr: 'الخامة / النوع (عربي)',
+          labelMaterialEn: 'الخامة / النوع (إنجليزي)',
           labelSizesSelect: 'المقاسات المتوفرة (اضغط لتحديد أو إلغاء التحديد):',
           addSizeBtn: '+ إضافة مقاس',
           labelImgUrl: 'رابط صورة المنتج (URL)',
@@ -2630,12 +2700,16 @@
           labelCatEn: 'اسم القسم بالإنجليزية',
           createCategoryBtn: 'إضافة القسم',
           manageCategoriesHeading: 'الأقسام الحالية (تعديل الاسم أو الحذف)',
-          storeSettingsHeading: 'إعدادات المتجر الرئيسية',
-          labelStoreName: 'اسم المتجر',
+          storeSettingsHeading: 'تخصيص هوية المتجر ونصوص الواجهة بالكامل',
+          labelStoreName: 'اسم المتجر (عربي)',
+          labelStoreNameEn: 'اسم المتجر (إنجليزي)',
+          labelMonogram: 'حرفا الشعار (مثلاً SM)',
           labelHandle: 'حساب انستغرام / المعرف',
           labelWhatsapp: 'رقم الواتساب',
-          labelDeliveryNote: 'نص التوصيل للمحافظات',
-          labelAddress: 'العنوان',
+          labelDeliveryNote: 'نص التوصيل (عربي)',
+          labelDeliveryNoteEn: 'نص التوصيل (إنجليزي)',
+          labelAddress: 'العنوان (عربي)',
+          labelAddressEn: 'العنوان (إنجليزي)',
           labelAdminPin: 'الرمز السري للإدارة (PIN)',
           saveSettingsBtn: 'حفظ الإعدادات وتطبيقها فوراً',
           cloudSyncHeading: 'المزامنة السحابية المشتركة لجميع الزوار (Supabase)',
@@ -2659,13 +2733,6 @@
           toastResetDone: 'تمت استعادة البيانات الافتراضية للمتجر.'
         },
         en: {
-          heroBadge: 'Hussain Saeed Fashion • @hs.fashion4',
-          heroTitle: 'Modern Style at <span>Hussain Saeed Fashion</span>',
-          heroSubtitle: 'Fresh clothes, pants, and shoes curated with modern cuts and reliable fabrics, with delivery across all governorates.',
-          heroCta: 'Explore Collections',
-          statFollowers: 'Instagram Followers',
-          statDeliveryFee: 'Governorates Delivery',
-          statProvinces: 'Iraqi Governorates',
           swipeHint: 'Swipe to browse ↔',
           viewAllBtn: 'View All',
           emptyCategoryNote: 'No products in this section yet.',
@@ -2677,7 +2744,7 @@
           modalSizeLabel: 'Select Available Size:',
           modalGovLabel: 'Governorate (Iraq):',
           modalAddressLabel: 'Detailed Address / Landmark (Optional):',
-          modalAddressPlaceholder: 'e.g., Hayy Al-Amil - Al-Tashyeesh St.',
+          modalAddressPlaceholder: 'e.g., Al-Haboubi St. - Near Dhi Qar Pharmacy',
           toastPrepared: 'Order prepared! Redirecting to WhatsApp...',
           pinModalTitle: 'Admin Panel Login',
           pinModalDesc: 'Enter the store owner PIN to unlock the control panel.',
@@ -2690,7 +2757,7 @@
           backToStoreBtn: 'Back to Store',
           tabProducts: 'Products',
           tabCategories: 'Categories',
-          tabSettings: 'Settings & Sync',
+          tabSettings: 'Settings & UI',
           addNewProductHeading: 'Add New Product',
           editProductHeading: 'Edit Product',
           cancelEditBtn: 'Cancel Edit',
@@ -2717,12 +2784,16 @@
           labelCatEn: 'Category Name in English',
           createCategoryBtn: 'Add Category',
           manageCategoriesHeading: 'Existing Categories (Rename or Delete)',
-          storeSettingsHeading: 'Store Settings',
-          labelStoreName: 'Store Name',
+          storeSettingsHeading: 'Customize Store Identity & All Hero Texts',
+          labelStoreName: 'Store Name (Arabic)',
+          labelStoreNameEn: 'Store Name (English)',
+          labelMonogram: 'Logo Letters (e.g., SM)',
           labelHandle: 'Instagram Handle',
           labelWhatsapp: 'WhatsApp Number',
-          labelDeliveryNote: 'Delivery Note',
-          labelAddress: 'Address',
+          labelDeliveryNote: 'Delivery Note (Arabic)',
+          labelDeliveryNoteEn: 'Delivery Note (English)',
+          labelAddress: 'Address (Arabic)',
+          labelAddressEn: 'Address (English)',
           labelAdminPin: 'Admin PIN Code',
           saveSettingsBtn: 'Save & Apply Settings',
           cloudSyncHeading: 'Shared Cloud Sync for All Visitors (Supabase)',
@@ -2748,9 +2819,9 @@
       };
 
       const IRAQ_GOVERNORATES = [
+        { ar: 'ذي قار', en: 'Dhi Qar' },
         { ar: 'بغداد', en: 'Baghdad' },
         { ar: 'البصرة', en: 'Basra' },
-        { ar: 'ذي قار', en: 'Dhi Qar' },
         { ar: 'أربيل', en: 'Erbil' },
         { ar: 'النجف', en: 'Najaf' },
         { ar: 'كربلاء', en: 'Karbala' },
@@ -2776,7 +2847,7 @@
         activeCategoryPage: null,
         editingProductId: null,
         editingProductCategory: null,
-        adminSelectedSizes: ['S', 'M', 'L', 'XL'],
+        adminSelectedSizes: ['37', '38', '39', '40'],
         uploadedImageDataUrl: ''
       };
 
@@ -2811,26 +2882,51 @@
 
       function applyBrandSettings() {
         const s = storeData.settings;
-        document.getElementById('navBrandTitle').textContent = s.storeName;
+        const isAr = state.lang === 'ar';
+
+        const activeStoreName = isAr ? (s.storeName || '') : (s.storeNameEn || s.storeName || '');
+        const activeAddress = isAr ? (s.address || '') : (s.addressEn || s.address || '');
+        const activeDelivery = isAr ? (s.deliveryNote || '') : (s.deliveryNoteEn || s.deliveryNote || '');
+        const activeBadge = isAr
+          ? (s.heroBadgeAr || `${activeStoreName} • ${s.handle}`)
+          : (s.heroBadgeEn || `${activeStoreName} • ${s.handle}`);
+        const activePrefix = isAr
+          ? (s.heroTitlePrefixAr || 'إطلالتك العصرية في')
+          : (s.heroTitlePrefixEn || 'Modern Style at');
+        const activeSubtitle = isAr ? (s.heroSubtitleAr || '') : (s.heroSubtitleEn || s.heroSubtitleAr || '');
+        const activeCta = isAr ? (s.heroCtaAr || 'تصفح التشكيلة الآن') : (s.heroCtaEn || 'Explore Collections');
+
+        document.getElementById('navMonogramBadge').textContent = (s.monogram || 'SM').toUpperCase();
+        document.getElementById('navBrandTitle').textContent = activeStoreName;
         document.getElementById('navHandleSubtitle').textContent = s.handle;
-        document.getElementById('heroAddressText').textContent = s.address;
-        document.getElementById('heroDeliveryFeeStat').textContent = s.deliveryNote.includes('5') ? '5 الف' : s.deliveryNote;
-        document.getElementById('footerDeliveryTitle').textContent = `${s.deliveryNote} 🇮🇶`;
-        document.getElementById('footerAddressSub').textContent = `${s.address} • ${s.handle}`;
+
+        document.getElementById('heroBadgeText').textContent = activeBadge;
+        document.getElementById('heroHeading').innerHTML = `${escapeHtml(activePrefix)} <span>${escapeHtml(activeStoreName)}</span>`;
+        document.getElementById('heroSubtitleText').textContent = activeSubtitle;
+        document.getElementById('heroAddressText').textContent = activeAddress;
+        document.getElementById('heroCtaText').textContent = activeCta;
+
+        document.getElementById('heroStat1Val').textContent = s.stat1Val || '24.8K+';
+        document.getElementById('heroStat1Label').textContent = isAr ? (s.stat1LabelAr || '') : (s.stat1LabelEn || s.stat1LabelAr || '');
+        document.getElementById('heroStat2Val').textContent = s.stat2Val || '5 الف';
+        document.getElementById('heroStat2Label').textContent = isAr ? (s.stat2LabelAr || '') : (s.stat2LabelEn || s.stat2LabelAr || '');
+        document.getElementById('heroStat3Val').textContent = s.stat3Val || '18';
+        document.getElementById('heroStat3Label').textContent = isAr ? (s.stat3LabelAr || '') : (s.stat3LabelEn || s.stat3LabelAr || '');
+
+        document.getElementById('footerDeliveryTitle').textContent = `${activeDelivery} 🇮🇶`;
+        document.getElementById('footerAddressSub').textContent = `${activeAddress} • ${s.handle}`;
         document.getElementById('footerWhatsappDisplay').textContent = s.whatsapp;
 
         const intlWa = normalizeWhatsappIntl(s.whatsapp);
         document.getElementById('footerWhatsappLink').href = `https://wa.me/${intlWa}`;
-        document.getElementById('modalDeliveryBadge').textContent = `${s.deliveryNote} 🇮🇶`;
-        document.getElementById('modalOrderBtnText').textContent =
-          state.lang === 'ar'
-            ? `تأكيد الطلب عبر واتساب (${s.whatsapp})`
-            : `Confirm via WhatsApp (${s.whatsapp})`;
-        document.getElementById('footerCopyrightText').textContent =
-          state.lang === 'ar'
-            ? `© 2026 ${s.storeName} (${s.handle}). جميع الحقوق محفوظة.`
-            : `© 2026 ${s.storeName} (${s.handle}). All rights reserved.`;
-        document.title = `${s.storeName} (${s.handle})`;
+        document.getElementById('modalDeliveryBadge').textContent = `${activeDelivery} 🇮🇶`;
+        document.getElementById('modalOrderBtnText').textContent = isAr
+          ? `تأكيد الطلب عبر واتساب (${s.whatsapp})`
+          : `Confirm via WhatsApp (${s.whatsapp})`;
+        document.getElementById('footerCopyrightText').textContent = isAr
+          ? `© 2026 ${activeStoreName} (${s.handle}). جميع الحقوق محفوظة.`
+          : `© 2026 ${activeStoreName} (${s.handle}). All rights reserved.`;
+        document.title = `${activeStoreName} (${s.handle})`;
         updateSyncBadgeUI();
       }
 
@@ -2864,13 +2960,6 @@
           const key = el.getAttribute('data-i18n');
           if (I18N[lang][key]) {
             el.textContent = I18N[lang][key];
-          }
-        });
-
-        document.querySelectorAll('[data-i18n-html]').forEach((el) => {
-          const key = el.getAttribute('data-i18n-html');
-          if (I18N[lang][key]) {
-            el.innerHTML = I18N[lang][key];
           }
         });
 
@@ -2916,7 +3005,7 @@
       }
 
       function getProductLocalizedMaterial(product, lang) {
-        return product.material[lang] || product.material.ar || product.material.en || (lang === 'ar' ? 'خامة مختارة' : 'Selected Fabric');
+        return product.material[lang] || product.material.ar || product.material.en || (lang === 'ar' ? 'خامة مختارة' : 'Selected Material');
       }
 
       function createProductCardHTML(product, categoryKey) {
@@ -2928,20 +3017,20 @@
         const imgSrc = product.img || FALLBACK_IMG;
 
         return `
-          <article class="product-card" dir="${dir}" data-category="${categoryKey}" data-id="${product.id}" tabindex="0" role="button" aria-label="${title}">
+          <article class="product-card" dir="${dir}" data-category="${categoryKey}" data-id="${product.id}" tabindex="0" role="button" aria-label="${escapeHtml(title)}">
             <div>
               <div class="product-img-wrap">
                 <img
                   class="product-img"
                   src="${imgSrc}"
-                  alt="${title}"
+                  alt="${escapeHtml(title)}"
                   loading="lazy"
                   onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"
                 />
-                <span class="product-tag">${typeLabel}</span>
+                <span class="product-tag">${escapeHtml(typeLabel)}</span>
               </div>
               <div class="product-info">
-                <h3 class="product-name">${title}</h3>
+                <h3 class="product-name">${escapeHtml(title)}</h3>
                 <span class="product-price-mini">${priceLabel}</span>
               </div>
             </div>
@@ -3105,11 +3194,11 @@
               : `<div class="empty-category-note">${I18N[lang].emptyCategoryNote}</div>`;
 
             return `
-              <section class="category-section" aria-label="${catTitle}">
+              <section class="category-section" aria-label="${escapeHtml(catTitle)}">
                 <div class="section-header">
                   <div class="section-title-group">
                     <span class="section-accent-bar"></span>
-                    <h2 class="section-title">${catTitle}</h2>
+                    <h2 class="section-title">${escapeHtml(catTitle)}</h2>
                   </div>
                   <div class="section-header-actions">
                     <span class="swipe-hint">${I18N[lang].swipeHint}</span>
@@ -3270,11 +3359,13 @@
         const intlPhone = normalizeWhatsappIntl(s.whatsapp);
         const prodNameText = getProductLocalizedName(product, lang);
         const prodPriceText = formatPrice(product.priceIqd, lang);
+        const activeStoreName = lang === 'ar' ? s.storeName : (s.storeNameEn || s.storeName);
+        const activeDelivery = lang === 'ar' ? s.deliveryNote : (s.deliveryNoteEn || s.deliveryNote);
 
         const message =
           lang === 'ar'
-            ? `مرحباً ${s.storeName} (${s.handle}) 👋\nأرغب بتثبيت طلب جديد:\n• المنتج: ${prodNameText}\n• السعر: ${prodPriceText}\n• القياس المختار: ${size}\n• المحافظة: ${governorate}\n• التوصيل: ${s.deliveryNote}${addressNote ? `\n• العنوان / أقرب نقطة دالة: ${addressNote}` : ''}`
-            : `Hello ${s.storeName} (${s.handle}) 👋\nI would like to place a new order:\n• Product: ${prodNameText}\n• Price: ${prodPriceText}\n• Selected Size: ${size}\n• Governorate: ${governorate}\n• Delivery: ${s.deliveryNote}${addressNote ? `\n• Address / Landmark: ${addressNote}` : ''}`;
+            ? `مرحباً ${activeStoreName} (${s.handle}) 👋\nأرغب بتثبيت طلب جديد:\n• المنتج: ${prodNameText}\n• السعر: ${prodPriceText}\n• القياس المختار: ${size}\n• المحافظة: ${governorate}\n• التوصيل: ${activeDelivery}${addressNote ? `\n• العنوان / أقرب نقطة دالة: ${addressNote}` : ''}`
+            : `Hello ${activeStoreName} (${s.handle}) 👋\nI would like to place a new order:\n• Product: ${prodNameText}\n• Price: ${prodPriceText}\n• Selected Size: ${size}\n• Governorate: ${governorate}\n• Delivery: ${activeDelivery}${addressNote ? `\n• Address / Landmark: ${addressNote}` : ''}`;
 
         showToast(I18N[lang].toastPrepared);
         const waUrl = `https://wa.me/${intlPhone}?text=${encodeURIComponent(message)}`;
@@ -3400,11 +3491,34 @@
 
       const storeSettingsForm = document.getElementById('storeSettingsForm');
       const setStoreName = document.getElementById('setStoreName');
+      const setStoreNameEn = document.getElementById('setStoreNameEn');
+      const setMonogram = document.getElementById('setMonogram');
       const setHandle = document.getElementById('setHandle');
       const setWhatsapp = document.getElementById('setWhatsapp');
       const setDeliveryNote = document.getElementById('setDeliveryNote');
+      const setDeliveryNoteEn = document.getElementById('setDeliveryNoteEn');
       const setAddress = document.getElementById('setAddress');
+      const setAddressEn = document.getElementById('setAddressEn');
       const setAdminPin = document.getElementById('setAdminPin');
+
+      const setHeroBadgeAr = document.getElementById('setHeroBadgeAr');
+      const setHeroBadgeEn = document.getElementById('setHeroBadgeEn');
+      const setHeroTitlePrefixAr = document.getElementById('setHeroTitlePrefixAr');
+      const setHeroTitlePrefixEn = document.getElementById('setHeroTitlePrefixEn');
+      const setHeroSubtitleAr = document.getElementById('setHeroSubtitleAr');
+      const setHeroSubtitleEn = document.getElementById('setHeroSubtitleEn');
+      const setHeroCtaAr = document.getElementById('setHeroCtaAr');
+      const setHeroCtaEn = document.getElementById('setHeroCtaEn');
+
+      const setStat1Val = document.getElementById('setStat1Val');
+      const setStat1LabelAr = document.getElementById('setStat1LabelAr');
+      const setStat1LabelEn = document.getElementById('setStat1LabelEn');
+      const setStat2Val = document.getElementById('setStat2Val');
+      const setStat2LabelAr = document.getElementById('setStat2LabelAr');
+      const setStat2LabelEn = document.getElementById('setStat2LabelEn');
+      const setStat3Val = document.getElementById('setStat3Val');
+      const setStat3LabelAr = document.getElementById('setStat3LabelAr');
+      const setStat3LabelEn = document.getElementById('setStat3LabelEn');
 
       const pullCloudNowBtn = document.getElementById('pullCloudNowBtn');
       const pushCloudNowBtn = document.getElementById('pushCloudNowBtn');
@@ -3462,7 +3576,7 @@
         const prevFilter = adminFilterCategorySelect.value;
 
         prodCategorySelect.innerHTML = storeData.categories
-          .map((c) => `<option value="${c.key}">${getCategoryDisplayName(c, lang)}</option>`)
+          .map((c) => `<option value="${c.key}">${escapeHtml(getCategoryDisplayName(c, lang))}</option>`)
           .join('');
 
         if (prevCat && storeData.categories.some((c) => c.key === prevCat)) {
@@ -3472,7 +3586,7 @@
         adminFilterCategorySelect.innerHTML =
           `<option value="__all__">${I18N[lang].allCategoriesOption}</option>` +
           storeData.categories
-            .map((c) => `<option value="${c.key}">${getCategoryDisplayName(c, lang)}</option>`)
+            .map((c) => `<option value="${c.key}">${escapeHtml(getCategoryDisplayName(c, lang))}</option>`)
             .join('');
 
         if (prevFilter && (prevFilter === '__all__' || storeData.categories.some((c) => c.key === prevFilter))) {
@@ -3486,7 +3600,7 @@
         adminSizePresetContainer.innerHTML = allSizes
           .map((sz) => {
             const isSelected = state.adminSelectedSizes.includes(sz);
-            return `<button type="button" class="admin-size-toggle ${isSelected ? 'selected' : ''}" data-size-val="${sz}">${sz}</button>`;
+            return `<button type="button" class="admin-size-toggle ${isSelected ? 'selected' : ''}" data-size-val="${escapeHtml(sz)}">${escapeHtml(sz)}</button>`;
           })
           .join('');
 
@@ -3569,7 +3683,7 @@
       function resetProductForm() {
         state.editingProductId = null;
         state.editingProductCategory = null;
-        state.adminSelectedSizes = ['S', 'M', 'L', 'XL'];
+        state.adminSelectedSizes = ['37', '38', '39', '40'];
         state.uploadedImageDataUrl = '';
         productForm.reset();
         prodImgFile.value = '';
@@ -3653,7 +3767,7 @@
 
         state.editingProductId = prod.id;
         state.editingProductCategory = catKey;
-        state.adminSelectedSizes = Array.isArray(prod.sizes) && prod.sizes.length ? [...prod.sizes] : ['M', 'L'];
+        state.adminSelectedSizes = Array.isArray(prod.sizes) && prod.sizes.length ? [...prod.sizes] : ['Free Size'];
         state.uploadedImageDataUrl = prod.img && prod.img.startsWith('data:') ? prod.img : '';
 
         prodNameAr.value = prod.name.ar || '';
@@ -3712,10 +3826,10 @@
             return `
               <div class="admin-list-item">
                 <div class="admin-item-meta">
-                  <img src="${product.img || FALLBACK_IMG}" alt="${title}" class="admin-item-thumb" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" />
+                  <img src="${product.img || FALLBACK_IMG}" alt="${escapeHtml(title)}" class="admin-item-thumb" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" />
                   <div style="min-width: 0;">
-                    <div class="admin-item-title">${title}</div>
-                    <div class="admin-item-sub">${catName} • ${priceText} • [${sizesText}]</div>
+                    <div class="admin-item-title">${escapeHtml(title)}</div>
+                    <div class="admin-item-sub">${escapeHtml(catName)} • ${priceText} • [${escapeHtml(sizesText)}]</div>
                   </div>
                 </div>
                 <div class="admin-item-btns">
@@ -3779,7 +3893,7 @@
               <div class="admin-list-item">
                 <div class="admin-item-meta">
                   <div>
-                    <div class="admin-item-title">${catObj.name.ar} <span class="admin-item-sub">(${catObj.name.en})</span></div>
+                    <div class="admin-item-title">${escapeHtml(catObj.name.ar)} <span class="admin-item-sub">(${escapeHtml(catObj.name.en)})</span></div>
                     <div class="admin-item-sub">${count} ${I18N[lang].itemsCountSuffix}</div>
                   </div>
                 </div>
@@ -3834,25 +3948,77 @@
       }
 
       function fillSettingsForm() {
-        setStoreName.value = storeData.settings.storeName;
-        setHandle.value = storeData.settings.handle;
-        setWhatsapp.value = storeData.settings.whatsapp;
-        setDeliveryNote.value = storeData.settings.deliveryNote;
-        setAddress.value = storeData.settings.address;
-        setAdminPin.value = storeData.settings.adminPin || '1234';
+        const s = storeData.settings;
+        setStoreName.value = s.storeName || '';
+        setStoreNameEn.value = s.storeNameEn || '';
+        setMonogram.value = s.monogram || 'SM';
+        setHandle.value = s.handle || '';
+        setWhatsapp.value = s.whatsapp || '';
+        setDeliveryNote.value = s.deliveryNote || '';
+        setDeliveryNoteEn.value = s.deliveryNoteEn || '';
+        setAddress.value = s.address || '';
+        setAddressEn.value = s.addressEn || '';
+        setAdminPin.value = s.adminPin || '1234';
+
+        setHeroBadgeAr.value = s.heroBadgeAr || '';
+        setHeroBadgeEn.value = s.heroBadgeEn || '';
+        setHeroTitlePrefixAr.value = s.heroTitlePrefixAr || '';
+        setHeroTitlePrefixEn.value = s.heroTitlePrefixEn || '';
+        setHeroSubtitleAr.value = s.heroSubtitleAr || '';
+        setHeroSubtitleEn.value = s.heroSubtitleEn || '';
+        setHeroCtaAr.value = s.heroCtaAr || '';
+        setHeroCtaEn.value = s.heroCtaEn || '';
+
+        setStat1Val.value = s.stat1Val || '';
+        setStat1LabelAr.value = s.stat1LabelAr || '';
+        setStat1LabelEn.value = s.stat1LabelEn || '';
+        setStat2Val.value = s.stat2Val || '';
+        setStat2LabelAr.value = s.stat2LabelAr || '';
+        setStat2LabelEn.value = s.stat2LabelEn || '';
+        setStat3Val.value = s.stat3Val || '';
+        setStat3LabelAr.value = s.stat3LabelAr || '';
+        setStat3LabelEn.value = s.stat3LabelEn || '';
       }
 
       storeSettingsForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        const nameAr = setStoreName.value.trim() || 'متجرنا';
+        const nameEn = setStoreNameEn.value.trim() || nameAr;
+        const handleVal = setHandle.value.trim() || '@store';
+
         storeData.settings = {
           ...storeData.settings,
-          storeName: setStoreName.value.trim() || 'Hussain Saeed Fashion',
-          handle: setHandle.value.trim() || '@hs.fashion4',
-          whatsapp: setWhatsapp.value.trim() || '07725615564',
+          storeName: nameAr,
+          storeNameEn: nameEn,
+          monogram: setMonogram.value.trim().toUpperCase() || 'SM',
+          handle: handleVal,
+          whatsapp: setWhatsapp.value.trim() || '07821115480',
           deliveryNote: setDeliveryNote.value.trim() || 'توصيل لجميع المحافظات (5 الف)',
-          address: setAddress.value.trim() || 'بغداد حي العامل - شارع التشييش',
-          adminPin: setAdminPin.value.trim() || '1234'
+          deliveryNoteEn: setDeliveryNoteEn.value.trim() || 'Delivery to all governorates (5,000 IQD)',
+          address: setAddress.value.trim() || '',
+          addressEn: setAddressEn.value.trim() || setAddress.value.trim() || '',
+          adminPin: setAdminPin.value.trim() || '1234',
+
+          heroBadgeAr: setHeroBadgeAr.value.trim() || `${nameAr} • ${handleVal}`,
+          heroBadgeEn: setHeroBadgeEn.value.trim() || `${nameEn} • ${handleVal}`,
+          heroTitlePrefixAr: setHeroTitlePrefixAr.value.trim() || 'إطلالتك العصرية في',
+          heroTitlePrefixEn: setHeroTitlePrefixEn.value.trim() || 'Modern Style at',
+          heroSubtitleAr: setHeroSubtitleAr.value.trim(),
+          heroSubtitleEn: setHeroSubtitleEn.value.trim() || setHeroSubtitleAr.value.trim(),
+          heroCtaAr: setHeroCtaAr.value.trim() || 'تصفح التشكيلة الآن',
+          heroCtaEn: setHeroCtaEn.value.trim() || 'Explore Collections',
+
+          stat1Val: setStat1Val.value.trim() || '24.8K+',
+          stat1LabelAr: setStat1LabelAr.value.trim() || 'متابع على انستغرام',
+          stat1LabelEn: setStat1LabelEn.value.trim() || 'Instagram Followers',
+          stat2Val: setStat2Val.value.trim() || '5 الف',
+          stat2LabelAr: setStat2LabelAr.value.trim() || 'توصيل للمحافظات',
+          stat2LabelEn: setStat2LabelEn.value.trim() || 'Governorates Delivery',
+          stat3Val: setStat3Val.value.trim() || '18',
+          stat3LabelAr: setStat3LabelAr.value.trim() || 'محافظة عراقية',
+          stat3LabelEn: setStat3LabelEn.value.trim() || 'Iraqi Governorates'
         };
+
         persistStoreData(true);
         applyBrandSettings();
         showToast(I18N[state.lang].toastSettingsSaved);
@@ -3872,7 +4038,7 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'hs-fashion4-store-backup.json';
+        a.download = 'store-backup.json';
         a.click();
         URL.revokeObjectURL(url);
       });
